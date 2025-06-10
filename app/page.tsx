@@ -9,6 +9,11 @@ import allBrands from "@/public/images/brands.png"
 import pizza from "@/public/images/pizza.png"
 import about from "@/public/images/about.png"
 
+import { Swiper, SwiperSlide } from "swiper/react"
+import { FreeMode } from "swiper/modules"
+
+import 'swiper/css'
+
 export default function Home() {
   const brands = BRANDS
 
@@ -20,12 +25,16 @@ export default function Home() {
           <source src="/video/tedz.mp4" type="video/mp4" />
         </video>
 
-        <div className="text-white absolute left-24 top-50 max-w-[1280px] px-auto">
-          <h1 className="text-8xl">YOUR DIGITAL</h1>
-          <h1 className="text-8xl">BESTIE</h1>
-          <p className="w-[65%] my-7">Menyampaikan pesan brand kamu dikemas dengan video pendek yang full impact dengan target audience brand kamu.</p>
+        <div className="text-white">
+          <div className="absolute inset-0 flex flex-col items-start justify-center bg-black/30">
+            <div className="w-full max-w-7xl mx-auto">
+              <h1 className="text-8xl">YOUR DIGITAL</h1>
+              <h1 className="text-8xl">BESTIE</h1>
+              <p className="w-[65%] my-7">Menyampaikan pesan brand kamu dikemas dengan video pendek yang full impact dengan target audience brand kamu.</p>
 
-          <button className="bg-[#FFD300] py-2.5 px-10 text-black">CHAT TEDZ SEKARANG</button>
+              <button className="bg-[#FFD300] py-2.5 px-10 text-black">CHAT TEDZ SEKARANG</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -47,10 +56,22 @@ export default function Home() {
           <Link href="">Lihat Semua</Link>
         </div>
 
-        <div>
-          <div className="bg-[url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fdev.to%2Fsaim_ansari%2Fcreate-a-google-clone-ui-using-tailwind-css-576e&psig=AOvVaw3EOdlxc7FVI4tSAyaqeASP&ust=1748695463248000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOjW6LCcy40DFQAAAAAdAAAAABAE')]">
-            alksdjf;aldjfja
-          </div>
+        <div className="my-10">
+          <Swiper
+            modules={[FreeMode]}
+            spaceBetween={30}
+            slidesPerView={4}
+          >
+            <SwiperSlide className="bg-white py-3">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+            <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
+          </Swiper>
         </div>
       </div>
 
