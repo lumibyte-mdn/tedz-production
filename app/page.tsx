@@ -4,7 +4,6 @@ import { BRANDS } from "@/lib/brand"
 import Link from "next/link"
 import Image from "next/image"
 
-import service from "@/public/images/services.png"
 import allBrands from "@/public/images/brands.png"
 import pizza from "@/public/images/pizza.png"
 import about from "@/public/images/about.png"
@@ -13,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { FreeMode } from "swiper/modules"
 
 import 'swiper/css'
+import { FloatingWhatsApp } from "react-floating-whatsapp"
 
 export default function Home() {
   const brands = BRANDS
@@ -20,37 +20,62 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <div className="relative">
-        <video preload="none" autoPlay muted loop>
+      <div className="relative w-full h-screen overflow-hidden">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
           <source src="/video/tedz.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
 
-        <div className="text-white">
-          <div className="absolute inset-0 flex flex-col items-start justify-center bg-black/30">
-            <div className="w-full max-w-7xl mx-auto">
-              <h1 className="text-8xl">YOUR DIGITAL</h1>
-              <h1 className="text-8xl">BESTIE</h1>
-              <p className="w-[65%] my-7">Menyampaikan pesan brand kamu dikemas dengan video pendek yang full impact dengan target audience brand kamu.</p>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/90 to-transparent z-0" />
 
-              <button className="bg-[#FFD300] py-2.5 px-10 text-black">CHAT TEDZ SEKARANG</button>
+        {/* Konten di atas video */}
+        <div className="mx-auto max-w-7xl relativem z-10 h-full">
+          <div className="relative z-10 h-full flex  top-0 bottom-0 left-0 right-0 items-center justify-start">
+            <div className="flex-col">
+              <h1 className="text-[#FFD300] text-8xl font-bold font-oswald w-1/2 leading-24">YOUR DIGITAL BESTIE</h1>
+              <p className="text-white w-1/2 text-base mt-8">Tedz menjadi mitra terpercaya dalam solusi digital. Berbagai brand, baik lokal maupun internasional, dan telah membuktikan kualitas layanan yang kami berikan.</p>
+              <button className="bg-[#065dc6] hover:bg-[#065cc6bf] py-2 px-6 text-white rounded-md font-semibold text-base cursor-pointer mt-8">
+                Chat Tedz Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Brand */}
+        <div className="absolute z-20 bottom-0 w-full">
+          <div className="overflow-hidden">
+            <div className="bg-[#065DC6] py-4">
+              <div className="animate-scroll flex justify-between gap-24">
+                {
+                  brands.map((brand) => (
+                    <Image
+                    src={brand.logo}
+                    alt=""
+                    key={brand.id}
+                    className="transition-all duration-300 grayscale hover:grayscale-0"
+                    height={24}
+                    />
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Brand */}
-      <div className="bg-[#065DC6] py-3">
-        <div className="max-w-7xl mx-auto flex justify-between">  
-          {
-            brands.map((brand) => (
-              <p key={brand.id}>{brand.brand}</p>
-            ))
-          }
+      {/* Project */}
+      <div className="max-w-7xl mx-auto my-20">
+        <div>
+          <h1 className="text-white font-oswald text-7xl">OUR PROJECT</h1>
         </div>
       </div>
-
-      {/* Project */}
-      <div className="max-w-7xl mx-auto">
+      {/* <div className="max-w-7xl mx-auto">
         <div className="text-white flex justify-between">
           <h1>OUR PROJECT</h1>
           <Link href="">Lihat Semua</Link>
@@ -73,7 +98,7 @@ export default function Home() {
             <SwiperSlide className="bg-white">Slide 3</SwiperSlide>
           </Swiper>
         </div>
-      </div>
+      </div> */}
 
       {/* Clients and Partners */}
       <div className="bg-[url('/images/clients.png')] bg-cover">
@@ -86,7 +111,7 @@ export default function Home() {
                 <h3 className="">CLIENTS AND PARTNERS</h3>
                 <h1 className="">TEDZ <br /> PRODUCTION</h1>
               </div>
-              
+
               <div className="">
                 <p className="mb-6">Tedz Production adalah creative studio yang spesialis dalam pembuatan video pendek berdampak tinggi untuk menyampaikan pesan brand kamu secara kuat, cepat, dan tepat sasaran. Kami percaya bahwa setiap brand punya cerita unik dan kami hadir untuk mengemas cerita itu menjadi konten visual yang menarik dan relevan untuk target audience kamu.</p>
 
@@ -105,7 +130,7 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto py-32">
         <h1 className="text-4xl text-[#FFD300] text-center mb-20">OUR SERVICES</h1>
-        
+
         <div className="grid grid-cols-3">
           <div className="bg-[url('/images/services.png')] bg-cover w-[375px] h-[400px]">
             <div className="bg-black/30 h-full flex flex-col items-center justify-end pb-5">
@@ -115,7 +140,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          
+
         </div>
       </div>
 
@@ -150,7 +175,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        
+
         <Image src={about} alt="about" className="w-[50%] h-[600px] w-[450px]" />
       </div>
 
@@ -164,8 +189,8 @@ export default function Home() {
 
         <form className="w-full ml-32">
           <div className="flex mb-3">
-            <input type="text" placeholder="Name" className="bg-white w-full mr-2 px-4 py-2"/>
-            <input type="text" placeholder="Email" className="bg-white w-full px-4 py-2"/>
+            <input type="text" placeholder="Name" className="bg-white w-full mr-2 px-4 py-2" />
+            <input type="text" placeholder="Email" className="bg-white w-full px-4 py-2" />
           </div>
 
           <div className="mb-3">
@@ -178,7 +203,16 @@ export default function Home() {
         </form>
       </div>
 
+      <FloatingWhatsApp
+        phoneNumber="6285117305638"
+        accountName={"Tedz Productions"}
+        avatar="/images/avatar.jpg"
+        allowEsc
+        className="floating-whatsapp"
+        statusMessage="Online"
+        chatMessage="Thank you for contacting Tedz Production! Please let us know how we can help you."
 
+      />
     </>
   )
 }

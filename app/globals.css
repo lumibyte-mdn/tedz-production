@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+:root {
+  --oswald: 'Oswald', sans-serif;
+  --sora: 'Sora', sans-serif;
+}
+
+.font-oswald {
+  font-family: var(--oswald);
+}
+
+.font-sora {
+  font-family: var(--sora);
+}
+
+@layer utilities {
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 16s linear infinite;
+  }
+}
