@@ -9,6 +9,7 @@
   --color-accent: #ffd300;
   --color-accent-hover: #ffc700;
   --color-accent-foreground: #000000;
+  --color-soft-dark: #141b22;
 }
 
 @layer utilities {

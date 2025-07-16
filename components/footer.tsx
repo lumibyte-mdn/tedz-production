@@ -2,71 +2,70 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import tedz from '@/public/tedz.svg';
+import GetInTouchForm from './forms/GetInTouchForm';
+
+const navList = [
+  {
+    title: 'COMPANY',
+    links: [
+      { label: 'Home', href: '/' },
+      { label: 'About', href: '/about' },
+      { label: 'Projects', href: '/projects' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'SUBSCRIBE',
+    links: [
+      { label: 'Terms', href: '/terms' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Cookie Policy', href: '/cookies' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className='text-white bg-[#141B22]'>
-      <div className='flex justify-around max-w-7xl mx-auto py-32'>
+    <footer className='text-white bg-soft-dark'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto lg:py-32 px-4 py-14 md:px-8 lg:px-16 xl:px-20'>
         {/* Left */}
-        <div className='w-[40%]'>
-          <Image src={tedz} alt='icon' />
-          <div className='my-4'>
-            <p>Jl Sunggal No 24524, Medan</p>
-            <p>Sumatera Utara - Indonesia</p>
+        <div>
+          <Image
+            src={tedz}
+            alt='icon'
+            width={100}
+            height={100}
+            priority
+            quality={100}
+            className='lg:w-52 h-auto mb-4 w-40'
+          />
+          <div className='my-6'>
+            <p className='text-sm leading-loose'>
+              Jl Sunggal No 24524, Medan <br />
+              Sumatera Utara - Indonesia
+            </p>
           </div>
+        </div>
+
+        {/* Middle */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+          {navList.map((section) => (
+            <div key={section.title}>
+              <h4>{section.title}</h4>
+              <ul className='text-sm text-gray-300'>
+                {section.links.map((link) => (
+                  <li className='my-3' key={link.label}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Right */}
-        <div className='flex justify-between w-[60%]'>
-          <div>
-            <h4>COMPANY</h4>
-
-            <ul>
-              <li className='my-3'>
-                <Link href=''>Home</Link>
-              </li>
-              <li className='my-3'>
-                <Link href=''>About</Link>
-              </li>
-              <li className='my-3'>
-                <Link href=''>Projects</Link>
-              </li>
-              <li className='my-3'>
-                <Link href=''>Contact</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>SUBSCRIBE</h4>
-
-            <ul>
-              <li className='my-3'>
-                <Link href=''>Home</Link>
-              </li>
-              <li className='my-3'>
-                <Link href=''>About</Link>
-              </li>
-              <li className='my-3'>
-                <Link href=''>Projects</Link>
-              </li>
-              <li className='my-3'>
-                <Link href=''>Contact</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>GET IN TOUCH</h4>
-
-            <input
-              type='text'
-              className='bg-[#C2C3C526] py-2 px-3 my-3'
-              placeholder='Enter your email'
-            />
-            <button className='bg-accent px-6 py-2 text-black'>BRIEF</button>
-          </div>
-        </div>
+        <GetInTouchForm />
       </div>
     </footer>
   );
