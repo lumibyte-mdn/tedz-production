@@ -41,7 +41,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form className='w-full ml-32 space-y-3' autoComplete='off'>
+    <form className='w-full space-y-3 lg:col-span-2' autoComplete='off'>
       <div className='flex mb-3 space-x-2'>
         <label className='sr-only' htmlFor='contact-name'>
           Name
