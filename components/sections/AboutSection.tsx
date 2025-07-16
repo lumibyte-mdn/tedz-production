@@ -3,16 +3,19 @@ import AboutImage from '@/public/images/about.png';
 
 const AboutSection = () => {
   return (
-    <section className='max-w-7xl mx-auto text-white flex justify-between items-center py-32'>
+    <section className='grid md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-16 '>
       {/* Left */}
-      <div className='w-[50%]'>
+      <div>
         <div className='text-accent mb-16'>
-          <h3 className='text-3xl'>WE ARE</h3>
-          <h1 className='text-7xl'>TEDZ</h1>
-          <h1 className='text-7xl'>PRODUCTION</h1>
+          <h3 className='text-2xl leading-relaxed'>
+            WE ARE <br />
+            <span className='text-5xl font-black uppercase'>
+              Tedz <br /> production
+            </span>
+          </h3>
         </div>
 
-        <div>
+        <div className='text-base text-gray-300'>
           <p className='mb-8'>
             Tedz Production adalah creative studio yang spesialis dalam
             pembuatan video pendek berdampak tinggi untuk menyampaikan pesan
@@ -33,15 +36,17 @@ const AboutSection = () => {
         </div>
       </div>
 
-      <Image
-        src={AboutImage}
-        alt='About Image'
-        width={450}
-        height={600}
-        priority
-        quality={100}
-        className='md:w-[50%] h-[600px] w-[450px]'
-      />
+      <div className='flex items-center justify-end'>
+        <Image
+          src={AboutImage}
+          alt='About Image'
+          width={450}
+          height={600}
+          priority
+          quality={100}
+          className='h-[600px] w-[450px]'
+        />
+      </div>
     </section>
   );
 };
