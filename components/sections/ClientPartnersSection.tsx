@@ -1,11 +1,10 @@
 const ClientPartnersSection = () => {
   return (
     <section className="bg-[url('/images/clients.png')] bg-cover bg-center">
-      {/* Opacity */}
       <div className='bg-[#065DC6]/95 text-white py-10'>
-        <div className='max-w-7xl mx-auto flex items-center'>
+        <div className='grid grid-cols-2 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 gap-10'>
           {/* Left */}
-          <div className='w-[50%]'>
+          <div>
             <div className='mb-10'>
               <h3 className='font-oswald text-3xl font-medium mb-2'>
                 CLIENTS AND PARTNERS
@@ -15,7 +14,7 @@ const ClientPartnersSection = () => {
               </h1>
             </div>
 
-            <div className=''>
+            <div className='text-sm'>
               <p className='mb-6'>
                 Tedz Production adalah creative studio yang spesialis dalam
                 pembuatan video pendek berdampak tinggi untuk menyampaikan pesan
@@ -37,11 +36,13 @@ const ClientPartnersSection = () => {
           </div>
 
           {/* Right */}
-          <div className='w-[50%] flex flex-col justify-center items-center text-accent leading-none'>
+          <div className='flex flex-col justify-center items-center text-accent leading-none'>
             <h1 className='text-center font-oswald text-9xl font-black'>
               100+
             </h1>
-            <p className='font-oswald text-6xl font-black mt-2'>CLIENTS</p>
+            <p className='font-oswald text-6xl font-black mt-2 text-center'>
+              CLIENTS
+            </p>
           </div>
         </div>
       </div>
