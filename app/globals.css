@@ -1,16 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --oswald: 'Oswald', sans-serif;
   --sora: 'Sora', sans-serif;
 }
 
-.font-oswald {
-  font-family: var(--oswald);
-}
-
-.font-sora {
-  font-family: var(--sora);
+@theme inline {
+  --color-accent: #ffd300;
+  --color-accent-hover: #ffc700;
+  --color-accent-foreground: #000000;
 }
 
 @layer utilities {
@@ -25,5 +23,22 @@
 
   .animate-scroll {
     animation: scroll 16s linear infinite;
+  }
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@layer utilities {
+  .font-oswald {
+    font-family: var(--oswald);
+  }
+  .font-sora {
+    font-family: var(--sora);
   }
 }

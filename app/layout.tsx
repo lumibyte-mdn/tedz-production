@@ -1,16 +1,20 @@
-import { Oswald, Sora } from "next/font/google";
-import "./globals.css";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
+import { Oswald, Sora } from 'next/font/google';
+import './globals.css';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const oswald = Oswald({
-  variable: "--oswald",
-  subsets: ["latin"],
+  variable: '--oswald',
+  subsets: ['latin'],
 });
 
 const sora = Sora({
-  variable: "--sora",
-  subsets: ["latin"],
+  variable: '--sora',
+  subsets: ['latin'],
 });
 
 export default function RootLayout({
@@ -19,13 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
         className={`${sora.className} ${oswald.className}  antialiased bg-[#040B11]`}
         suppressHydrationWarning
       >
         <Navigation />
-          {children}
+        {children}
         <Footer />
       </body>
     </html>
