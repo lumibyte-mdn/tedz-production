@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -96,6 +98,7 @@ const mockProjects: TProject[] = [
     description: 'Capturing the energy of music festivals.',
   },
 ];
+
 const ProjectSection = () => {
   return (
     <section>
