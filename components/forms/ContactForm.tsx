@@ -51,7 +51,7 @@ const ContactForm = () => {
           name='name'
           type='text'
           placeholder='Name'
-          className='bg-white w-full px-4 py-2'
+          className='bg-white w-full px-4 py-2 text-gray-800'
           autoComplete='name'
           required
           value={formData.name}
@@ -65,7 +65,7 @@ const ContactForm = () => {
           name='email'
           type='email'
           placeholder='Email'
-          className='bg-white w-full px-4 py-2'
+          className='bg-white w-full px-4 py-2 text-gray-800'
           autoComplete='email'
           required
           value={formData.email}
@@ -81,7 +81,7 @@ const ContactForm = () => {
           name='phone'
           type='tel'
           placeholder='Phone Number'
-          className='bg-white w-full px-4 py-2'
+          className='bg-white w-full px-4 py-2 text-gray-800'
           autoComplete='tel'
           required
           value={formData.phone}
@@ -96,7 +96,7 @@ const ContactForm = () => {
           id='contact-message'
           name='message'
           rows={5}
-          className='bg-white w-full px-4 py-1'
+          className='bg-white w-full px-4 py-1 text-gray-800'
           placeholder='Message'
           required
           value={formData.message}

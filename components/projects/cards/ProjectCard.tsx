@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 type Props = {} & TProject;
 
-const ProjectPotraitCard = ({ ...project }: Props) => {
+const ProjectCard = ({ ...project }: Props) => {
   return (
     <Link
       href={`/projects/${project.id}`}
@@ -15,8 +15,8 @@ const ProjectPotraitCard = ({ ...project }: Props) => {
           src={project.image}
           alt={project.title}
           width={1080}
-          height={1920}
-          className='w-auto h-[500px] object-cover hover:brightness-75 transition-all duration-300'
+          height={1080}
+          className='size-[400px] object-cover hover:brightness-75 transition-all duration-300'
         />
 
         <main className='mt-4'>
@@ -29,4 +29,4 @@ const ProjectPotraitCard = ({ ...project }: Props) => {
     </Link>
   );
 };
-export default ProjectPotraitCard;
+export default ProjectCard;

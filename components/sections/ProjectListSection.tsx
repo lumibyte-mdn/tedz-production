@@ -1,10 +1,13 @@
 'use client';
 
-import Link from 'next/link';
-import { FreeMode, Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
+import { useState } from 'react';
+import Section from './Section';
+import { cn } from '@/lib/utils';
 import { TProject } from '@/types';
+import ProjectCard from '../projects/cards/ProjectCard';
+import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
+import ProjectImageCard from '../projects/cards/ProjectImageCard';
+import Container from '../wrappers/Container';
 
 const mockProjects: TProject[] = [
   {
@@ -99,41 +102,77 @@ const mockProjects: TProject[] = [
   },
 ];
 
-const ProjectSection = () => {
-  return (
-    <section>
-      <div className='max-w-7xl mx-auto my-20'>
-        <header className='text-white flex justify-between'>
-          <h1 className='font-oswald text-2xl lg:text-7xl'>OUR PROJECT</h1>
-          <Link
-            href='/projects'
-            className='border-accent lg:py-4 lg:px-6 rounded-lg border-2 flex-center h-fit font-bold hover:bg-accent hover:text-black transition-all duration-300 py-2 px-4 text-sm lg:text-base'
-          >
-            Lihat Semua
-          </Link>
-        </header>
+const mockCategories = [
+  { id: 1, name: 'VIDEO COMMERCIAL' },
+  { id: 2, name: 'SOCIAL MEDIA' },
+  { id: 3, name: 'TIKTOK / REELS' },
+];
 
-        <main className='my-10'>
-          <Swiper
-            modules={[FreeMode, Pagination]}
-            spaceBetween={30}
-            slidesPerView={4}
-            height={650}
-            pagination={{
-              bulletActiveClass: '!bg-accent/100 !opacity-100',
-              bulletClass: 'swiper-pagination-bullet !bg-accent !size-2.5',
-            }}
-            className='h-[650px]'
-          >
-            {mockProjects.map((project) => (
-              <SwiperSlide key={project.id}>
-                <ProjectPotraitCard {...project} />
-              </SwiperSlide>
+type Props = {
+  withCategoryTab?: boolean;
+};
+
+const ProjectListSection = ({ withCategoryTab }: Props) => {
+  const [selectedCategory, setSelectedCategory] = useState(
+    mockCategories[0].id
+  );
+
+  const handleCategoryChange = (categoryId: number) => {
+    setSelectedCategory(categoryId);
+    // Logic to filter projects by category can be added here
+  };
+
+  return (
+    <Section className='py-0'>
+      <Container>
+        {withCategoryTab && (
+          <header className='mb-20 flex items-center flex-wrap md:flex-nowrap justify-around gap-6'>
+            {mockCategories.map((category) => (
+              <button
+                key={category.id}
+                className={cn(
+                  'text-lg md:text-2xl font-bold transition-colors uppercase',
+                  selectedCategory === category.id
+                    ? 'text-accent hover:text-accent-hover'
+                    : 'text-white hover:text-gray-300'
+                )}
+                onClick={() => handleCategoryChange(category.id)}
+              >
+                {category.name}
+              </button>
             ))}
-          </Swiper>
-        </main>
-      </div>
-    </section>
+          </header>
+        )}
+
+        {selectedCategory == 2 && (
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-14'>
+            {mockProjects.map((project) => (
+              <ProjectCard key={project.id} {...project} />
+            ))}
+          </div>
+        )}
+
+        {selectedCategory == 3 && (
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-14'>
+            {mockProjects.map((project) => (
+              <ProjectPotraitCard key={project.id} {...project} />
+            ))}
+          </div>
+        )}
+      </Container>
+
+      {selectedCategory == 1 && (
+        <div className='grid grid-cols-1 md:grid-cols-2'>
+          {mockProjects.map((project) => (
+            <ProjectImageCard
+              key={project.id}
+              wrapperClassName='odd:col-span-2'
+              {...project}
+            />
+          ))}
+        </div>
+      )}
+    </Section>
   );
 };
-export default ProjectSection;
+export default ProjectListSection;

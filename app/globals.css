@@ -15,6 +15,12 @@
   --color-soft-dark: #141b22;
 }
 
+@layer base {
+  button {
+    @apply cursor-pointer;
+  }
+}
+
 @layer utilities {
   @keyframes scroll {
     0% {
