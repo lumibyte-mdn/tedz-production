@@ -2,14 +2,14 @@ const ClientPartnersSection = () => {
   return (
     <section className="bg-[url('/images/clients.png')] bg-cover bg-center">
       <div className='bg-[#065DC6]/95 text-white py-10'>
-        <div className='grid grid-cols-2 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 gap-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 gap-10'>
           {/* Left */}
           <div>
             <div className='mb-10'>
-              <h3 className='font-oswald text-3xl font-medium mb-2'>
+              <h3 className='font-oswald text-xl lg:text-3xl font-medium mb-2'>
                 CLIENTS AND PARTNERS
               </h3>
-              <h1 className='font-oswald text-7xl font-black'>
+              <h1 className='font-oswald text-5xl lg:text-7xl font-black'>
                 TEDZ <br /> PRODUCTION
               </h1>
             </div>
