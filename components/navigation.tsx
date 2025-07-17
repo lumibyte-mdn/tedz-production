@@ -4,12 +4,13 @@ import tedz from '@/public/tedz.svg';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import AppLogo from './AppLogo';
 
 const navigation = [
-  { name: 'HOME', href: '#' },
-  { name: 'TEDZ PROJECT', href: '#' },
+  { name: 'HOME', href: '/' },
+  { name: 'TEDZ PROJECT', href: '/projects' },
   { name: 'INSTAGRAM', href: '#' },
-  { name: 'CONTACT', href: '#' },
+  { name: 'CONTACT', href: '/contact' },
 ];
 
 export default function Navigation() {
@@ -22,12 +23,10 @@ export default function Navigation() {
 
   return (
     <>
-      <div className='bg-[#040b11] absolute top-0 z-50 w-full'>
+      <div className='bg-[#040b11] fixed top-0 z-50 w-full'>
         <header className='max-w-7xl py-4 mx-auto'>
           <div className='grid grid-cols-4'>
-            <div>
-              <Image src={tedz} alt='' width={120} />
-            </div>
+            <AppLogo />
             <div className='flex gap-12 col-span-2 items-center justify-center'>
               {navigation.map((item) => (
                 <Link

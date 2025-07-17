@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import tedz from '@/public/tedz.svg';
 import GetInTouchForm from './forms/GetInTouchForm';
+import Container from './wrappers/Container';
+import AppLogo from './AppLogo';
 
 const navList = [
   {
@@ -28,18 +30,10 @@ const navList = [
 export default function Footer() {
   return (
     <footer className='text-white bg-soft-dark'>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto lg:py-32 px-4 py-14 md:px-8 lg:px-16 xl:px-20'>
+      <Container className='grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto lg:py-32 px-4 py-14 md:px-8 lg:px-16 xl:px-20 !my-0'>
         {/* Left */}
         <div>
-          <Image
-            src={tedz}
-            alt='icon'
-            width={100}
-            height={100}
-            priority
-            quality={100}
-            className='lg:w-52 h-auto mb-4 w-40'
-          />
+          <AppLogo className='max-w-[150px]' />
           <div className='my-6'>
             <p className='text-sm leading-loose'>
               Jl Sunggal No 24524, Medan <br />
@@ -66,7 +60,7 @@ export default function Footer() {
 
         {/* Right */}
         <GetInTouchForm />
-      </div>
+      </Container>
     </footer>
   );
 }
