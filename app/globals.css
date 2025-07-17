@@ -27,3 +27,17 @@
     animation: scroll 16s linear infinite;
   }
 }
+
+/* Global CSS atau Tailwind config */
+.swiper-pagination-bullet {
+  background-color: #d1d5db !important; /* warna bullet default (abu-abu) */
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #065DC6 !important; /* warna bullet aktif (biru) */
+}
+
+.swiper-pagination {
+  bottom: 0px !important; /* sesuaikan posisi */
+}
