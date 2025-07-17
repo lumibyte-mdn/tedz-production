@@ -6,6 +6,9 @@
 }
 
 @theme inline {
+  --color-secondary: #065dc6;
+  --color-secondary-hover: #0a6edc;
+  --color-secondary-foreground: #ffffff;
   --color-accent: #ffd300;
   --color-accent-hover: #ffc700;
   --color-accent-foreground: #000000;
