@@ -16,7 +16,7 @@ const ProjectPotraitCard = ({ ...project }: Props) => {
           alt={project.title}
           width={1080}
           height={1920}
-          className='w-full h-[500px] object-cover hover:brightness-75 transition-all duration-300'
+          className='w-full h-[360px] object-cover hover:brightness-75 transition-all duration-300'
         />
 
         <main className='mt-4'>

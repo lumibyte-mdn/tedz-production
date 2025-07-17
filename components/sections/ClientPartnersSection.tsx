@@ -6,7 +6,7 @@ const ClientPartnersSection = () => {
           {/* Left */}
           <div>
             <div className='mb-10'>
-              <h3 className='font-oswald text-xl lg:text-3xl font-medium mb-2'>
+              <h3 className='font-oswald text-xl lg:text-2xl font-medium mb-2'>
                 CLIENTS AND PARTNERS
               </h3>
               <h1 className='font-oswald text-5xl lg:text-7xl font-black'>
@@ -37,10 +37,10 @@ const ClientPartnersSection = () => {
 
           {/* Right */}
           <div className='flex flex-col justify-center items-center text-accent leading-none'>
-            <h1 className='text-center font-oswald text-9xl font-black'>
+            <h1 className='text-center font-oswald text-[150px] font-black tracking-tight'>
               100+
             </h1>
-            <p className='font-oswald text-6xl font-black mt-2 text-center'>
+            <p className='font-oswald text-5xl font-black mt-2 text-center'>
               CLIENTS
             </p>
           </div>

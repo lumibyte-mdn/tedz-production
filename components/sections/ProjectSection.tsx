@@ -103,11 +103,11 @@ const ProjectSection = () => {
   return (
     <section>
       <div className='max-w-7xl mx-auto my-20'>
-        <header className='text-white flex justify-between'>
-          <h1 className='font-oswald text-2xl lg:text-7xl'>OUR PROJECT</h1>
+        <header className='text-white flex justify-between items-center'>
+          <h1 className='font-oswald text-2xl lg:text-5xl font-semibold'>OUR PROJECT</h1>
           <Link
             href='/projects'
-            className='border-accent lg:py-4 lg:px-6 rounded-lg border-2 flex-center h-fit font-bold hover:bg-accent hover:text-black transition-all duration-300 py-2 px-4 text-sm lg:text-base'
+            className='border-secondary lg:py-2 lg:px-4 rounded-lg border-2 flex-center h-fit font-bold hover:bg-secondary hover:text-white transition-all duration-300 py-2 px-4 text-sm lg:text-base'
           >
             Lihat Semua
           </Link>
@@ -117,13 +117,13 @@ const ProjectSection = () => {
           <Swiper
             modules={[FreeMode, Pagination]}
             spaceBetween={30}
-            slidesPerView={4}
-            height={650}
+            slidesPerView={5}
             pagination={{
               bulletActiveClass: '!bg-accent/100 !opacity-100',
               bulletClass: 'swiper-pagination-bullet !bg-accent !size-2.5',
+              clickable : true
             }}
-            className='h-[650px]'
+            className='h-[540px]'
           >
             {mockProjects.map((project) => (
               <SwiperSlide key={project.id}>
