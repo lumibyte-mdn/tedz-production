@@ -1,9 +1,9 @@
 'use client';
 
-import { deleteCategoryApi, getCategoryListApi } from '@/api/category';
+import { deleteProjectApi, getProjectListApi } from '@/api/projects';
 import PageTitle from '@/components/PageTitle';
 import { DataTable } from '@/components/tables/DataTable';
-import { Category } from '@/prisma/generated/prisma';
+import { Prisma } from '@/prisma/generated/prisma';
 import { useQuery } from '@tanstack/react-query';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
@@ -14,12 +14,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import CreateCategoryForm from '@/components/forms/CreateCategoryForm';
+// import CreateProjectForm from '@/components/forms/CreateProjectForm';
 import DeleteButton from '@/components/buttons/DeleteButton';
-import EditCategoryButton from '@/components/buttons/EditCategoryButton';
+// import EditProjectButton from '@/components/buttons/EditProjectButton';
 
-const ManageCategoryPage = () => {
-  const helper = createColumnHelper<Category>();
+const ManageProjectPage = () => {
+  const helper =
+    createColumnHelper<
+      Prisma.ProjectGetPayload<{ include: { category: true } }>
+    >();
 
   const columns = useMemo(
     () => [
@@ -27,12 +30,16 @@ const ManageCategoryPage = () => {
         header: 'ID',
         cell: (info) => info.getValue(),
       }),
-      helper.accessor('name', {
-        header: 'Name',
+      helper.accessor('title', {
+        header: 'Title',
         cell: (info) => info.getValue(),
       }),
-      helper.accessor('layout', {
-        header: 'Layout',
+      helper.accessor('description', {
+        header: 'Description',
+        cell: (info) => info.getValue(),
+      }),
+      helper.accessor('category.name', {
+        header: 'Category',
         cell: (info) => info.getValue(),
       }),
       helper.accessor('createdAt', {
@@ -44,12 +51,12 @@ const ManageCategoryPage = () => {
         header: 'Actions',
         cell: (info) => (
           <div className='flex items-center gap-2'>
-            <EditCategoryButton data={info.row.original} />
+            {/* <EditProjectButton data={info.row.original} /> */}
 
             <DeleteButton
               id={info.row.original.id}
-              action={deleteCategoryApi}
-              queryKeys={['categories']}
+              action={deleteProjectApi}
+              queryKeys={['projects']}
             />
           </div>
         ),
@@ -58,22 +65,24 @@ const ManageCategoryPage = () => {
     []
   );
 
-  const { data, isPending } = useQuery<Category[]>({
-    queryKey: ['categories'],
-    queryFn: getCategoryListApi,
+  const { data, isPending } = useQuery<
+    Prisma.ProjectGetPayload<{ include: { category: true } }>[]
+  >({
+    queryKey: ['projects'],
+    queryFn: () => getProjectListApi(),
   });
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const openCreateCategoryModal = () => {
+  const openCreateProjectModal = () => {
     setIsCreateModalOpen(true);
   };
 
   return (
     <main>
       <PageTitle
-        title='Manage Categories'
-        subtitle='Create, edit, and delete categories for your content.'
+        title='Manage Projects'
+        subtitle='Create, edit, and delete projects for your content.'
       />
 
       <section className='bg-white p-4 pt-0 rounded-lg shadow-md border border-border'>
@@ -82,24 +91,24 @@ const ManageCategoryPage = () => {
           data={data || []}
           loading={isPending}
           withAddButton
-          onAdd={openCreateCategoryModal}
+          onAdd={openCreateProjectModal}
         />
       </section>
 
       <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create Category</DialogTitle>
+            <DialogTitle>Create Project</DialogTitle>
           </DialogHeader>
 
           <main className='mt-4'>
-            <CreateCategoryForm
+            {/* <CreateProjectForm
               closeModal={() => setIsCreateModalOpen(false)}
-            />
+            /> */}
           </main>
         </DialogContent>
       </Dialog>
     </main>
   );
 };
-export default ManageCategoryPage;
+export default ManageProjectPage;

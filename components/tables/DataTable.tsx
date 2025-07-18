@@ -4,6 +4,9 @@ import {
   ColumnDef,
   ColumnFiltersState,
   ColumnMeta,
+  FilterFn,
+  GlobalFilterTableState,
+  RowData,
   SortingState,
   flexRender,
   getCoreRowModel,
@@ -25,9 +28,7 @@ import {
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
@@ -37,7 +38,8 @@ import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { IconPlus } from '@tabler/icons-react';
 import { Button } from '../ui/button';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { rankItem } from '@tanstack/match-sorter-utils';
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData, any>[];
@@ -62,9 +64,34 @@ export function DataTable<TData>({
     pageSize: 10,
   });
 
+  const fuzzyFilter = useCallback<FilterFn<RowData>>(
+    (row, columnId, value, addMeta) => {
+      // Rank the item
+      const itemRank = rankItem(row.getValue(columnId), value);
+
+      // Store the itemRank info
+      addMeta({ itemRank });
+
+      // Return if the item should be filtered in/out
+      return itemRank.passed;
+    },
+    []
+  );
+
+  const handleSearchChange = useCallback((value: string) => {
+    if (value) {
+      table.setGlobalFilter(value);
+    } else {
+      table.setGlobalFilter(undefined);
+    }
+  }, []);
+
+  const fallbackData = useMemo(() => data || [], [data]);
+
   const table = useReactTable({
     data,
     columns,
+    pageCount: Math.ceil(fallbackData.length / pagination.pageSize),
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -72,10 +99,15 @@ export function DataTable<TData>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: 'fuzzy' as GlobalFilterTableState['globalFilter'],
+    enableMultiSort: false,
     state: {
       sorting,
       pagination,
       columnFilters,
+    },
+    filterFns: {
+      fuzzy: fuzzyFilter,
     },
   });
 
@@ -84,10 +116,8 @@ export function DataTable<TData>({
       <div className='flex items-center py-4 gap-4'>
         <Input
           placeholder='Search...'
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
-          }
+          value={table.getState().globalFilter || ''}
+          onChange={(event) => table.setGlobalFilter(event.target.value)}
           className='max-w-60 text-sm'
         />
         {withAddButton && (

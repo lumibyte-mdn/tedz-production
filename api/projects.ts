@@ -9,7 +9,9 @@ export interface GetProjectListProps {
 
 export async function getProjectListApi({
   categoryId,
-}: GetProjectListProps): Promise<Project[]> {
+}: GetProjectListProps = {}): Promise<
+  Prisma.ProjectGetPayload<{ include: { category: true } }>[]
+> {
   try {
     const where: Prisma.ProjectWhereInput = {};
 

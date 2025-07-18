@@ -11,14 +11,10 @@ import { useMemo, useState } from 'react';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import CreateBrandForm from '@/components/forms/CreateBrandForm';
-import { Button } from '@/components/ui/button';
-import { IconPencil, IconTrash } from '@tabler/icons-react';
 import DeleteButton from '@/components/buttons/DeleteButton';
 // import EditBrandButton from '@/components/buttons/EditBrandButton';
 import Image from 'next/image';
