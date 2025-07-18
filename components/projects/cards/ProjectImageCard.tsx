@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
-import { TProject } from '@/types';
+import { Project } from '@/prisma/generated/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
   wrapperClassName?: string;
-} & TProject;
+} & Project;
 
 const ProjectImageCard = ({ wrapperClassName, ...project }: Props) => {
   return (
@@ -15,7 +15,7 @@ const ProjectImageCard = ({ wrapperClassName, ...project }: Props) => {
     >
       <main className='relative'>
         <Image
-          src={project.image}
+          src={project.image || 'https://placehold.co/1280x720'}
           alt={project.title}
           width={1280}
           height={720}

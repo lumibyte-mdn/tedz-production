@@ -41,7 +41,7 @@ const ServiceSection = () => {
           >
             <div className="bg-[url('/images/services.png')] bg-cover w-full h-[400px] rounded-sm">
               <div
-                className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-t before:from-base before:to-transparent before:content-[''] 
+                className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-t before:from-base-dark before:to-transparent before:content-[''] 
             group-hover:before:opacity-50 before:transition-opacity before:duration-300"
               ></div>
               <div className='relative h-full flex flex-col items-center justify-end pb-5 w-full'>

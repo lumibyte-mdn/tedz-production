@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${sora.className} ${oswald.className}  antialiased bg-base`}
+        className={`${sora.className} ${oswald.className}  antialiased bg-base-dark`}
         suppressHydrationWarning
       >
         <QueryProvider>

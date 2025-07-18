@@ -1,8 +1,8 @@
-import { TProject } from '@/types';
+import { Project } from '@/prisma/generated/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Props = {} & TProject;
+type Props = {} & Project;
 
 const ProjectPotraitCard = ({ ...project }: Props) => {
   return (
@@ -12,7 +12,7 @@ const ProjectPotraitCard = ({ ...project }: Props) => {
     >
       <main>
         <Image
-          src={project.image}
+          src={project.image || 'https://placehold.co/600x400'}
           alt={project.title}
           width={1080}
           height={1920}

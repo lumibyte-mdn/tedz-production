@@ -175,6 +175,7 @@ exports.Prisma.BrandScalarFieldEnum = {
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  layout: 'layout',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -204,7 +205,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.CategoryLayout = exports.$Enums.CategoryLayout = {
+  GRID: 'GRID',
+  CARD: 'CARD',
+  PORTRAIT: 'PORTRAIT'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

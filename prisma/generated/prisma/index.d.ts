@@ -50,6 +50,24 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
 export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const CategoryLayout: {
+  GRID: 'GRID',
+  CARD: 'CARD',
+  PORTRAIT: 'PORTRAIT'
+};
+
+export type CategoryLayout = (typeof CategoryLayout)[keyof typeof CategoryLayout]
+
+}
+
+export type CategoryLayout = $Enums.CategoryLayout
+
+export const CategoryLayout: typeof $Enums.CategoryLayout
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -6902,6 +6920,7 @@ export namespace Prisma {
   export type CategoryMinAggregateOutputType = {
     id: number | null
     name: string | null
+    layout: $Enums.CategoryLayout | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6909,6 +6928,7 @@ export namespace Prisma {
   export type CategoryMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    layout: $Enums.CategoryLayout | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6916,6 +6936,7 @@ export namespace Prisma {
   export type CategoryCountAggregateOutputType = {
     id: number
     name: number
+    layout: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6933,6 +6954,7 @@ export namespace Prisma {
   export type CategoryMinAggregateInputType = {
     id?: true
     name?: true
+    layout?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6940,6 +6962,7 @@ export namespace Prisma {
   export type CategoryMaxAggregateInputType = {
     id?: true
     name?: true
+    layout?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6947,6 +6970,7 @@ export namespace Prisma {
   export type CategoryCountAggregateInputType = {
     id?: true
     name?: true
+    layout?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7041,6 +7065,7 @@ export namespace Prisma {
   export type CategoryGroupByOutputType = {
     id: number
     name: string
+    layout: $Enums.CategoryLayout
     createdAt: Date
     updatedAt: Date
     _count: CategoryCountAggregateOutputType | null
@@ -7067,6 +7092,7 @@ export namespace Prisma {
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    layout?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     projects?: boolean | Category$projectsArgs<ExtArgs>
@@ -7076,6 +7102,7 @@ export namespace Prisma {
   export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    layout?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["category"]>
@@ -7083,6 +7110,7 @@ export namespace Prisma {
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    layout?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["category"]>
@@ -7090,11 +7118,12 @@ export namespace Prisma {
   export type CategorySelectScalar = {
     id?: boolean
     name?: boolean
+    layout?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "layout" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projects?: boolean | Category$projectsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -7110,6 +7139,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      layout: $Enums.CategoryLayout
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["category"]>
@@ -7538,6 +7568,7 @@ export namespace Prisma {
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'Int'>
     readonly name: FieldRef<"Category", 'String'>
+    readonly layout: FieldRef<"Category", 'CategoryLayout'>
     readonly createdAt: FieldRef<"Category", 'DateTime'>
     readonly updatedAt: FieldRef<"Category", 'DateTime'>
   }
@@ -9189,6 +9220,7 @@ export namespace Prisma {
   export const CategoryScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    layout: 'layout',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9285,6 +9317,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CategoryLayout'
+   */
+  export type EnumCategoryLayoutFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoryLayout'>
+    
+
+
+  /**
+   * Reference to a field of type 'CategoryLayout[]'
+   */
+  export type ListEnumCategoryLayoutFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoryLayout[]'>
     
 
 
@@ -9645,6 +9691,7 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: IntFilter<"Category"> | number
     name?: StringFilter<"Category"> | string
+    layout?: EnumCategoryLayoutFilter<"Category"> | $Enums.CategoryLayout
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     projects?: ProjectListRelationFilter
@@ -9653,6 +9700,7 @@ export namespace Prisma {
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    layout?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projects?: ProjectOrderByRelationAggregateInput
@@ -9664,6 +9712,7 @@ export namespace Prisma {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
+    layout?: EnumCategoryLayoutFilter<"Category"> | $Enums.CategoryLayout
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     projects?: ProjectListRelationFilter
@@ -9672,6 +9721,7 @@ export namespace Prisma {
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    layout?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
@@ -9687,6 +9737,7 @@ export namespace Prisma {
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Category"> | number
     name?: StringWithAggregatesFilter<"Category"> | string
+    layout?: EnumCategoryLayoutWithAggregatesFilter<"Category"> | $Enums.CategoryLayout
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
   }
@@ -10132,6 +10183,7 @@ export namespace Prisma {
 
   export type CategoryCreateInput = {
     name: string
+    layout?: $Enums.CategoryLayout
     createdAt?: Date | string
     updatedAt?: Date | string
     projects?: ProjectCreateNestedManyWithoutCategoryInput
@@ -10140,6 +10192,7 @@ export namespace Prisma {
   export type CategoryUncheckedCreateInput = {
     id?: number
     name: string
+    layout?: $Enums.CategoryLayout
     createdAt?: Date | string
     updatedAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutCategoryInput
@@ -10147,6 +10200,7 @@ export namespace Prisma {
 
   export type CategoryUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUpdateManyWithoutCategoryNestedInput
@@ -10155,6 +10209,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUncheckedUpdateManyWithoutCategoryNestedInput
@@ -10163,12 +10218,14 @@ export namespace Prisma {
   export type CategoryCreateManyInput = {
     id?: number
     name: string
+    layout?: $Enums.CategoryLayout
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CategoryUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10176,6 +10233,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10603,6 +10661,13 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumCategoryLayoutFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryLayout | EnumCategoryLayoutFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryLayoutFilter<$PrismaModel> | $Enums.CategoryLayout
+  }
+
   export type ProjectListRelationFilter = {
     every?: ProjectWhereInput
     some?: ProjectWhereInput
@@ -10616,6 +10681,7 @@ export namespace Prisma {
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    layout?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10627,6 +10693,7 @@ export namespace Prisma {
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    layout?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10634,12 +10701,23 @@ export namespace Prisma {
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    layout?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type CategorySumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type EnumCategoryLayoutWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryLayout | EnumCategoryLayoutFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryLayoutWithAggregatesFilter<$PrismaModel> | $Enums.CategoryLayout
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCategoryLayoutFilter<$PrismaModel>
+    _max?: NestedEnumCategoryLayoutFilter<$PrismaModel>
   }
 
   export type CategoryScalarRelationFilter = {
@@ -10842,6 +10920,10 @@ export namespace Prisma {
     connectOrCreate?: ProjectCreateOrConnectWithoutCategoryInput | ProjectCreateOrConnectWithoutCategoryInput[]
     createMany?: ProjectCreateManyCategoryInputEnvelope
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type EnumCategoryLayoutFieldUpdateOperationsInput = {
+    set?: $Enums.CategoryLayout
   }
 
   export type ProjectUpdateManyWithoutCategoryNestedInput = {
@@ -11058,6 +11140,23 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumCategoryLayoutFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryLayout | EnumCategoryLayoutFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryLayoutFilter<$PrismaModel> | $Enums.CategoryLayout
+  }
+
+  export type NestedEnumCategoryLayoutWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryLayout | EnumCategoryLayoutFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoryLayout[] | ListEnumCategoryLayoutFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryLayoutWithAggregatesFilter<$PrismaModel> | $Enums.CategoryLayout
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCategoryLayoutFilter<$PrismaModel>
+    _max?: NestedEnumCategoryLayoutFilter<$PrismaModel>
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -11376,6 +11475,7 @@ export namespace Prisma {
 
   export type CategoryCreateWithoutProjectsInput = {
     name: string
+    layout?: $Enums.CategoryLayout
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11383,6 +11483,7 @@ export namespace Prisma {
   export type CategoryUncheckedCreateWithoutProjectsInput = {
     id?: number
     name: string
+    layout?: $Enums.CategoryLayout
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11405,6 +11506,7 @@ export namespace Prisma {
 
   export type CategoryUpdateWithoutProjectsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11412,6 +11514,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutProjectsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

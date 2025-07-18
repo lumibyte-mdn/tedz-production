@@ -3,106 +3,14 @@
 import { useEffect, useState } from 'react';
 import Section from './Section';
 import { cn } from '@/lib/utils';
-import { TProject } from '@/types';
 import ProjectCard from '../projects/cards/ProjectCard';
 import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
 import ProjectImageCard from '../projects/cards/ProjectImageCard';
 import Container from '../wrappers/Container';
 import { useQuery } from '@tanstack/react-query';
 import { getCategoryList } from '@/api/category';
-
-const mockProjects: TProject[] = [
-  {
-    id: 1,
-    title: 'Urban Exploration',
-    image:
-      'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    category: 'Documentary',
-    description: 'Exploring the hidden corners of the city at night.',
-  },
-  {
-    id: 2,
-    title: 'Nature Wonders',
-    image:
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/movie.mp4',
-    category: 'Nature',
-    description: 'A journey through the most beautiful forests.',
-  },
-  {
-    id: 3,
-    title: 'Culinary Journey',
-    image:
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    category: 'Lifestyle',
-    description: 'Discovering unique dishes from around the world.',
-  },
-  {
-    id: 4,
-    title: 'Tech Innovations',
-    image:
-      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/movie.mp4',
-    category: 'Technology',
-    description: 'Latest trends and innovations in technology.',
-  },
-  {
-    id: 5,
-    title: 'Wildlife Safari',
-    image:
-      'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    category: 'Adventure',
-    description: 'An up-close look at wildlife in their natural habitat.',
-  },
-  {
-    id: 6,
-    title: 'Street Art',
-    image:
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/movie.mp4',
-    category: 'Art',
-    description: 'Exploring vibrant street art from different cities.',
-  },
-  {
-    id: 7,
-    title: 'Mountain Hiking',
-    image:
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    category: 'Travel',
-    description: 'Challenging hikes and breathtaking mountain views.',
-  },
-  {
-    id: 8,
-    title: 'Underwater World',
-    image:
-      'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/movie.mp4',
-    category: 'Nature',
-    description: 'Discover the beauty of marine life.',
-  },
-  {
-    id: 9,
-    title: 'Classic Cars',
-    image:
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    category: 'Automotive',
-    description: 'A showcase of timeless classic cars.',
-  },
-  {
-    id: 10,
-    title: 'Festival Vibes',
-    image:
-      'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
-    video: 'https://www.w3schools.com/html/movie.mp4',
-    category: 'Event',
-    description: 'Capturing the energy of music festivals.',
-  },
-];
+import { getProjectList } from '@/api/projects';
+import { CategoryLayout } from '@/prisma/generated/prisma';
 
 type Props = {
   withCategoryTab?: boolean;
@@ -116,21 +24,36 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
   });
 
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedLayout, setSelectedLayout] = useState<CategoryLayout>(
+    CategoryLayout.GRID
+  );
 
   useEffect(() => {
     if (categories && categories.length > 0) {
       setSelectedCategory(categories[0].id);
+      setSelectedLayout(CategoryLayout.GRID);
     }
   }, [categories]);
 
   const handleCategoryChange = (categoryId: number) => {
     setSelectedCategory(categoryId);
     // Logic to filter projects by category can be added here
+
+    const category = categories?.find((cat) => cat.id === categoryId);
+    if (category) {
+      setSelectedLayout(category.layout || CategoryLayout.CARD);
+    }
   };
+
+  const { data: projects, isPending: isProjectsLoading } = useQuery({
+    queryKey: ['projects', { categoryId: selectedCategory }],
+    queryFn: () => getProjectList({ categoryId: selectedCategory }),
+    enabled: !!selectedCategory,
+  });
 
   return (
     <Section className='py-0'>
-      <Container>
+      <Container className='pb-0'>
         {withCategoryTab && (
           <header className='mb-20 flex items-center flex-wrap md:flex-nowrap justify-around gap-6'>
             {isCategoriesLoading ? (
@@ -138,8 +61,8 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
                 Loading categories...
               </div>
             ) : categories?.length === 0 ? (
-              <div className='text-white text-lg md:text-2xl font-bold'>
-                No categories available
+              <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56'>
+                No projects found
               </div>
             ) : (
               categories?.map((category) => (
@@ -160,32 +83,62 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
           </header>
         )}
 
-        {selectedCategory == 2 && (
+        {selectedLayout === CategoryLayout.CARD && (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-14'>
-            {mockProjects.map((project) => (
-              <ProjectCard key={project.id} {...project} />
-            ))}
+            {isProjectsLoading ? (
+              <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
+                Loading projects...
+              </div>
+            ) : !projects?.length ? (
+              <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
+                No projects found
+              </div>
+            ) : (
+              projects?.map((project) => (
+                <ProjectCard key={project.id} {...project} />
+              ))
+            )}
           </div>
         )}
 
-        {selectedCategory == 3 && (
+        {selectedLayout === CategoryLayout.PORTRAIT && (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-14'>
-            {mockProjects.map((project) => (
-              <ProjectPotraitCard key={project.id} {...project} />
-            ))}
+            {isProjectsLoading ? (
+              <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
+                Loading projects...
+              </div>
+            ) : !projects?.length ? (
+              <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
+                No projects found
+              </div>
+            ) : (
+              projects?.map((project) => (
+                <ProjectPotraitCard key={project.id} {...project} />
+              ))
+            )}
           </div>
         )}
       </Container>
 
-      {selectedCategory == 1 && (
+      {selectedLayout === CategoryLayout.GRID && (
         <div className='grid grid-cols-1 md:grid-cols-2'>
-          {mockProjects.map((project) => (
-            <ProjectImageCard
-              key={project.id}
-              wrapperClassName='odd:col-span-2'
-              {...project}
-            />
-          ))}
+          {isProjectsLoading ? (
+            <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
+              Loading projects...
+            </div>
+          ) : !projects?.length ? (
+            <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
+              No projects found
+            </div>
+          ) : (
+            projects.map((project) => (
+              <ProjectImageCard
+                key={project.id}
+                wrapperClassName='odd:col-span-2'
+                {...project}
+              />
+            ))
+          )}
         </div>
       )}
     </Section>

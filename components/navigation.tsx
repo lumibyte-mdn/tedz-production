@@ -31,7 +31,7 @@ export default function Navigation() {
 
   return (
     <>
-      <div className='fixed top-0 z-50 w-full bg-base'>
+      <div className='fixed top-0 z-50 w-full bg-base-dark'>
         <Container className='py-4'>
           <div className='flex-between'>
             <AppLogo />
@@ -64,7 +64,7 @@ export default function Navigation() {
                     <IconMenuDeep className='size-6' />
                   </Button>
                 </SheetTrigger>
-                <SheetContent className='bg-base border-0 text-white'>
+                <SheetContent className='bg-base-dark border-0 text-white'>
                   <SheetHeader>
                     <SheetTitle>
                       <AppLogo />
