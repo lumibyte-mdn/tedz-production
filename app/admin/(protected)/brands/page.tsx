@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/dialog';
 import CreateBrandForm from '@/components/forms/CreateBrandForm';
 import DeleteButton from '@/components/buttons/DeleteButton';
-// import EditBrandButton from '@/components/buttons/EditBrandButton';
 import Image from 'next/image';
 import EditBrandButton from '@/components/buttons/EditBrandButton';
 

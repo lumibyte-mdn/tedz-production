@@ -45,17 +45,10 @@ const EditCategoryForm = ({ closeModal, data }: Props) => {
   const form = useForm<z.infer<typeof categorySchema>>({
     resolver: zodResolver(categorySchema),
     defaultValues: {
-      name: '',
-      layout: CategoryLayout.CARD,
+      name: data?.name || '',
+      layout: data?.layout || CategoryLayout.CARD,
     },
   });
-
-  useEffect(() => {
-    if (data) {
-      form.setValue('name', data.name);
-      form.setValue('layout', data.layout);
-    }
-  }, [data, form]);
 
   const router = useRouter();
 
@@ -106,7 +99,7 @@ const EditCategoryForm = ({ closeModal, data }: Props) => {
             <FormItem>
               <FormLabel>Layout</FormLabel>
               <FormControl>
-                <Select {...field}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger className='w-full'>
                     <SelectValue placeholder='Layout' />
                   </SelectTrigger>

@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import { createBrandApi, updateBrandApi } from '@/api/brands';
+import { updateBrandApi } from '@/api/brands';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Brand } from '@/prisma/generated/prisma';
@@ -39,16 +39,13 @@ const EditBrandForm = ({ closeModal, data }: Props) => {
   const form = useForm<z.infer<typeof brandSchema>>({
     resolver: zodResolver(brandSchema),
     defaultValues: {
-      name: '',
+      name: data?.name || '',
       logo: null as File | null,
     },
   });
 
   useEffect(() => {
     if (data) {
-      form.setValue('name', data.name);
-      form.setValue('logo', null);
-
       setPreviewImage(data.logo || null);
     }
   }, [data]);

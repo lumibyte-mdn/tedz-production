@@ -14,9 +14,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-// import CreateProjectForm from '@/components/forms/CreateProjectForm';
+import CreateProjectForm from '@/components/forms/CreateProjectForm';
 import DeleteButton from '@/components/buttons/DeleteButton';
-// import EditProjectButton from '@/components/buttons/EditProjectButton';
+import Image from 'next/image';
+import EditProjectButton from '@/components/buttons/EditProjectButton';
 
 const ManageProjectPage = () => {
   const helper =
@@ -29,6 +30,18 @@ const ManageProjectPage = () => {
       helper.accessor('id', {
         header: 'ID',
         cell: (info) => info.getValue(),
+      }),
+      helper.accessor('image', {
+        header: 'Image',
+        cell: (info) => (
+          <Image
+            src={info.getValue() || 'https://placehold.co/400x400'}
+            alt='Brand Image'
+            width={100}
+            height={100}
+            className='rounded object-contain size-16'
+          />
+        ),
       }),
       helper.accessor('title', {
         header: 'Title',
@@ -51,7 +64,7 @@ const ManageProjectPage = () => {
         header: 'Actions',
         cell: (info) => (
           <div className='flex items-center gap-2'>
-            {/* <EditProjectButton data={info.row.original} /> */}
+            <EditProjectButton data={info.row.original} />
 
             <DeleteButton
               id={info.row.original.id}
@@ -102,9 +115,7 @@ const ManageProjectPage = () => {
           </DialogHeader>
 
           <main className='mt-4'>
-            {/* <CreateProjectForm
-              closeModal={() => setIsCreateModalOpen(false)}
-            /> */}
+            <CreateProjectForm closeModal={() => setIsCreateModalOpen(false)} />
           </main>
         </DialogContent>
       </Dialog>

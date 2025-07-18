@@ -1,6 +1,7 @@
 'use server';
 
 import db from '@/lib/db';
+import env from '@/lib/env';
 import { Prisma, Project } from '@/prisma/generated/prisma';
 
 export interface GetProjectListProps {
@@ -29,6 +30,12 @@ export async function getProjectListApi({
       },
     });
 
+    projects.forEach((item) => {
+      if (item.image) {
+        item.image = env.NEXT_PUBLIC_CDN_URL + item.image;
+      }
+    });
+
     return projects;
   } catch (error) {
     console.error('Failed to fetch projects:', error);
@@ -51,10 +58,13 @@ export async function createProjectApi(
   }
 }
 
-export async function updateProjectApi(
-  id: number,
-  data: Prisma.ProjectUpdateInput
-): Promise<Project> {
+export async function updateProjectApi({
+  id,
+  data,
+}: {
+  id: number;
+  data: Prisma.ProjectUpdateInput;
+}): Promise<Project> {
   try {
     const project = await db.project.update({
       where: { id },

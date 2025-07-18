@@ -96,7 +96,7 @@ const CreateCategoryForm = ({ closeModal }: Props) => {
             <FormItem>
               <FormLabel>Layout</FormLabel>
               <FormControl>
-                <Select {...field}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger className='w-full'>
                     <SelectValue placeholder='Layout' />
                   </SelectTrigger>
