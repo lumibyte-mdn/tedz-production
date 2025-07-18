@@ -28,7 +28,9 @@ const services: TService[] = [
 const ServiceSection = () => {
   return (
     <Container className='py-32'>
-      <h1 className='text-5xl font-oswald font-semibold text-accent text-center mb-20'>OUR SERVICES</h1>
+      <h1 className='text-5xl font-oswald font-semibold text-accent text-center mb-20'>
+        OUR SERVICES
+      </h1>
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
         {services.map((service) => (
@@ -39,7 +41,7 @@ const ServiceSection = () => {
           >
             <div className="bg-[url('/images/services.png')] bg-cover w-full h-[400px] rounded-sm">
               <div
-                className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-t before:from-background before:to-transparent before:content-[''] 
+                className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-t before:from-base before:to-transparent before:content-[''] 
             group-hover:before:opacity-50 before:transition-opacity before:duration-300"
               ></div>
               <div className='relative h-full flex flex-col items-center justify-end pb-5 w-full'>

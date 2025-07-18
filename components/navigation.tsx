@@ -1,10 +1,18 @@
 'use client';
 
-import tedz from '@/public/tedz.svg';
-
-import Image from 'next/image';
 import Link from 'next/link';
 import AppLogo from './AppLogo';
+import Container from './wrappers/Container';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { Button } from './ui/button';
+import { IconMenuDeep } from '@tabler/icons-react';
 
 const navigation = [
   { name: 'HOME', href: '/' },
@@ -23,11 +31,11 @@ export default function Navigation() {
 
   return (
     <>
-      <div className='bg-[#040b11] fixed top-0 z-50 w-full'>
-        <header className='max-w-7xl py-4 mx-auto'>
-          <div className='grid grid-cols-4'>
+      <div className='fixed top-0 z-50 w-full bg-base'>
+        <Container className='py-4'>
+          <div className='flex-between'>
             <AppLogo />
-            <div className='flex gap-12 col-span-2 items-center justify-center'>
+            <div className='gap-12 col-span-2 items-center justify-center hidden md:flex'>
               {navigation.map((item) => (
                 <Link
                   href={item.href}
@@ -40,7 +48,7 @@ export default function Navigation() {
                 </Link>
               ))}
             </div>
-            <div className='flex justify-end items-center'>
+            <div className='hidden md:flex justify-end items-center'>
               <button
                 className='bg-secondary hover:bg-secondary-hover text-secondary-foreground py-2 px-4 rounded-md font-semibold text-sm cursor-pointer'
                 onClick={handleWhatsAppChat}
@@ -48,8 +56,37 @@ export default function Navigation() {
                 Chat WhatsApp
               </button>
             </div>
+
+            <div className='md:hidden flex items-center'>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button size='icon' variant={'secondary'}>
+                    <IconMenuDeep className='size-6' />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className='bg-base border-0 text-white'>
+                  <SheetHeader>
+                    <SheetTitle>
+                      <AppLogo />
+                    </SheetTitle>
+                  </SheetHeader>
+
+                  <main className='flex flex-col gap-4 mt-4'>
+                    {navigation.map((item) => (
+                      <Link
+                        href={item.href}
+                        key={item.name}
+                        className='block text-sm py-2 px-8 hover:text-secondary text-white font-semibold'
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </main>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
-        </header>
+        </Container>
       </div>
     </>
   );
