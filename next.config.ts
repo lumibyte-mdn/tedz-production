@@ -27,10 +27,10 @@ const nextConfig: NextConfig = {
         pathname: '/html/**',
       },
       {
-        protocol: 'https',
-        hostname: 'tedz-production.vercel.app',
-        port: '',
-        pathname: '/images/**',
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/uploads/**',
       },
       {
         protocol: 'https',

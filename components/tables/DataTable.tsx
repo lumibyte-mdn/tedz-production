@@ -112,6 +112,7 @@ export function DataTable<TData>({
                       key={header.id}
                       className='hover:!bg-gray-100 dark:hover:!bg-gray-800'
                       onClick={header.column.getToggleSortingHandler()}
+                      style={{ width: meta?.width || 'auto' }}
                     >
                       <div
                         className={cn(

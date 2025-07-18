@@ -76,7 +76,7 @@ model Verification {
 
 model Brand {
   id   Int     @id @default(autoincrement())
-  name String  @unique
+  name String
   logo String?
 
   @@map("brands")

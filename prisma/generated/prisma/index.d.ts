@@ -9658,12 +9658,12 @@ export namespace Prisma {
 
   export type BrandWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    name?: string
     AND?: BrandWhereInput | BrandWhereInput[]
     OR?: BrandWhereInput[]
     NOT?: BrandWhereInput | BrandWhereInput[]
+    name?: StringFilter<"Brand"> | string
     logo?: StringNullableFilter<"Brand"> | string | null
-  }, "id" | "name">
+  }, "id">
 
   export type BrandOrderByWithAggregationInput = {
     id?: SortOrder

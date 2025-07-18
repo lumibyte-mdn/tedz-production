@@ -1,7 +1,9 @@
 'use server';
 
 import db from '@/lib/db';
+import env from '@/lib/env';
 import { Brand, Prisma } from '@/prisma/generated/prisma';
+import { unlink } from 'fs/promises';
 
 export async function getBrandListApi(): Promise<Brand[]> {
   try {
@@ -9,6 +11,12 @@ export async function getBrandListApi(): Promise<Brand[]> {
       orderBy: {
         name: 'desc',
       },
+    });
+
+    brands.forEach((item) => {
+      if (item.logo) {
+        item.logo = env.NEXT_PUBLIC_CDN_URL + item.logo;
+      }
     });
 
     return brands;
@@ -33,11 +41,22 @@ export async function createBrandApi(
   }
 }
 
-export async function updateBrandApi(
-  id: number,
-  data: Prisma.BrandUpdateInput
-): Promise<Brand> {
+export async function updateBrandApi({
+  id,
+  data,
+}: {
+  id: number;
+  data: Prisma.BrandUpdateInput;
+}): Promise<Brand> {
   try {
+    const existingBrand = await db.brand.findUnique({
+      where: { id },
+    });
+
+    if (!existingBrand) {
+      throw new Error('Brand not found');
+    }
+
     const brand = await db.brand.update({
       where: { id },
       data,
@@ -52,6 +71,22 @@ export async function updateBrandApi(
 
 export async function deleteBrandApi(id: number): Promise<Brand> {
   try {
+    const existingBrand = await db.brand.findUnique({
+      where: { id },
+    });
+
+    if (!existingBrand) {
+      throw new Error('Brand not found');
+    }
+
+    if (existingBrand.logo) {
+      const logoPath = `public/uploads/${existingBrand.logo}`;
+      // unlink the logo file if necessary
+      await unlink(logoPath).catch((err) =>
+        console.error('Failed to delete logo file:', err)
+      );
+    }
+
     const brand = await db.brand.delete({
       where: { id },
     });
