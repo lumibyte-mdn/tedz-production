@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Section from './Section';
 import { cn } from '@/lib/utils';
 import { TProject } from '@/types';
@@ -8,6 +8,8 @@ import ProjectCard from '../projects/cards/ProjectCard';
 import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
 import ProjectImageCard from '../projects/cards/ProjectImageCard';
 import Container from '../wrappers/Container';
+import { useQuery } from '@tanstack/react-query';
+import { getCategoryList } from '@/api/category';
 
 const mockProjects: TProject[] = [
   {
@@ -102,20 +104,24 @@ const mockProjects: TProject[] = [
   },
 ];
 
-const mockCategories = [
-  { id: 1, name: 'VIDEO COMMERCIAL' },
-  { id: 2, name: 'SOCIAL MEDIA' },
-  { id: 3, name: 'TIKTOK / REELS' },
-];
-
 type Props = {
   withCategoryTab?: boolean;
 };
 
 const ProjectListSection = ({ withCategoryTab }: Props) => {
-  const [selectedCategory, setSelectedCategory] = useState(
-    mockCategories[0].id
-  );
+  const { data: categories, isPending: isCategoriesLoading } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategoryList,
+    enabled: withCategoryTab,
+  });
+
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      setSelectedCategory(categories[0].id);
+    }
+  }, [categories]);
 
   const handleCategoryChange = (categoryId: number) => {
     setSelectedCategory(categoryId);
@@ -127,20 +133,30 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
       <Container>
         {withCategoryTab && (
           <header className='mb-20 flex items-center flex-wrap md:flex-nowrap justify-around gap-6'>
-            {mockCategories.map((category) => (
-              <button
-                key={category.id}
-                className={cn(
-                  'text-lg md:text-2xl font-bold transition-colors uppercase',
-                  selectedCategory === category.id
-                    ? 'text-accent hover:text-accent-hover'
-                    : 'text-white hover:text-gray-300'
-                )}
-                onClick={() => handleCategoryChange(category.id)}
-              >
-                {category.name}
-              </button>
-            ))}
+            {isCategoriesLoading ? (
+              <div className='text-white text-lg md:text-2xl font-bold'>
+                Loading categories...
+              </div>
+            ) : categories?.length === 0 ? (
+              <div className='text-white text-lg md:text-2xl font-bold'>
+                No categories available
+              </div>
+            ) : (
+              categories?.map((category) => (
+                <button
+                  key={category.id}
+                  className={cn(
+                    'text-lg md:text-2xl font-bold transition-colors uppercase',
+                    selectedCategory === category.id
+                      ? 'text-accent hover:text-accent-hover'
+                      : 'text-white hover:text-gray-300'
+                  )}
+                  onClick={() => handleCategoryChange(category.id)}
+                >
+                  {category.name}
+                </button>
+              ))
+            )}
           </header>
         )}
 

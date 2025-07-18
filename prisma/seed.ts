@@ -1,5 +1,6 @@
-import { PrismaClient } from '@/db/prisma-client';
-import subscribePlanSeeder from './seeders/subscribePlanSeeder';
+import { PrismaClient } from './generated/prisma';
+import brandSeed from './seeders/brandSeed';
+import categorySeed from './seeders/categorySeed';
 
 const db = new PrismaClient();
 
@@ -7,7 +8,8 @@ async function main() {
   console.info('🌱 Seeding database');
 
   // Seed your database here
-  await subscribePlanSeeder(db);
+  await categorySeed(db);
+  await brandSeed(db);
 
   console.info('🌱 Database seeding complete');
 }

@@ -1,11 +1,4 @@
-import Image from 'next/image';
-
-import PadelLogo from '@/public/svg/padellogo.svg';
-
-const mockBrands = Array.from({ length: 20 }, (_, index) => ({
-  id: index + 1,
-  logo: PadelLogo, // Replace with actual brand logos as needed
-})); // Mock data for brands, replace with actual brand logos if available
+import BrandListTape from '../BrandListTape';
 
 const HeroSection = () => {
   return (
@@ -43,24 +36,7 @@ const HeroSection = () => {
       </div>
 
       {/* Brand */}
-      <div className='absolute z-20 bottom-0 w-full'>
-        <div className='overflow-hidden'>
-          <div className='bg-secondary py-4'>
-            <div className='animate-scroll flex justify-between gap-24'>
-              {mockBrands.map((brand) => (
-                <Image
-                  src={brand.logo}
-                  alt={`Brand Logo ${brand.id}`}
-                  key={brand.id}
-                  className='transition-all duration-300 grayscale hover:grayscale-0'
-                  height={24}
-                  width={100}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <BrandListTape />
     </section>
   );
 };
