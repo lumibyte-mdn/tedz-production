@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import QueryProvider from '@/providers/QueryProvider';
 
 const oswald = Oswald({
   variable: '--oswald',
@@ -28,9 +29,11 @@ export default function RootLayout({
         className={`${sora.className} ${oswald.className}  antialiased bg-[#040B11]`}
         suppressHydrationWarning
       >
-        <Navigation />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Navigation />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );
