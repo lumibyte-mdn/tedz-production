@@ -1,13 +1,13 @@
 'use client';
 
-import { getBrandList } from '@/api/brands';
+import { getBrandListApi } from '@/api/brands';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
 const BrandListTape = () => {
   const { data: brands } = useQuery({
     queryKey: ['brands'],
-    queryFn: getBrandList,
+    queryFn: getBrandListApi,
     staleTime: 1000 * 60 * 60 * 2, // 2 hours
   });
 

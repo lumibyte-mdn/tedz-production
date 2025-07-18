@@ -1,0 +1,28 @@
+import SiteHeader from '@/components/headers/SiteHeader';
+import { AppSidebar } from '@/components/sidebars/AppSidebar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { PropsWithChildren } from 'react';
+
+const ProtectedLayout = ({ children }: PropsWithChildren) => {
+  return (
+    <SidebarProvider
+      style={
+        {
+          '--sidebar-width': 'calc(var(--spacing) * 72)',
+          '--header-height': 'calc(var(--spacing) * 12)',
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant='inset' />
+      <SidebarInset>
+        <SiteHeader />
+        <div className='flex flex-1 flex-col bg-gray-50'>
+          <div className='@container/main flex flex-1 flex-col gap-2 p-6'>
+            {children}
+          </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+};
+export default ProtectedLayout;

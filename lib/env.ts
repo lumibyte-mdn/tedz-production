@@ -9,8 +9,6 @@ const env = createEnv({
       .default('development'),
     BETTER_AUTH_SECRET: z.string(),
     BETTER_AUTH_URL: z.string().optional(),
-    EMAIL_USER: z.string(),
-    EMAIL_PASSWORD: z.string(),
   },
   // Client environment variables are exposed to the client-side code. Must be prefixed with NEXT_PUBLIC_.
   client: {
@@ -21,8 +19,6 @@ const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
-    EMAIL_USER: process.env.EMAIL_USER,
-    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

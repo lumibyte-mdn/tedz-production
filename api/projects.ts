@@ -7,7 +7,7 @@ export interface GetProjectListProps {
   categoryId?: number | null;
 }
 
-export async function getProjectList({
+export async function getProjectListApi({
   categoryId,
 }: GetProjectListProps): Promise<Project[]> {
   const where: Prisma.ProjectWhereInput = {};

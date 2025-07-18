@@ -8,8 +8,8 @@ import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
 import ProjectImageCard from '../projects/cards/ProjectImageCard';
 import Container from '../wrappers/Container';
 import { useQuery } from '@tanstack/react-query';
-import { getCategoryList } from '@/api/category';
-import { getProjectList } from '@/api/projects';
+import { getCategoryListApi } from '@/api/category';
+import { getProjectListApi } from '@/api/projects';
 import { CategoryLayout } from '@/prisma/generated/prisma';
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 const ProjectListSection = ({ withCategoryTab }: Props) => {
   const { data: categories, isPending: isCategoriesLoading } = useQuery({
     queryKey: ['categories'],
-    queryFn: getCategoryList,
+    queryFn: getCategoryListApi,
     enabled: withCategoryTab,
   });
 
@@ -47,7 +47,7 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
 
   const { data: projects, isPending: isProjectsLoading } = useQuery({
     queryKey: ['projects', { categoryId: selectedCategory }],
-    queryFn: () => getProjectList({ categoryId: selectedCategory }),
+    queryFn: () => getProjectListApi({ categoryId: selectedCategory }),
     enabled: !!selectedCategory,
   });
 
