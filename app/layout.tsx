@@ -26,14 +26,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${sora.className} ${oswald.className}  antialiased bg-base-dark`}
+        className={`${sora.className} ${oswald.className}  antialiased `}
         suppressHydrationWarning
       >
-        <QueryProvider>
-          <Navigation />
-          {children}
-          <Footer />
-        </QueryProvider>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );
