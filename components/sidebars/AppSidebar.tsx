@@ -5,9 +5,7 @@ import {
   IconChartBar,
   IconDashboard,
   IconFolder,
-  IconInnerShadowTop,
   IconListDetails,
-  IconUsers,
 } from '@tabler/icons-react';
 
 import {
@@ -48,11 +46,11 @@ const data = {
       url: '/admin/projects',
       icon: IconFolder,
     },
-    {
-      title: 'Users',
-      url: '/admin/users',
-      icon: IconUsers,
-    },
+    // {
+    //   title: 'Users',
+    //   url: '/admin/users',
+    //   icon: IconUsers,
+    // },
   ],
   navSecondary: [],
 };
