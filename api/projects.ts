@@ -10,21 +10,71 @@ export interface GetProjectListProps {
 export async function getProjectListApi({
   categoryId,
 }: GetProjectListProps): Promise<Project[]> {
-  const where: Prisma.ProjectWhereInput = {};
+  try {
+    const where: Prisma.ProjectWhereInput = {};
 
-  if (categoryId) {
-    where.categoryId = categoryId;
+    if (categoryId) {
+      where.categoryId = categoryId;
+    }
+
+    const projects = await db.project.findMany({
+      where,
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        category: true,
+      },
+    });
+
+    return projects;
+  } catch (error) {
+    console.error('Failed to fetch projects:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
+}
 
-  const projects = await db.project.findMany({
-    where,
-    orderBy: {
-      createdAt: 'desc',
-    },
-    include: {
-      category: true,
-    },
-  });
+export async function createProjectApi(
+  data: Prisma.ProjectCreateInput
+): Promise<Project> {
+  try {
+    const project = await db.project.create({
+      data,
+    });
 
-  return projects;
+    return project;
+  } catch (error) {
+    console.error('Failed to create project:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
+}
+
+export async function updateProjectApi(
+  id: number,
+  data: Prisma.ProjectUpdateInput
+): Promise<Project> {
+  try {
+    const project = await db.project.update({
+      where: { id },
+      data,
+    });
+
+    return project;
+  } catch (error) {
+    console.error('Failed to update project:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
+}
+
+export async function deleteProjectApi(id: number): Promise<Project> {
+  try {
+    const project = await db.project.delete({
+      where: { id },
+    });
+
+    return project;
+  } catch (error) {
+    console.error('Failed to delete project:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
 }

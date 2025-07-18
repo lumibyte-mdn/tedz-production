@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 export function NavMain({
@@ -27,6 +27,8 @@ export function NavMain({
     return pathname === url || (pathname.startsWith(url) && url !== '#');
   };
 
+  const router = useRouter();
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className='flex flex-col gap-2'>
@@ -39,6 +41,13 @@ export function NavMain({
                 className={cn(
                   'data-[slot=sidebar-menu-button]:!p-4 h-10 data-[active=true]:!bg-secondary data-[active=true]:!text-secondary-foreground hover:bg-secondary/10 hover:text-secondary transition-colors'
                 )}
+                onClick={() => {
+                  if (item.url.startsWith('http')) {
+                    window.open(item.url, '_blank');
+                  } else {
+                    router.push(item.url);
+                  }
+                }}
               >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
