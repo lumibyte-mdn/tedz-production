@@ -4,7 +4,7 @@ import PageTitle from '@/components/titles/PageTitle';
 const ProjectPage = () => {
   return (
     <>
-      <PageTitle title='Projects' wrapperClassName='mt-20' />
+      <PageTitle title='Projects' wrapperClassName='mt-18' />
       <ProjectListSection withCategoryTab />
     </>
   );

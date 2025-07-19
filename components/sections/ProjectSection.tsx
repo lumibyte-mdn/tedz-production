@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
-import { TProject } from '@/types';
 import { getProjectListApi } from '@/api/projects';
 import { useQuery } from '@tanstack/react-query';
 import { Project } from '@/prisma/generated/prisma';

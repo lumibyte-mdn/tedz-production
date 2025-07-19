@@ -11,18 +11,18 @@ const navList = [
     title: 'COMPANY',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'About', href: '/about' },
-      { label: 'Projects', href: '/projects' },
+      { label: 'Tedz Project', href: '/about' },
+      { label: 'Instagram', href: '/projects' },
       { label: 'Contact', href: '/contact' },
     ],
   },
   {
-    title: 'SUBSCRIBE',
+    title: 'SERVICES',
     links: [
-      { label: 'Terms', href: '/terms' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Videography', href: '/terms' },
+      { label: 'Photography', href: '/privacy' },
+      { label: 'Social Media', href: '/cookies' },
+      { label: 'Tiktok Live', href: '/contact' },
     ],
   },
 ];
@@ -35,9 +35,9 @@ export default function Footer() {
         <div>
           <AppLogo className='max-w-[150px]' />
           <div className='my-6'>
-            <p className='text-sm leading-loose'>
-              Jl Sunggal No 24524, Medan <br />
-              Sumatera Utara - Indonesia
+            <p className='text-sm'>
+               Jl. Komp. Multatuli Indah Blk. F No.8 <br />
+              Sumatera Utara 20212 - Indonesia
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ export default function Footer() {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
           {navList.map((section) => (
             <div key={section.title}>
-              <h4>{section.title}</h4>
+              <h4 className='font-semibold'>{section.title}</h4>
               <ul className='text-sm text-gray-300'>
                 {section.links.map((link) => (
                   <li className='my-3' key={link.label}>

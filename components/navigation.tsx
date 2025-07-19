@@ -6,7 +6,6 @@ import Container from './wrappers/Container';
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
