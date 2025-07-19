@@ -20,16 +20,20 @@ import {
 import { User } from 'better-auth';
 import { logoutApi } from '@/api/auth';
 import { useRouter } from 'next/navigation';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export function NavUser({ user }: { user: User | null }) {
   const { isMobile } = useSidebar();
 
   const router = useRouter();
 
+  const queryClient = useQueryClient();
+
   const { mutate: logout, isPending: isLoggingOut } = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {
+      queryClient.clear();
+      queryClient.removeQueries({ queryKey: ['user'] });
       console.log('User logged out successfully');
       router.push('/admin/login');
     },

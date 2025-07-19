@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { inferAdditionalFields } from 'better-auth/client/plugins';
 import { nextCookies } from 'better-auth/next-js';
 import { PrismaClient } from '@/prisma/generated/prisma';
+import { admin } from 'better-auth/plugins';
 
 const prisma = new PrismaClient();
 
@@ -33,6 +34,10 @@ const auth = betterAuth({
       },
     }),
     nextCookies(),
+    admin({
+      defaultRole: 'admin',
+      adminRoles: ['admin'],
+    }),
   ],
   user: {
     deleteUser: {

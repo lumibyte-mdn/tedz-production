@@ -9,8 +9,8 @@ import {
 import { Button } from '../ui/button';
 
 type Props = {
-  id: number;
-  action: MutationFunction<unknown, number>;
+  id: number | string;
+  action: MutationFunction<unknown, number | string>;
   queryKeys?: string[];
 };
 

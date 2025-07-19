@@ -126,6 +126,10 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
+  role: 'role',
+  banned: 'banned',
+  banReason: 'banReason',
+  banExpires: 'banExpires',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -138,6 +142,7 @@ exports.Prisma.SessionScalarFieldEnum = {
   updatedAt: 'updatedAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
+  impersonatedBy: 'impersonatedBy',
   userId: 'userId'
 };
 

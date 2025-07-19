@@ -27,6 +27,10 @@ export async function loginApi(payload: LoginApiProps): Promise<User | null> {
     return session?.user;
   } catch (error) {
     console.error('Login failed:', error);
+    if (error instanceof BetterAuthError) {
+      throw new Error(error.message);
+    }
+
     throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
 }
@@ -59,13 +63,16 @@ export async function getUserApi(): Promise<User | null> {
 
 export async function checkAdminAccountApi(): Promise<boolean> {
   try {
-    const admin = await db.user.aggregate({
-      _count: {
+    const admins = await db.user.findMany({
+      where: {
+        role: 'admin',
+      },
+      select: {
         id: true,
       },
     });
 
-    if (!admin._count.id) {
+    if (!admins || admins.length === 0) {
       return false;
     }
 
@@ -86,11 +93,12 @@ export async function generateAdminApi(
   payload: GenerateAdminProps
 ): Promise<User | null> {
   try {
-    const session = await auth.api.signUpEmail({
+    const session = await auth.api.createUser({
       body: {
+        name: payload.fullName,
         email: payload.email,
         password: payload.password,
-        name: payload.fullName,
+        role: 'admin',
       },
     });
 
