@@ -61,7 +61,7 @@ const ManageProjectPage = () => {
         cell: (info) => info.getValue(),
       }),
       helper.accessor('createdAt', {
-        header: 'Created At',
+        header: 'Posted On',
         cell: (info) => new Date(info.getValue() as Date).toLocaleDateString(),
       }),
       helper.display({

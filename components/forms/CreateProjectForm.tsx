@@ -134,7 +134,10 @@ const CreateProjectForm = () => {
     }
   };
 
+  const [loading, setLoading] = useState(false);
+
   async function onSubmit(values: z.infer<typeof projectSchema>) {
+    setLoading(true);
     const formDataImage = new FormData();
     if (values.image) {
       formDataImage.append('files', values.image);
@@ -170,6 +173,7 @@ const CreateProjectForm = () => {
     });
 
     const resultVideo = await uploadVideo.json();
+    setLoading(false);
 
     if (!resultImage.success) {
       alert('Upload failed for image');
@@ -454,7 +458,7 @@ const CreateProjectForm = () => {
           ))}
         </div>
 
-        <Button type='submit' className='mt-2' loading={isPending}>
+        <Button type='submit' className='mt-2' loading={isPending || loading}>
           Save
         </Button>
       </form>
