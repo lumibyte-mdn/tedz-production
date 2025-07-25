@@ -53,7 +53,7 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
 
   return (
     <Section className='py-0 min-h-[600px]'>
-      <Container className='pb-0'>
+      <Container className='pb-20'>
         {withCategoryTab && (
           <header className='mb-20 flex items-center flex-wrap md:flex-nowrap justify-around gap-6'>
             {isCategoriesLoading ? (
