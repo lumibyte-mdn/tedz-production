@@ -19,6 +19,9 @@ import DeleteButton from '@/components/buttons/DeleteButton';
 import Image from 'next/image';
 import EditProjectButton from '@/components/buttons/EditProjectButton';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { IconPencil } from '@tabler/icons-react';
+import Link from 'next/link';
 
 const ManageProjectPage = () => {
   const helper =
@@ -69,7 +72,12 @@ const ManageProjectPage = () => {
         header: 'Actions',
         cell: (info) => (
           <div className='flex items-center gap-2'>
-            <EditProjectButton data={info.row.original} />
+            {/* <EditProjectButton data={info.row.original} /> */}
+            <Button variant='outline' size='icon' asChild>
+              <Link href={`/admin/projects/${info.row.original.id}`}>
+                <IconPencil className='size-4' />
+              </Link>
+            </Button>
 
             <DeleteButton
               id={info.row.original.id}

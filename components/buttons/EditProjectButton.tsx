@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { Project } from '@/prisma/generated/prisma';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
-import EditProjectForm from '../forms/forms/EditProjectForm';
+import EditProjectForm from '../forms/EditProjectForm';
 
 type Props = {
   data: Project;
@@ -27,7 +27,11 @@ const EditProjectButton = ({ data }: Props) => {
           </DialogHeader>
 
           <main className='mt-4'>
-            <EditProjectForm closeModal={() => setOpen(false)} data={data} />
+            <EditProjectForm
+              closeModal={() => setOpen(false)}
+              data={data}
+              id={data.id}
+            />
           </main>
         </DialogContent>
       </Dialog>

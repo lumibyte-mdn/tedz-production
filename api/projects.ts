@@ -240,3 +240,47 @@ export async function deleteProjectApi(id: number | string): Promise<Project> {
     throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
 }
+
+export async function getProjectDetailApi(id: number | string): Promise<
+  Prisma.ProjectGetPayload<{
+    include: {
+      category: true;
+      projectImages: true;
+      projectVideos: true;
+    };
+  }>
+> {
+  try {
+    const project = await db.project.findUnique({
+      where: { id: parseInt(id as string) },
+      include: {
+        category: true,
+        projectImages: true,
+        projectVideos: true,
+      },
+    });
+
+    if (!project) {
+      throw new Error('Project not found');
+    }
+
+    if (project.image) {
+      project.image = env.NEXT_PUBLIC_CDN_URL + project.image;
+    }
+
+    // Format image URLs
+    project.projectImages.forEach((item) => {
+      item.image = env.NEXT_PUBLIC_CDN_URL + item.image;
+    });
+
+    // Format video URLs
+    project.projectVideos.forEach((item) => {
+      item.video = env.NEXT_PUBLIC_CDN_URL + item.video;
+    });
+
+    return project;
+  } catch (error) {
+    console.error('Failed to fetch project detail:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
+}
