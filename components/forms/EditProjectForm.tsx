@@ -525,6 +525,9 @@ const EditProjectForm = ({ id }: Props) => {
                   className='bg-red-100 text-red-500 hover:bg-red-200 hover:text-red-600'
                   size={'icon'}
                   onClick={() => handleDeleteImage(file)}
+                  loading={
+                    isDeletingImage && oldPreviewGalleryImages[index] === file
+                  }
                 >
                   <IconX size={16} />
                 </Button>
@@ -608,6 +611,9 @@ const EditProjectForm = ({ id }: Props) => {
                   className='bg-red-100 text-red-500 hover:bg-red-200 hover:text-red-600'
                   size={'icon'}
                   onClick={() => handleDeleteVideo(file)}
+                  loading={
+                    isDeletingVideo && oldPreviewVideoFiles[index] === file
+                  }
                 >
                   <IconX size={16} />
                 </Button>

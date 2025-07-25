@@ -109,11 +109,22 @@ export async function updateProjectApi({
   };
 }): Promise<Project> {
   try {
-    const { galleryImages, videoFiles, ...rest } = data;
+    const { galleryImages, videoFiles, image, ...rest } = data;
 
-    const project = await db.project.update({
+    const project = await db.project.findUnique({
       where: { id },
-      data: rest,
+      include: {
+        projectImages: true,
+        projectVideos: true,
+      },
+    });
+
+    const updatedProject = await db.project.update({
+      where: { id },
+      data: {
+        ...rest,
+        image: image ? image : project?.image, // Use new image if provided, otherwise keep the old one
+      },
     });
 
     if (galleryImages && galleryImages.length > 0) {
@@ -134,7 +145,7 @@ export async function updateProjectApi({
       });
     }
 
-    return project;
+    return updatedProject;
   } catch (error) {
     console.error('Failed to update project:', error);
     throw new Error(error instanceof Error ? error.message : 'Unknown error');
@@ -255,8 +266,16 @@ export async function getProjectDetailApi(id: number | string): Promise<
       where: { id: parseInt(id as string) },
       include: {
         category: true,
-        projectImages: true,
-        projectVideos: true,
+        projectImages: {
+          orderBy: {
+            id: 'asc',
+          },
+        },
+        projectVideos: {
+          orderBy: {
+            id: 'asc',
+          },
+        },
       },
     });
 
