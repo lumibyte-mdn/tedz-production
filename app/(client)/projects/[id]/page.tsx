@@ -37,29 +37,28 @@ const ProjectDetailPage = async ({
 
         <section
           id='details-section'
-          className='px-4 md:px-8 py-6 lg:py-10 bg-base-dark text-white font-oswald'
+          className={"bg-[url('/images/clients.png')] bg-cover bg-center"}
         >
-          <h2 className='text-2xl md:text-4xl font-bold mb-6 text-center '>
-            Project Details
-          </h2>
-          <div className='text-base lg:text-xl text-center flex items-center justify-evenly sm:flex-row flex-col'>
-            <p className='mb-4'>Category: {data.category?.name || 'N/A'}</p>
-            <p className='mb-4'>
-              Posted At: {new Date(data.createdAt).toLocaleDateString()}
-            </p>
-          </div>
+          <div className='px-4 md:px-8 pt-6 pb-10 lg:pt-10 bg-secondary/95 text-white font-oswald lg:pb-20 '>
+            <h2 className='text-2xl md:text-4xl font-bold mb-6 text-center '>
+              Project Details
+            </h2>
+            <div className='text-base lg:text-xl text-center flex items-center justify-evenly'>
+              <p className='mb-4'>Category: {data.category?.name || 'N/A'}</p>
+              <p className='mb-4'>
+                Posted At: {new Date(data.createdAt).toLocaleDateString()}
+              </p>
+            </div>
 
-          <div className='mt-8'>
-            <p className='text-base lg:text-xl text-center'>
-              {data.description}
-            </p>
+            <div className='mt-4 lg:mt-8'>
+              <p className='text-base lg:text-xl text-center'>
+                {data.description}
+              </p>
+            </div>
           </div>
         </section>
 
-        <section
-          id='gallery-section'
-          className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10'
-        >
+        <section id='gallery-section' className='grid grid-cols-3'>
           {data.projectImages?.length > 0 ? (
             data.projectImages.map((item, index) => (
               <Image
