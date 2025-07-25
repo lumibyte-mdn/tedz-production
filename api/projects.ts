@@ -8,6 +8,8 @@ import {
   ProjectImage,
   ProjectVideo,
 } from '@/prisma/generated/prisma';
+import path from 'path';
+import fs from 'fs';
 
 export interface GetProjectListProps {
   categoryId?: number | null;
@@ -169,10 +171,67 @@ export async function deleteImageApi(
   }
 }
 
+const UPLOAD_DIR = path.resolve(process.env.ROOT_PATH ?? '', 'public/uploads');
+
 export async function deleteProjectApi(id: number | string): Promise<Project> {
   try {
-    const project = await db.project.delete({
+    const project = await db.project.findUnique({
       where: { id: parseInt(id as string) },
+      include: {
+        projectImages: true,
+        projectVideos: true,
+      },
+    });
+
+    if (!project) {
+      throw new Error('Project not found');
+    }
+
+    // Delete associated images
+    if (project.projectImages.length > 0) {
+      const imagePaths = project.projectImages.map((image) => image.image);
+
+      for (const imagePath of imagePaths) {
+        try {
+          const filePath = path.resolve(UPLOAD_DIR, imagePath);
+
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+          }
+        } catch (err) {
+          console.warn(`Failed to delete image file at ${imagePath}:`, err);
+        }
+      }
+
+      await db.projectImage.deleteMany({
+        where: { projectId: project.id },
+      });
+    }
+
+    // Delete associated videos
+    if (project.projectVideos.length > 0) {
+      const videoPaths = project.projectVideos.map((video) => video.video);
+
+      for (const videoPath of videoPaths) {
+        try {
+          const filePath = path.resolve(UPLOAD_DIR, videoPath);
+
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+          }
+        } catch (err) {
+          console.warn(`Failed to delete video file at ${videoPath}:`, err);
+        }
+      }
+
+      await db.projectVideo.deleteMany({
+        where: { projectId: project.id },
+      });
+    }
+
+    // Delete the project itself
+    await db.project.delete({
+      where: { id: project.id },
     });
 
     return project;

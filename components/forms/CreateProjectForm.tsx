@@ -136,7 +136,9 @@ const CreateProjectForm = () => {
 
   async function onSubmit(values: z.infer<typeof projectSchema>) {
     const formDataImage = new FormData();
-    formDataImage.append('file', values.image as File);
+    if (values.image) {
+      formDataImage.append('files', values.image);
+    }
 
     const uploadImage = await fetch('/api/upload', {
       method: 'POST',

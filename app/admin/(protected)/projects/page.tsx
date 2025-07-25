@@ -30,10 +30,14 @@ const ManageProjectPage = () => {
     () => [
       helper.accessor('id', {
         header: 'ID',
+        meta: {
+          width: 70,
+        },
         cell: (info) => info.getValue(),
       }),
       helper.accessor('image', {
         header: 'Image',
+        enableSorting: false,
         cell: (info) => (
           <Image
             src={info.getValue() || 'https://placehold.co/400x400'}
@@ -48,8 +52,8 @@ const ManageProjectPage = () => {
         header: 'Title',
         cell: (info) => info.getValue(),
       }),
-      helper.accessor('description', {
-        header: 'Description',
+      helper.accessor('subTitle', {
+        header: 'Subtitle',
         cell: (info) => info.getValue(),
       }),
       helper.accessor('category.name', {
