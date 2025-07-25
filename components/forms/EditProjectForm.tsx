@@ -107,7 +107,6 @@ const EditProjectForm = ({ id }: Props) => {
         };
       }>,
   });
-  console.log('🚀 ~ EditProjectForm ~ data:', data);
 
   const form = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
@@ -169,8 +168,12 @@ const EditProjectForm = ({ id }: Props) => {
 
   async function onSubmit(values: z.infer<typeof projectSchema>) {
     setLoading(true);
-    const formDataImage = new FormData();
+    let resultImage: string | null = null;
+    let resultGallery: string[] | null = null;
+    let resultVideo: string[] | null = null;
+
     if (values.image) {
+      const formDataImage = new FormData();
       formDataImage.append('files', values.image);
 
       // remove the old image file if it exists
@@ -180,69 +183,80 @@ const EditProjectForm = ({ id }: Props) => {
           method: 'DELETE',
         }).catch((err) => console.error('Failed to delete image file:', err));
       }
+
+      const uploadImage = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataImage,
+      });
+
+      const response = await uploadImage.json();
+      if (!response.success) {
+        alert('Upload failed for image');
+        setLoading(false);
+        return;
+      }
+
+      resultImage = response.files[0];
     }
 
-    const uploadImage = await fetch('/api/upload', {
-      method: 'POST',
-      body: formDataImage,
-    });
+    if (values.galleryImages && values.galleryImages.length > 0) {
+      const formDataGallery = new FormData();
+      values.galleryImages?.forEach((file) => {
+        formDataGallery.append('files', file);
+      });
 
-    const resultImage = await uploadImage.json();
+      const uploadGallery = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataGallery,
+      });
 
-    const formDataGallery = new FormData();
-    values.galleryImages?.forEach((file) => {
-      formDataGallery.append('files', file);
-    });
+      const response = await uploadGallery.json();
+      if (!response.success) {
+        alert('Upload failed for gallery images');
+        setLoading(false);
+        return;
+      }
 
-    const uploadGallery = await fetch('/api/upload', {
-      method: 'POST',
-      body: formDataGallery,
-    });
+      resultGallery = response.files;
+    }
 
-    const resultGallery = await uploadGallery.json();
+    if (values.videoFiles && values.videoFiles.length > 0) {
+      const formDataVideo = new FormData();
+      values.videoFiles?.forEach((file) => {
+        formDataVideo.append('files', file);
+      });
 
-    const formDataVideo = new FormData();
-    values.videoFiles?.forEach((file) => {
-      formDataVideo.append('files', file);
-    });
+      const uploadVideo = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataVideo,
+      });
 
-    const uploadVideo = await fetch('/api/upload', {
-      method: 'POST',
-      body: formDataVideo,
-    });
+      const response = await uploadVideo.json();
+      if (!response.success) {
+        alert('Upload failed for video files');
+        setLoading(false);
+        return;
+      }
 
-    const resultVideo = await uploadVideo.json();
+      resultVideo = response.files;
+    }
+
     setLoading(false);
-
-    if (!resultImage.success) {
-      alert('Upload failed for image');
-      return;
-    }
-
-    if (!resultGallery.success) {
-      alert('Upload failed for gallery images');
-      return;
-    }
-
-    if (!resultVideo.success) {
-      alert('Upload failed for video images');
-      return;
-    }
 
     mutate({
       id: data.id,
       data: {
         title: values.title,
         subTitle: values.subTitle,
-        image: resultImage.files[0],
+        image: resultImage,
         description: values.description,
         category: {
           connect: {
             id: parseInt(values.categoryId),
           },
         },
-        galleryImages: resultGallery.files,
-        videoFiles: resultVideo.files,
+        galleryImages: resultGallery ? resultGallery : undefined,
+        videoFiles: resultVideo ? resultVideo : undefined,
       },
     });
   }
