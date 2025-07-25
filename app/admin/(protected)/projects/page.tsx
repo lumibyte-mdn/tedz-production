@@ -6,18 +6,19 @@ import { DataTable } from '@/components/tables/DataTable';
 import { Prisma } from '@/prisma/generated/prisma';
 import { useQuery } from '@tanstack/react-query';
 import { createColumnHelper } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import CreateProjectForm from '@/components/forms/CreateProjectForm';
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogHeader,
+//   DialogTitle,
+// } from '@/components/ui/dialog';
+// import CreateProjectForm from '@/components/forms/CreateProjectForm';
 import DeleteButton from '@/components/buttons/DeleteButton';
 import Image from 'next/image';
 import EditProjectButton from '@/components/buttons/EditProjectButton';
+import { useRouter } from 'next/navigation';
 
 const ManageProjectPage = () => {
   const helper =
@@ -85,11 +86,13 @@ const ManageProjectPage = () => {
     queryFn: () => getProjectListApi(),
   });
 
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const router = useRouter();
 
-  const openCreateProjectModal = () => {
-    setIsCreateModalOpen(true);
-  };
+  // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+  // const openCreateProjectModal = () => {
+  //   setIsCreateModalOpen(true);
+  // };
 
   return (
     <main>
@@ -104,11 +107,11 @@ const ManageProjectPage = () => {
           data={data || []}
           loading={isPending}
           withAddButton
-          onAdd={openCreateProjectModal}
+          onAdd={() => router.push('/admin/projects/create')}
         />
       </section>
 
-      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
+      {/* <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Create Project</DialogTitle>
@@ -118,7 +121,7 @@ const ManageProjectPage = () => {
             <CreateProjectForm closeModal={() => setIsCreateModalOpen(false)} />
           </main>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </main>
   );
 };

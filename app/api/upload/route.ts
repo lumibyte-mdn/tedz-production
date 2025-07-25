@@ -6,28 +6,34 @@ const UPLOAD_DIR = path.resolve(process.env.ROOT_PATH ?? '', 'public/uploads');
 
 export const POST = async (req: NextRequest) => {
   const formData = await req.formData();
-  const body = Object.fromEntries(formData);
-  const file = (body.file as Blob) || null;
+  const files = formData.getAll('files') as Blob[];
 
-  if (file) {
-    const buffer = Buffer.from(await file.arrayBuffer());
-    if (!fs.existsSync(UPLOAD_DIR)) {
-      fs.mkdirSync(UPLOAD_DIR);
-    }
-
-    fs.writeFileSync(
-      path.resolve(UPLOAD_DIR, (body.file as File).name),
-      buffer
-    );
-  } else {
+  if (files.length === 0) {
     return NextResponse.json({
       success: false,
+      message: 'No files provided',
     });
+  }
+
+  if (!fs.existsSync(UPLOAD_DIR)) {
+    fs.mkdirSync(UPLOAD_DIR);
+  }
+
+  const uploadedFiles = [];
+
+  for (const file of files) {
+    if (file instanceof Blob) {
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const fileName = (file as File).name;
+
+      fs.writeFileSync(path.resolve(UPLOAD_DIR, fileName), buffer);
+      uploadedFiles.push(fileName);
+    }
   }
 
   return NextResponse.json({
     success: true,
-    name: (body.file as File).name,
+    files: uploadedFiles,
   });
 };
 

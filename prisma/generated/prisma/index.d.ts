@@ -48,6 +48,16 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
  * 
  */
 export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
+/**
+ * Model ProjectImage
+ * 
+ */
+export type ProjectImage = $Result.DefaultSelection<Prisma.$ProjectImagePayload>
+/**
+ * Model ProjectVideo
+ * 
+ */
+export type ProjectVideo = $Result.DefaultSelection<Prisma.$ProjectVideoPayload>
 
 /**
  * Enums
@@ -261,6 +271,26 @@ export class PrismaClient<
     * ```
     */
   get project(): Prisma.ProjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectImage`: Exposes CRUD operations for the **ProjectImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectImages
+    * const projectImages = await prisma.projectImage.findMany()
+    * ```
+    */
+  get projectImage(): Prisma.ProjectImageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectVideo`: Exposes CRUD operations for the **ProjectVideo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectVideos
+    * const projectVideos = await prisma.projectVideo.findMany()
+    * ```
+    */
+  get projectVideo(): Prisma.ProjectVideoDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -707,7 +737,9 @@ export namespace Prisma {
     Verification: 'Verification',
     Brand: 'Brand',
     Category: 'Category',
-    Project: 'Project'
+    Project: 'Project',
+    ProjectImage: 'ProjectImage',
+    ProjectVideo: 'ProjectVideo'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -726,7 +758,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "brand" | "category" | "project"
+      modelProps: "user" | "session" | "account" | "verification" | "brand" | "category" | "project" | "projectImage" | "projectVideo"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1248,6 +1280,154 @@ export namespace Prisma {
           }
         }
       }
+      ProjectImage: {
+        payload: Prisma.$ProjectImagePayload<ExtArgs>
+        fields: Prisma.ProjectImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>
+          }
+          findMany: {
+            args: Prisma.ProjectImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>[]
+          }
+          create: {
+            args: Prisma.ProjectImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>
+          }
+          createMany: {
+            args: Prisma.ProjectImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectImageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>
+          }
+          update: {
+            args: Prisma.ProjectImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectImageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectImagePayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectImage>
+          }
+          groupBy: {
+            args: Prisma.ProjectImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectImageCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectImageCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectVideo: {
+        payload: Prisma.$ProjectVideoPayload<ExtArgs>
+        fields: Prisma.ProjectVideoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectVideoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectVideoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectVideoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectVideoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectVideoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectVideoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectVideoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectVideoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectVideoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>
+          }
+          update: {
+            args: Prisma.ProjectVideoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectVideoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectVideoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectVideoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectVideoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectVideoPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectVideoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectVideo>
+          }
+          groupBy: {
+            args: Prisma.ProjectVideoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectVideoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectVideoCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectVideoCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1339,6 +1519,8 @@ export namespace Prisma {
     brand?: BrandOmit
     category?: CategoryOmit
     project?: ProjectOmit
+    projectImage?: ProjectImageOmit
+    projectVideo?: ProjectVideoOmit
   }
 
   /* Types for Logging */
@@ -1496,6 +1678,46 @@ export namespace Prisma {
    */
   export type CategoryCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProjectWhereInput
+  }
+
+
+  /**
+   * Count Type ProjectCountOutputType
+   */
+
+  export type ProjectCountOutputType = {
+    projectImages: number
+    projectVideos: number
+  }
+
+  export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    projectImages?: boolean | ProjectCountOutputTypeCountProjectImagesArgs
+    projectVideos?: boolean | ProjectCountOutputTypeCountProjectVideosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCountOutputType
+     */
+    select?: ProjectCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountProjectImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectImageWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountProjectVideosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectVideoWhereInput
   }
 
 
@@ -8091,8 +8313,8 @@ export namespace Prisma {
   export type ProjectMinAggregateOutputType = {
     id: number | null
     title: string | null
+    subTitle: string | null
     image: string | null
-    video: string | null
     description: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8102,8 +8324,8 @@ export namespace Prisma {
   export type ProjectMaxAggregateOutputType = {
     id: number | null
     title: string | null
+    subTitle: string | null
     image: string | null
-    video: string | null
     description: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8113,8 +8335,8 @@ export namespace Prisma {
   export type ProjectCountAggregateOutputType = {
     id: number
     title: number
+    subTitle: number
     image: number
-    video: number
     description: number
     createdAt: number
     updatedAt: number
@@ -8136,8 +8358,8 @@ export namespace Prisma {
   export type ProjectMinAggregateInputType = {
     id?: true
     title?: true
+    subTitle?: true
     image?: true
-    video?: true
     description?: true
     createdAt?: true
     updatedAt?: true
@@ -8147,8 +8369,8 @@ export namespace Prisma {
   export type ProjectMaxAggregateInputType = {
     id?: true
     title?: true
+    subTitle?: true
     image?: true
-    video?: true
     description?: true
     createdAt?: true
     updatedAt?: true
@@ -8158,8 +8380,8 @@ export namespace Prisma {
   export type ProjectCountAggregateInputType = {
     id?: true
     title?: true
+    subTitle?: true
     image?: true
-    video?: true
     description?: true
     createdAt?: true
     updatedAt?: true
@@ -8256,8 +8478,8 @@ export namespace Prisma {
   export type ProjectGroupByOutputType = {
     id: number
     title: string
+    subTitle: string | null
     image: string | null
-    video: string | null
     description: string | null
     createdAt: Date
     updatedAt: Date
@@ -8286,20 +8508,23 @@ export namespace Prisma {
   export type ProjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    subTitle?: boolean
     image?: boolean
-    video?: boolean
     description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     categoryId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
+    projectImages?: boolean | Project$projectImagesArgs<ExtArgs>
+    projectVideos?: boolean | Project$projectVideosArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    subTitle?: boolean
     image?: boolean
-    video?: boolean
     description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8310,8 +8535,8 @@ export namespace Prisma {
   export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    subTitle?: boolean
     image?: boolean
-    video?: boolean
     description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8322,17 +8547,20 @@ export namespace Prisma {
   export type ProjectSelectScalar = {
     id?: boolean
     title?: boolean
+    subTitle?: boolean
     image?: boolean
-    video?: boolean
     description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     categoryId?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "image" | "video" | "description" | "createdAt" | "updatedAt" | "categoryId", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subTitle" | "image" | "description" | "createdAt" | "updatedAt" | "categoryId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
+    projectImages?: boolean | Project$projectImagesArgs<ExtArgs>
+    projectVideos?: boolean | Project$projectVideosArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -8345,12 +8573,14 @@ export namespace Prisma {
     name: "Project"
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
+      projectImages: Prisma.$ProjectImagePayload<ExtArgs>[]
+      projectVideos: Prisma.$ProjectVideoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
+      subTitle: string | null
       image: string | null
-      video: string | null
       description: string | null
       createdAt: Date
       updatedAt: Date
@@ -8750,6 +8980,8 @@ export namespace Prisma {
   export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    projectImages<T extends Project$projectImagesArgs<ExtArgs> = {}>(args?: Subset<T, Project$projectImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projectVideos<T extends Project$projectVideosArgs<ExtArgs> = {}>(args?: Subset<T, Project$projectVideosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8781,8 +9013,8 @@ export namespace Prisma {
   interface ProjectFieldRefs {
     readonly id: FieldRef<"Project", 'Int'>
     readonly title: FieldRef<"Project", 'String'>
+    readonly subTitle: FieldRef<"Project", 'String'>
     readonly image: FieldRef<"Project", 'String'>
-    readonly video: FieldRef<"Project", 'String'>
     readonly description: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
@@ -9183,6 +9415,54 @@ export namespace Prisma {
   }
 
   /**
+   * Project.projectImages
+   */
+  export type Project$projectImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    where?: ProjectImageWhereInput
+    orderBy?: ProjectImageOrderByWithRelationInput | ProjectImageOrderByWithRelationInput[]
+    cursor?: ProjectImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectImageScalarFieldEnum | ProjectImageScalarFieldEnum[]
+  }
+
+  /**
+   * Project.projectVideos
+   */
+  export type Project$projectVideosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    where?: ProjectVideoWhereInput
+    orderBy?: ProjectVideoOrderByWithRelationInput | ProjectVideoOrderByWithRelationInput[]
+    cursor?: ProjectVideoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectVideoScalarFieldEnum | ProjectVideoScalarFieldEnum[]
+  }
+
+  /**
    * Project without action
    */
   export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9198,6 +9478,2146 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProjectInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectImage
+   */
+
+  export type AggregateProjectImage = {
+    _count: ProjectImageCountAggregateOutputType | null
+    _avg: ProjectImageAvgAggregateOutputType | null
+    _sum: ProjectImageSumAggregateOutputType | null
+    _min: ProjectImageMinAggregateOutputType | null
+    _max: ProjectImageMaxAggregateOutputType | null
+  }
+
+  export type ProjectImageAvgAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+  }
+
+  export type ProjectImageSumAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+  }
+
+  export type ProjectImageMinAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+    image: string | null
+  }
+
+  export type ProjectImageMaxAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+    image: string | null
+  }
+
+  export type ProjectImageCountAggregateOutputType = {
+    id: number
+    projectId: number
+    image: number
+    _all: number
+  }
+
+
+  export type ProjectImageAvgAggregateInputType = {
+    id?: true
+    projectId?: true
+  }
+
+  export type ProjectImageSumAggregateInputType = {
+    id?: true
+    projectId?: true
+  }
+
+  export type ProjectImageMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    image?: true
+  }
+
+  export type ProjectImageMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    image?: true
+  }
+
+  export type ProjectImageCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    image?: true
+    _all?: true
+  }
+
+  export type ProjectImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectImage to aggregate.
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectImages to fetch.
+     */
+    orderBy?: ProjectImageOrderByWithRelationInput | ProjectImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectImages
+    **/
+    _count?: true | ProjectImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectImageMaxAggregateInputType
+  }
+
+  export type GetProjectImageAggregateType<T extends ProjectImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectImage[P]>
+      : GetScalarType<T[P], AggregateProjectImage[P]>
+  }
+
+
+
+
+  export type ProjectImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectImageWhereInput
+    orderBy?: ProjectImageOrderByWithAggregationInput | ProjectImageOrderByWithAggregationInput[]
+    by: ProjectImageScalarFieldEnum[] | ProjectImageScalarFieldEnum
+    having?: ProjectImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectImageCountAggregateInputType | true
+    _avg?: ProjectImageAvgAggregateInputType
+    _sum?: ProjectImageSumAggregateInputType
+    _min?: ProjectImageMinAggregateInputType
+    _max?: ProjectImageMaxAggregateInputType
+  }
+
+  export type ProjectImageGroupByOutputType = {
+    id: number
+    projectId: number
+    image: string
+    _count: ProjectImageCountAggregateOutputType | null
+    _avg: ProjectImageAvgAggregateOutputType | null
+    _sum: ProjectImageSumAggregateOutputType | null
+    _min: ProjectImageMinAggregateOutputType | null
+    _max: ProjectImageMaxAggregateOutputType | null
+  }
+
+  type GetProjectImageGroupByPayload<T extends ProjectImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectImageGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    image?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectImage"]>
+
+  export type ProjectImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    image?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectImage"]>
+
+  export type ProjectImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    image?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectImage"]>
+
+  export type ProjectImageSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    image?: boolean
+  }
+
+  export type ProjectImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "image", ExtArgs["result"]["projectImage"]>
+  export type ProjectImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectImage"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      projectId: number
+      image: string
+    }, ExtArgs["result"]["projectImage"]>
+    composites: {}
+  }
+
+  type ProjectImageGetPayload<S extends boolean | null | undefined | ProjectImageDefaultArgs> = $Result.GetResult<Prisma.$ProjectImagePayload, S>
+
+  type ProjectImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectImageCountAggregateInputType | true
+    }
+
+  export interface ProjectImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectImage'], meta: { name: 'ProjectImage' } }
+    /**
+     * Find zero or one ProjectImage that matches the filter.
+     * @param {ProjectImageFindUniqueArgs} args - Arguments to find a ProjectImage
+     * @example
+     * // Get one ProjectImage
+     * const projectImage = await prisma.projectImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectImageFindUniqueArgs>(args: SelectSubset<T, ProjectImageFindUniqueArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectImageFindUniqueOrThrowArgs} args - Arguments to find a ProjectImage
+     * @example
+     * // Get one ProjectImage
+     * const projectImage = await prisma.projectImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectImageFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageFindFirstArgs} args - Arguments to find a ProjectImage
+     * @example
+     * // Get one ProjectImage
+     * const projectImage = await prisma.projectImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectImageFindFirstArgs>(args?: SelectSubset<T, ProjectImageFindFirstArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageFindFirstOrThrowArgs} args - Arguments to find a ProjectImage
+     * @example
+     * // Get one ProjectImage
+     * const projectImage = await prisma.projectImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectImageFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectImages
+     * const projectImages = await prisma.projectImage.findMany()
+     * 
+     * // Get first 10 ProjectImages
+     * const projectImages = await prisma.projectImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectImageWithIdOnly = await prisma.projectImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectImageFindManyArgs>(args?: SelectSubset<T, ProjectImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectImage.
+     * @param {ProjectImageCreateArgs} args - Arguments to create a ProjectImage.
+     * @example
+     * // Create one ProjectImage
+     * const ProjectImage = await prisma.projectImage.create({
+     *   data: {
+     *     // ... data to create a ProjectImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectImageCreateArgs>(args: SelectSubset<T, ProjectImageCreateArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectImages.
+     * @param {ProjectImageCreateManyArgs} args - Arguments to create many ProjectImages.
+     * @example
+     * // Create many ProjectImages
+     * const projectImage = await prisma.projectImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectImageCreateManyArgs>(args?: SelectSubset<T, ProjectImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectImages and returns the data saved in the database.
+     * @param {ProjectImageCreateManyAndReturnArgs} args - Arguments to create many ProjectImages.
+     * @example
+     * // Create many ProjectImages
+     * const projectImage = await prisma.projectImage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectImages and only return the `id`
+     * const projectImageWithIdOnly = await prisma.projectImage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectImageCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectImage.
+     * @param {ProjectImageDeleteArgs} args - Arguments to delete one ProjectImage.
+     * @example
+     * // Delete one ProjectImage
+     * const ProjectImage = await prisma.projectImage.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectImageDeleteArgs>(args: SelectSubset<T, ProjectImageDeleteArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectImage.
+     * @param {ProjectImageUpdateArgs} args - Arguments to update one ProjectImage.
+     * @example
+     * // Update one ProjectImage
+     * const projectImage = await prisma.projectImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectImageUpdateArgs>(args: SelectSubset<T, ProjectImageUpdateArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectImages.
+     * @param {ProjectImageDeleteManyArgs} args - Arguments to filter ProjectImages to delete.
+     * @example
+     * // Delete a few ProjectImages
+     * const { count } = await prisma.projectImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectImageDeleteManyArgs>(args?: SelectSubset<T, ProjectImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectImages
+     * const projectImage = await prisma.projectImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectImageUpdateManyArgs>(args: SelectSubset<T, ProjectImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectImages and returns the data updated in the database.
+     * @param {ProjectImageUpdateManyAndReturnArgs} args - Arguments to update many ProjectImages.
+     * @example
+     * // Update many ProjectImages
+     * const projectImage = await prisma.projectImage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectImages and only return the `id`
+     * const projectImageWithIdOnly = await prisma.projectImage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectImageUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectImage.
+     * @param {ProjectImageUpsertArgs} args - Arguments to update or create a ProjectImage.
+     * @example
+     * // Update or create a ProjectImage
+     * const projectImage = await prisma.projectImage.upsert({
+     *   create: {
+     *     // ... data to create a ProjectImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectImageUpsertArgs>(args: SelectSubset<T, ProjectImageUpsertArgs<ExtArgs>>): Prisma__ProjectImageClient<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageCountArgs} args - Arguments to filter ProjectImages to count.
+     * @example
+     * // Count the number of ProjectImages
+     * const count = await prisma.projectImage.count({
+     *   where: {
+     *     // ... the filter for the ProjectImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectImageCountArgs>(
+      args?: Subset<T, ProjectImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectImageAggregateArgs>(args: Subset<T, ProjectImageAggregateArgs>): Prisma.PrismaPromise<GetProjectImageAggregateType<T>>
+
+    /**
+     * Group by ProjectImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectImageGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectImage model
+   */
+  readonly fields: ProjectImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectImage model
+   */
+  interface ProjectImageFieldRefs {
+    readonly id: FieldRef<"ProjectImage", 'Int'>
+    readonly projectId: FieldRef<"ProjectImage", 'Int'>
+    readonly image: FieldRef<"ProjectImage", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectImage findUnique
+   */
+  export type ProjectImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectImage to fetch.
+     */
+    where: ProjectImageWhereUniqueInput
+  }
+
+  /**
+   * ProjectImage findUniqueOrThrow
+   */
+  export type ProjectImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectImage to fetch.
+     */
+    where: ProjectImageWhereUniqueInput
+  }
+
+  /**
+   * ProjectImage findFirst
+   */
+  export type ProjectImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectImage to fetch.
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectImages to fetch.
+     */
+    orderBy?: ProjectImageOrderByWithRelationInput | ProjectImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectImages.
+     */
+    cursor?: ProjectImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectImages.
+     */
+    distinct?: ProjectImageScalarFieldEnum | ProjectImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectImage findFirstOrThrow
+   */
+  export type ProjectImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectImage to fetch.
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectImages to fetch.
+     */
+    orderBy?: ProjectImageOrderByWithRelationInput | ProjectImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectImages.
+     */
+    cursor?: ProjectImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectImages.
+     */
+    distinct?: ProjectImageScalarFieldEnum | ProjectImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectImage findMany
+   */
+  export type ProjectImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectImages to fetch.
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectImages to fetch.
+     */
+    orderBy?: ProjectImageOrderByWithRelationInput | ProjectImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectImages.
+     */
+    cursor?: ProjectImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectImages.
+     */
+    skip?: number
+    distinct?: ProjectImageScalarFieldEnum | ProjectImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectImage create
+   */
+  export type ProjectImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectImage.
+     */
+    data: XOR<ProjectImageCreateInput, ProjectImageUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectImage createMany
+   */
+  export type ProjectImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectImages.
+     */
+    data: ProjectImageCreateManyInput | ProjectImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectImage createManyAndReturn
+   */
+  export type ProjectImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectImages.
+     */
+    data: ProjectImageCreateManyInput | ProjectImageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectImage update
+   */
+  export type ProjectImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectImage.
+     */
+    data: XOR<ProjectImageUpdateInput, ProjectImageUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectImage to update.
+     */
+    where: ProjectImageWhereUniqueInput
+  }
+
+  /**
+   * ProjectImage updateMany
+   */
+  export type ProjectImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectImages.
+     */
+    data: XOR<ProjectImageUpdateManyMutationInput, ProjectImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectImages to update
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * Limit how many ProjectImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectImage updateManyAndReturn
+   */
+  export type ProjectImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectImages.
+     */
+    data: XOR<ProjectImageUpdateManyMutationInput, ProjectImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectImages to update
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * Limit how many ProjectImages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectImage upsert
+   */
+  export type ProjectImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectImage to update in case it exists.
+     */
+    where: ProjectImageWhereUniqueInput
+    /**
+     * In case the ProjectImage found by the `where` argument doesn't exist, create a new ProjectImage with this data.
+     */
+    create: XOR<ProjectImageCreateInput, ProjectImageUncheckedCreateInput>
+    /**
+     * In case the ProjectImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectImageUpdateInput, ProjectImageUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectImage delete
+   */
+  export type ProjectImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectImage to delete.
+     */
+    where: ProjectImageWhereUniqueInput
+  }
+
+  /**
+   * ProjectImage deleteMany
+   */
+  export type ProjectImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectImages to delete
+     */
+    where?: ProjectImageWhereInput
+    /**
+     * Limit how many ProjectImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectImage without action
+   */
+  export type ProjectImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectImage
+     */
+    select?: ProjectImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectImage
+     */
+    omit?: ProjectImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectImageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectVideo
+   */
+
+  export type AggregateProjectVideo = {
+    _count: ProjectVideoCountAggregateOutputType | null
+    _avg: ProjectVideoAvgAggregateOutputType | null
+    _sum: ProjectVideoSumAggregateOutputType | null
+    _min: ProjectVideoMinAggregateOutputType | null
+    _max: ProjectVideoMaxAggregateOutputType | null
+  }
+
+  export type ProjectVideoAvgAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+  }
+
+  export type ProjectVideoSumAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+  }
+
+  export type ProjectVideoMinAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+    video: string | null
+  }
+
+  export type ProjectVideoMaxAggregateOutputType = {
+    id: number | null
+    projectId: number | null
+    video: string | null
+  }
+
+  export type ProjectVideoCountAggregateOutputType = {
+    id: number
+    projectId: number
+    video: number
+    _all: number
+  }
+
+
+  export type ProjectVideoAvgAggregateInputType = {
+    id?: true
+    projectId?: true
+  }
+
+  export type ProjectVideoSumAggregateInputType = {
+    id?: true
+    projectId?: true
+  }
+
+  export type ProjectVideoMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    video?: true
+  }
+
+  export type ProjectVideoMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    video?: true
+  }
+
+  export type ProjectVideoCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    video?: true
+    _all?: true
+  }
+
+  export type ProjectVideoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectVideo to aggregate.
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectVideos to fetch.
+     */
+    orderBy?: ProjectVideoOrderByWithRelationInput | ProjectVideoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectVideoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectVideos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectVideos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectVideos
+    **/
+    _count?: true | ProjectVideoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectVideoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectVideoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectVideoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectVideoMaxAggregateInputType
+  }
+
+  export type GetProjectVideoAggregateType<T extends ProjectVideoAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectVideo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectVideo[P]>
+      : GetScalarType<T[P], AggregateProjectVideo[P]>
+  }
+
+
+
+
+  export type ProjectVideoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectVideoWhereInput
+    orderBy?: ProjectVideoOrderByWithAggregationInput | ProjectVideoOrderByWithAggregationInput[]
+    by: ProjectVideoScalarFieldEnum[] | ProjectVideoScalarFieldEnum
+    having?: ProjectVideoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectVideoCountAggregateInputType | true
+    _avg?: ProjectVideoAvgAggregateInputType
+    _sum?: ProjectVideoSumAggregateInputType
+    _min?: ProjectVideoMinAggregateInputType
+    _max?: ProjectVideoMaxAggregateInputType
+  }
+
+  export type ProjectVideoGroupByOutputType = {
+    id: number
+    projectId: number
+    video: string
+    _count: ProjectVideoCountAggregateOutputType | null
+    _avg: ProjectVideoAvgAggregateOutputType | null
+    _sum: ProjectVideoSumAggregateOutputType | null
+    _min: ProjectVideoMinAggregateOutputType | null
+    _max: ProjectVideoMaxAggregateOutputType | null
+  }
+
+  type GetProjectVideoGroupByPayload<T extends ProjectVideoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectVideoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectVideoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectVideoGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectVideoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectVideoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    video?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectVideo"]>
+
+  export type ProjectVideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    video?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectVideo"]>
+
+  export type ProjectVideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    video?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectVideo"]>
+
+  export type ProjectVideoSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    video?: boolean
+  }
+
+  export type ProjectVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "video", ExtArgs["result"]["projectVideo"]>
+  export type ProjectVideoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectVideoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectVideoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectVideoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectVideo"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      projectId: number
+      video: string
+    }, ExtArgs["result"]["projectVideo"]>
+    composites: {}
+  }
+
+  type ProjectVideoGetPayload<S extends boolean | null | undefined | ProjectVideoDefaultArgs> = $Result.GetResult<Prisma.$ProjectVideoPayload, S>
+
+  type ProjectVideoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectVideoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectVideoCountAggregateInputType | true
+    }
+
+  export interface ProjectVideoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectVideo'], meta: { name: 'ProjectVideo' } }
+    /**
+     * Find zero or one ProjectVideo that matches the filter.
+     * @param {ProjectVideoFindUniqueArgs} args - Arguments to find a ProjectVideo
+     * @example
+     * // Get one ProjectVideo
+     * const projectVideo = await prisma.projectVideo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectVideoFindUniqueArgs>(args: SelectSubset<T, ProjectVideoFindUniqueArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectVideo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectVideoFindUniqueOrThrowArgs} args - Arguments to find a ProjectVideo
+     * @example
+     * // Get one ProjectVideo
+     * const projectVideo = await prisma.projectVideo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectVideoFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectVideoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectVideo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoFindFirstArgs} args - Arguments to find a ProjectVideo
+     * @example
+     * // Get one ProjectVideo
+     * const projectVideo = await prisma.projectVideo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectVideoFindFirstArgs>(args?: SelectSubset<T, ProjectVideoFindFirstArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectVideo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoFindFirstOrThrowArgs} args - Arguments to find a ProjectVideo
+     * @example
+     * // Get one ProjectVideo
+     * const projectVideo = await prisma.projectVideo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectVideoFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectVideoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectVideos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectVideos
+     * const projectVideos = await prisma.projectVideo.findMany()
+     * 
+     * // Get first 10 ProjectVideos
+     * const projectVideos = await prisma.projectVideo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectVideoWithIdOnly = await prisma.projectVideo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectVideoFindManyArgs>(args?: SelectSubset<T, ProjectVideoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectVideo.
+     * @param {ProjectVideoCreateArgs} args - Arguments to create a ProjectVideo.
+     * @example
+     * // Create one ProjectVideo
+     * const ProjectVideo = await prisma.projectVideo.create({
+     *   data: {
+     *     // ... data to create a ProjectVideo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectVideoCreateArgs>(args: SelectSubset<T, ProjectVideoCreateArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectVideos.
+     * @param {ProjectVideoCreateManyArgs} args - Arguments to create many ProjectVideos.
+     * @example
+     * // Create many ProjectVideos
+     * const projectVideo = await prisma.projectVideo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectVideoCreateManyArgs>(args?: SelectSubset<T, ProjectVideoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectVideos and returns the data saved in the database.
+     * @param {ProjectVideoCreateManyAndReturnArgs} args - Arguments to create many ProjectVideos.
+     * @example
+     * // Create many ProjectVideos
+     * const projectVideo = await prisma.projectVideo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectVideos and only return the `id`
+     * const projectVideoWithIdOnly = await prisma.projectVideo.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectVideoCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectVideoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectVideo.
+     * @param {ProjectVideoDeleteArgs} args - Arguments to delete one ProjectVideo.
+     * @example
+     * // Delete one ProjectVideo
+     * const ProjectVideo = await prisma.projectVideo.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectVideo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectVideoDeleteArgs>(args: SelectSubset<T, ProjectVideoDeleteArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectVideo.
+     * @param {ProjectVideoUpdateArgs} args - Arguments to update one ProjectVideo.
+     * @example
+     * // Update one ProjectVideo
+     * const projectVideo = await prisma.projectVideo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectVideoUpdateArgs>(args: SelectSubset<T, ProjectVideoUpdateArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectVideos.
+     * @param {ProjectVideoDeleteManyArgs} args - Arguments to filter ProjectVideos to delete.
+     * @example
+     * // Delete a few ProjectVideos
+     * const { count } = await prisma.projectVideo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectVideoDeleteManyArgs>(args?: SelectSubset<T, ProjectVideoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectVideos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectVideos
+     * const projectVideo = await prisma.projectVideo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectVideoUpdateManyArgs>(args: SelectSubset<T, ProjectVideoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectVideos and returns the data updated in the database.
+     * @param {ProjectVideoUpdateManyAndReturnArgs} args - Arguments to update many ProjectVideos.
+     * @example
+     * // Update many ProjectVideos
+     * const projectVideo = await prisma.projectVideo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectVideos and only return the `id`
+     * const projectVideoWithIdOnly = await prisma.projectVideo.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectVideoUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectVideoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectVideo.
+     * @param {ProjectVideoUpsertArgs} args - Arguments to update or create a ProjectVideo.
+     * @example
+     * // Update or create a ProjectVideo
+     * const projectVideo = await prisma.projectVideo.upsert({
+     *   create: {
+     *     // ... data to create a ProjectVideo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectVideo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectVideoUpsertArgs>(args: SelectSubset<T, ProjectVideoUpsertArgs<ExtArgs>>): Prisma__ProjectVideoClient<$Result.GetResult<Prisma.$ProjectVideoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectVideos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoCountArgs} args - Arguments to filter ProjectVideos to count.
+     * @example
+     * // Count the number of ProjectVideos
+     * const count = await prisma.projectVideo.count({
+     *   where: {
+     *     // ... the filter for the ProjectVideos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectVideoCountArgs>(
+      args?: Subset<T, ProjectVideoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectVideoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectVideo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectVideoAggregateArgs>(args: Subset<T, ProjectVideoAggregateArgs>): Prisma.PrismaPromise<GetProjectVideoAggregateType<T>>
+
+    /**
+     * Group by ProjectVideo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectVideoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectVideoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectVideoGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectVideoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectVideoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectVideoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectVideo model
+   */
+  readonly fields: ProjectVideoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectVideo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectVideoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectVideo model
+   */
+  interface ProjectVideoFieldRefs {
+    readonly id: FieldRef<"ProjectVideo", 'Int'>
+    readonly projectId: FieldRef<"ProjectVideo", 'Int'>
+    readonly video: FieldRef<"ProjectVideo", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectVideo findUnique
+   */
+  export type ProjectVideoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectVideo to fetch.
+     */
+    where: ProjectVideoWhereUniqueInput
+  }
+
+  /**
+   * ProjectVideo findUniqueOrThrow
+   */
+  export type ProjectVideoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectVideo to fetch.
+     */
+    where: ProjectVideoWhereUniqueInput
+  }
+
+  /**
+   * ProjectVideo findFirst
+   */
+  export type ProjectVideoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectVideo to fetch.
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectVideos to fetch.
+     */
+    orderBy?: ProjectVideoOrderByWithRelationInput | ProjectVideoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectVideos.
+     */
+    cursor?: ProjectVideoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectVideos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectVideos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectVideos.
+     */
+    distinct?: ProjectVideoScalarFieldEnum | ProjectVideoScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectVideo findFirstOrThrow
+   */
+  export type ProjectVideoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectVideo to fetch.
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectVideos to fetch.
+     */
+    orderBy?: ProjectVideoOrderByWithRelationInput | ProjectVideoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectVideos.
+     */
+    cursor?: ProjectVideoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectVideos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectVideos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectVideos.
+     */
+    distinct?: ProjectVideoScalarFieldEnum | ProjectVideoScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectVideo findMany
+   */
+  export type ProjectVideoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectVideos to fetch.
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectVideos to fetch.
+     */
+    orderBy?: ProjectVideoOrderByWithRelationInput | ProjectVideoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectVideos.
+     */
+    cursor?: ProjectVideoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectVideos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectVideos.
+     */
+    skip?: number
+    distinct?: ProjectVideoScalarFieldEnum | ProjectVideoScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectVideo create
+   */
+  export type ProjectVideoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectVideo.
+     */
+    data: XOR<ProjectVideoCreateInput, ProjectVideoUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectVideo createMany
+   */
+  export type ProjectVideoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectVideos.
+     */
+    data: ProjectVideoCreateManyInput | ProjectVideoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectVideo createManyAndReturn
+   */
+  export type ProjectVideoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectVideos.
+     */
+    data: ProjectVideoCreateManyInput | ProjectVideoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectVideo update
+   */
+  export type ProjectVideoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectVideo.
+     */
+    data: XOR<ProjectVideoUpdateInput, ProjectVideoUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectVideo to update.
+     */
+    where: ProjectVideoWhereUniqueInput
+  }
+
+  /**
+   * ProjectVideo updateMany
+   */
+  export type ProjectVideoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectVideos.
+     */
+    data: XOR<ProjectVideoUpdateManyMutationInput, ProjectVideoUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectVideos to update
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * Limit how many ProjectVideos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectVideo updateManyAndReturn
+   */
+  export type ProjectVideoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectVideos.
+     */
+    data: XOR<ProjectVideoUpdateManyMutationInput, ProjectVideoUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectVideos to update
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * Limit how many ProjectVideos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectVideo upsert
+   */
+  export type ProjectVideoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectVideo to update in case it exists.
+     */
+    where: ProjectVideoWhereUniqueInput
+    /**
+     * In case the ProjectVideo found by the `where` argument doesn't exist, create a new ProjectVideo with this data.
+     */
+    create: XOR<ProjectVideoCreateInput, ProjectVideoUncheckedCreateInput>
+    /**
+     * In case the ProjectVideo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectVideoUpdateInput, ProjectVideoUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectVideo delete
+   */
+  export type ProjectVideoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectVideo to delete.
+     */
+    where: ProjectVideoWhereUniqueInput
+  }
+
+  /**
+   * ProjectVideo deleteMany
+   */
+  export type ProjectVideoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectVideos to delete
+     */
+    where?: ProjectVideoWhereInput
+    /**
+     * Limit how many ProjectVideos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectVideo without action
+   */
+  export type ProjectVideoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectVideo
+     */
+    select?: ProjectVideoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectVideo
+     */
+    omit?: ProjectVideoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectVideoInclude<ExtArgs> | null
   }
 
 
@@ -9301,8 +11721,8 @@ export namespace Prisma {
   export const ProjectScalarFieldEnum: {
     id: 'id',
     title: 'title',
+    subTitle: 'subTitle',
     image: 'image',
-    video: 'video',
     description: 'description',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -9310,6 +11730,24 @@ export namespace Prisma {
   };
 
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+  export const ProjectImageScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    image: 'image'
+  };
+
+  export type ProjectImageScalarFieldEnum = (typeof ProjectImageScalarFieldEnum)[keyof typeof ProjectImageScalarFieldEnum]
+
+
+  export const ProjectVideoScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    video: 'video'
+  };
+
+  export type ProjectVideoScalarFieldEnum = (typeof ProjectVideoScalarFieldEnum)[keyof typeof ProjectVideoScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9843,47 +12281,53 @@ export namespace Prisma {
     NOT?: ProjectWhereInput | ProjectWhereInput[]
     id?: IntFilter<"Project"> | number
     title?: StringFilter<"Project"> | string
+    subTitle?: StringNullableFilter<"Project"> | string | null
     image?: StringNullableFilter<"Project"> | string | null
-    video?: StringNullableFilter<"Project"> | string | null
     description?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     categoryId?: IntFilter<"Project"> | number
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    projectImages?: ProjectImageListRelationFilter
+    projectVideos?: ProjectVideoListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
+    subTitle?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
-    video?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     categoryId?: SortOrder
     category?: CategoryOrderByWithRelationInput
+    projectImages?: ProjectImageOrderByRelationAggregateInput
+    projectVideos?: ProjectVideoOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    title?: string
     AND?: ProjectWhereInput | ProjectWhereInput[]
     OR?: ProjectWhereInput[]
     NOT?: ProjectWhereInput | ProjectWhereInput[]
+    title?: StringFilter<"Project"> | string
+    subTitle?: StringNullableFilter<"Project"> | string | null
     image?: StringNullableFilter<"Project"> | string | null
-    video?: StringNullableFilter<"Project"> | string | null
     description?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     categoryId?: IntFilter<"Project"> | number
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-  }, "id" | "title">
+    projectImages?: ProjectImageListRelationFilter
+    projectVideos?: ProjectVideoListRelationFilter
+  }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
+    subTitle?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
-    video?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9901,12 +12345,106 @@ export namespace Prisma {
     NOT?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Project"> | number
     title?: StringWithAggregatesFilter<"Project"> | string
+    subTitle?: StringNullableWithAggregatesFilter<"Project"> | string | null
     image?: StringNullableWithAggregatesFilter<"Project"> | string | null
-    video?: StringNullableWithAggregatesFilter<"Project"> | string | null
     description?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     categoryId?: IntWithAggregatesFilter<"Project"> | number
+  }
+
+  export type ProjectImageWhereInput = {
+    AND?: ProjectImageWhereInput | ProjectImageWhereInput[]
+    OR?: ProjectImageWhereInput[]
+    NOT?: ProjectImageWhereInput | ProjectImageWhereInput[]
+    id?: IntFilter<"ProjectImage"> | number
+    projectId?: IntFilter<"ProjectImage"> | number
+    image?: StringFilter<"ProjectImage"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectImageOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    image?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ProjectImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ProjectImageWhereInput | ProjectImageWhereInput[]
+    OR?: ProjectImageWhereInput[]
+    NOT?: ProjectImageWhereInput | ProjectImageWhereInput[]
+    projectId?: IntFilter<"ProjectImage"> | number
+    image?: StringFilter<"ProjectImage"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ProjectImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    image?: SortOrder
+    _count?: ProjectImageCountOrderByAggregateInput
+    _avg?: ProjectImageAvgOrderByAggregateInput
+    _max?: ProjectImageMaxOrderByAggregateInput
+    _min?: ProjectImageMinOrderByAggregateInput
+    _sum?: ProjectImageSumOrderByAggregateInput
+  }
+
+  export type ProjectImageScalarWhereWithAggregatesInput = {
+    AND?: ProjectImageScalarWhereWithAggregatesInput | ProjectImageScalarWhereWithAggregatesInput[]
+    OR?: ProjectImageScalarWhereWithAggregatesInput[]
+    NOT?: ProjectImageScalarWhereWithAggregatesInput | ProjectImageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProjectImage"> | number
+    projectId?: IntWithAggregatesFilter<"ProjectImage"> | number
+    image?: StringWithAggregatesFilter<"ProjectImage"> | string
+  }
+
+  export type ProjectVideoWhereInput = {
+    AND?: ProjectVideoWhereInput | ProjectVideoWhereInput[]
+    OR?: ProjectVideoWhereInput[]
+    NOT?: ProjectVideoWhereInput | ProjectVideoWhereInput[]
+    id?: IntFilter<"ProjectVideo"> | number
+    projectId?: IntFilter<"ProjectVideo"> | number
+    video?: StringFilter<"ProjectVideo"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectVideoOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    video?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ProjectVideoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ProjectVideoWhereInput | ProjectVideoWhereInput[]
+    OR?: ProjectVideoWhereInput[]
+    NOT?: ProjectVideoWhereInput | ProjectVideoWhereInput[]
+    projectId?: IntFilter<"ProjectVideo"> | number
+    video?: StringFilter<"ProjectVideo"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ProjectVideoOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    video?: SortOrder
+    _count?: ProjectVideoCountOrderByAggregateInput
+    _avg?: ProjectVideoAvgOrderByAggregateInput
+    _max?: ProjectVideoMaxOrderByAggregateInput
+    _min?: ProjectVideoMinOrderByAggregateInput
+    _sum?: ProjectVideoSumOrderByAggregateInput
+  }
+
+  export type ProjectVideoScalarWhereWithAggregatesInput = {
+    AND?: ProjectVideoScalarWhereWithAggregatesInput | ProjectVideoScalarWhereWithAggregatesInput[]
+    OR?: ProjectVideoScalarWhereWithAggregatesInput[]
+    NOT?: ProjectVideoScalarWhereWithAggregatesInput | ProjectVideoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProjectVideo"> | number
+    projectId?: IntWithAggregatesFilter<"ProjectVideo"> | number
+    video?: StringWithAggregatesFilter<"ProjectVideo"> | string
   }
 
   export type UserCreateInput = {
@@ -10370,51 +12908,59 @@ export namespace Prisma {
 
   export type ProjectCreateInput = {
     title: string
+    subTitle?: string | null
     image?: string | null
-    video?: string | null
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProjectsInput
+    projectImages?: ProjectImageCreateNestedManyWithoutProjectInput
+    projectVideos?: ProjectVideoCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
     id?: number
     title: string
+    subTitle?: string | null
     image?: string | null
-    video?: string | null
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     categoryId: number
+    projectImages?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    projectVideos?: ProjectVideoUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProjectsNestedInput
+    projectImages?: ProjectImageUpdateManyWithoutProjectNestedInput
+    projectVideos?: ProjectVideoUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
+    projectImages?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    projectVideos?: ProjectVideoUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
     id?: number
     title: string
+    subTitle?: string | null
     image?: string | null
-    video?: string | null
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10423,8 +12969,8 @@ export namespace Prisma {
 
   export type ProjectUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10433,12 +12979,88 @@ export namespace Prisma {
   export type ProjectUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectImageCreateInput = {
+    image: string
+    project: ProjectCreateNestedOneWithoutProjectImagesInput
+  }
+
+  export type ProjectImageUncheckedCreateInput = {
+    id?: number
+    projectId: number
+    image: string
+  }
+
+  export type ProjectImageUpdateInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneRequiredWithoutProjectImagesNestedInput
+  }
+
+  export type ProjectImageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    projectId?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectImageCreateManyInput = {
+    id?: number
+    projectId: number
+    image: string
+  }
+
+  export type ProjectImageUpdateManyMutationInput = {
+    image?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectImageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    projectId?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectVideoCreateInput = {
+    video: string
+    project: ProjectCreateNestedOneWithoutProjectVideosInput
+  }
+
+  export type ProjectVideoUncheckedCreateInput = {
+    id?: number
+    projectId: number
+    video: string
+  }
+
+  export type ProjectVideoUpdateInput = {
+    video?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneRequiredWithoutProjectVideosNestedInput
+  }
+
+  export type ProjectVideoUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    projectId?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectVideoCreateManyInput = {
+    id?: number
+    projectId: number
+    video: string
+  }
+
+  export type ProjectVideoUpdateManyMutationInput = {
+    video?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectVideoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    projectId?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -10870,11 +13492,31 @@ export namespace Prisma {
     isNot?: CategoryWhereInput
   }
 
+  export type ProjectImageListRelationFilter = {
+    every?: ProjectImageWhereInput
+    some?: ProjectImageWhereInput
+    none?: ProjectImageWhereInput
+  }
+
+  export type ProjectVideoListRelationFilter = {
+    every?: ProjectVideoWhereInput
+    some?: ProjectVideoWhereInput
+    none?: ProjectVideoWhereInput
+  }
+
+  export type ProjectImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectVideoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ProjectCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    subTitle?: SortOrder
     image?: SortOrder
-    video?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10889,8 +13531,8 @@ export namespace Prisma {
   export type ProjectMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    subTitle?: SortOrder
     image?: SortOrder
-    video?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10900,8 +13542,8 @@ export namespace Prisma {
   export type ProjectMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    subTitle?: SortOrder
     image?: SortOrder
-    video?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10911,6 +13553,67 @@ export namespace Prisma {
   export type ProjectSumOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
+  }
+
+  export type ProjectScalarRelationFilter = {
+    is?: ProjectWhereInput
+    isNot?: ProjectWhereInput
+  }
+
+  export type ProjectImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    image?: SortOrder
+  }
+
+  export type ProjectImageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type ProjectImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    image?: SortOrder
+  }
+
+  export type ProjectImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    image?: SortOrder
+  }
+
+  export type ProjectImageSumOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type ProjectVideoCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    video?: SortOrder
+  }
+
+  export type ProjectVideoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type ProjectVideoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    video?: SortOrder
+  }
+
+  export type ProjectVideoMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    video?: SortOrder
+  }
+
+  export type ProjectVideoSumOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -11105,12 +13808,124 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
+  export type ProjectImageCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectImageCreateWithoutProjectInput, ProjectImageUncheckedCreateWithoutProjectInput> | ProjectImageCreateWithoutProjectInput[] | ProjectImageUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectImageCreateOrConnectWithoutProjectInput | ProjectImageCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectImageCreateManyProjectInputEnvelope
+    connect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+  }
+
+  export type ProjectVideoCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectVideoCreateWithoutProjectInput, ProjectVideoUncheckedCreateWithoutProjectInput> | ProjectVideoCreateWithoutProjectInput[] | ProjectVideoUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectVideoCreateOrConnectWithoutProjectInput | ProjectVideoCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectVideoCreateManyProjectInputEnvelope
+    connect?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+  }
+
+  export type ProjectImageUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectImageCreateWithoutProjectInput, ProjectImageUncheckedCreateWithoutProjectInput> | ProjectImageCreateWithoutProjectInput[] | ProjectImageUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectImageCreateOrConnectWithoutProjectInput | ProjectImageCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectImageCreateManyProjectInputEnvelope
+    connect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+  }
+
+  export type ProjectVideoUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectVideoCreateWithoutProjectInput, ProjectVideoUncheckedCreateWithoutProjectInput> | ProjectVideoCreateWithoutProjectInput[] | ProjectVideoUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectVideoCreateOrConnectWithoutProjectInput | ProjectVideoCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectVideoCreateManyProjectInputEnvelope
+    connect?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+  }
+
   export type CategoryUpdateOneRequiredWithoutProjectsNestedInput = {
     create?: XOR<CategoryCreateWithoutProjectsInput, CategoryUncheckedCreateWithoutProjectsInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutProjectsInput
     upsert?: CategoryUpsertWithoutProjectsInput
     connect?: CategoryWhereUniqueInput
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutProjectsInput, CategoryUpdateWithoutProjectsInput>, CategoryUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type ProjectImageUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectImageCreateWithoutProjectInput, ProjectImageUncheckedCreateWithoutProjectInput> | ProjectImageCreateWithoutProjectInput[] | ProjectImageUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectImageCreateOrConnectWithoutProjectInput | ProjectImageCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectImageUpsertWithWhereUniqueWithoutProjectInput | ProjectImageUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectImageCreateManyProjectInputEnvelope
+    set?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    disconnect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    delete?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    connect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    update?: ProjectImageUpdateWithWhereUniqueWithoutProjectInput | ProjectImageUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectImageUpdateManyWithWhereWithoutProjectInput | ProjectImageUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectImageScalarWhereInput | ProjectImageScalarWhereInput[]
+  }
+
+  export type ProjectVideoUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectVideoCreateWithoutProjectInput, ProjectVideoUncheckedCreateWithoutProjectInput> | ProjectVideoCreateWithoutProjectInput[] | ProjectVideoUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectVideoCreateOrConnectWithoutProjectInput | ProjectVideoCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectVideoUpsertWithWhereUniqueWithoutProjectInput | ProjectVideoUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectVideoCreateManyProjectInputEnvelope
+    set?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    disconnect?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    delete?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    connect?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    update?: ProjectVideoUpdateWithWhereUniqueWithoutProjectInput | ProjectVideoUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectVideoUpdateManyWithWhereWithoutProjectInput | ProjectVideoUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectVideoScalarWhereInput | ProjectVideoScalarWhereInput[]
+  }
+
+  export type ProjectImageUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectImageCreateWithoutProjectInput, ProjectImageUncheckedCreateWithoutProjectInput> | ProjectImageCreateWithoutProjectInput[] | ProjectImageUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectImageCreateOrConnectWithoutProjectInput | ProjectImageCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectImageUpsertWithWhereUniqueWithoutProjectInput | ProjectImageUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectImageCreateManyProjectInputEnvelope
+    set?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    disconnect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    delete?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    connect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+    update?: ProjectImageUpdateWithWhereUniqueWithoutProjectInput | ProjectImageUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectImageUpdateManyWithWhereWithoutProjectInput | ProjectImageUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectImageScalarWhereInput | ProjectImageScalarWhereInput[]
+  }
+
+  export type ProjectVideoUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectVideoCreateWithoutProjectInput, ProjectVideoUncheckedCreateWithoutProjectInput> | ProjectVideoCreateWithoutProjectInput[] | ProjectVideoUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectVideoCreateOrConnectWithoutProjectInput | ProjectVideoCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectVideoUpsertWithWhereUniqueWithoutProjectInput | ProjectVideoUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectVideoCreateManyProjectInputEnvelope
+    set?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    disconnect?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    delete?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    connect?: ProjectVideoWhereUniqueInput | ProjectVideoWhereUniqueInput[]
+    update?: ProjectVideoUpdateWithWhereUniqueWithoutProjectInput | ProjectVideoUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectVideoUpdateManyWithWhereWithoutProjectInput | ProjectVideoUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectVideoScalarWhereInput | ProjectVideoScalarWhereInput[]
+  }
+
+  export type ProjectCreateNestedOneWithoutProjectImagesInput = {
+    create?: XOR<ProjectCreateWithoutProjectImagesInput, ProjectUncheckedCreateWithoutProjectImagesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutProjectImagesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutProjectImagesNestedInput = {
+    create?: XOR<ProjectCreateWithoutProjectImagesInput, ProjectUncheckedCreateWithoutProjectImagesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutProjectImagesInput
+    upsert?: ProjectUpsertWithoutProjectImagesInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutProjectImagesInput, ProjectUpdateWithoutProjectImagesInput>, ProjectUncheckedUpdateWithoutProjectImagesInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutProjectVideosInput = {
+    create?: XOR<ProjectCreateWithoutProjectVideosInput, ProjectUncheckedCreateWithoutProjectVideosInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutProjectVideosInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutProjectVideosNestedInput = {
+    create?: XOR<ProjectCreateWithoutProjectVideosInput, ProjectUncheckedCreateWithoutProjectVideosInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutProjectVideosInput
+    upsert?: ProjectUpsertWithoutProjectVideosInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutProjectVideosInput, ProjectUpdateWithoutProjectVideosInput>, ProjectUncheckedUpdateWithoutProjectVideosInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11596,21 +14411,25 @@ export namespace Prisma {
 
   export type ProjectCreateWithoutCategoryInput = {
     title: string
+    subTitle?: string | null
     image?: string | null
-    video?: string | null
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    projectImages?: ProjectImageCreateNestedManyWithoutProjectInput
+    projectVideos?: ProjectVideoCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutCategoryInput = {
     id?: number
     title: string
+    subTitle?: string | null
     image?: string | null
-    video?: string | null
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    projectImages?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    projectVideos?: ProjectVideoUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutCategoryInput = {
@@ -11645,8 +14464,8 @@ export namespace Prisma {
     NOT?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
     id?: IntFilter<"Project"> | number
     title?: StringFilter<"Project"> | string
+    subTitle?: StringNullableFilter<"Project"> | string | null
     image?: StringNullableFilter<"Project"> | string | null
-    video?: StringNullableFilter<"Project"> | string | null
     description?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -11673,6 +14492,44 @@ export namespace Prisma {
     create: XOR<CategoryCreateWithoutProjectsInput, CategoryUncheckedCreateWithoutProjectsInput>
   }
 
+  export type ProjectImageCreateWithoutProjectInput = {
+    image: string
+  }
+
+  export type ProjectImageUncheckedCreateWithoutProjectInput = {
+    id?: number
+    image: string
+  }
+
+  export type ProjectImageCreateOrConnectWithoutProjectInput = {
+    where: ProjectImageWhereUniqueInput
+    create: XOR<ProjectImageCreateWithoutProjectInput, ProjectImageUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectImageCreateManyProjectInputEnvelope = {
+    data: ProjectImageCreateManyProjectInput | ProjectImageCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectVideoCreateWithoutProjectInput = {
+    video: string
+  }
+
+  export type ProjectVideoUncheckedCreateWithoutProjectInput = {
+    id?: number
+    video: string
+  }
+
+  export type ProjectVideoCreateOrConnectWithoutProjectInput = {
+    where: ProjectVideoWhereUniqueInput
+    create: XOR<ProjectVideoCreateWithoutProjectInput, ProjectVideoUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectVideoCreateManyProjectInputEnvelope = {
+    data: ProjectVideoCreateManyProjectInput | ProjectVideoCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CategoryUpsertWithoutProjectsInput = {
     update: XOR<CategoryUpdateWithoutProjectsInput, CategoryUncheckedUpdateWithoutProjectsInput>
     create: XOR<CategoryCreateWithoutProjectsInput, CategoryUncheckedCreateWithoutProjectsInput>
@@ -11697,6 +14554,180 @@ export namespace Prisma {
     layout?: EnumCategoryLayoutFieldUpdateOperationsInput | $Enums.CategoryLayout
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectImageUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectImageWhereUniqueInput
+    update: XOR<ProjectImageUpdateWithoutProjectInput, ProjectImageUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectImageCreateWithoutProjectInput, ProjectImageUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectImageUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectImageWhereUniqueInput
+    data: XOR<ProjectImageUpdateWithoutProjectInput, ProjectImageUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectImageUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectImageScalarWhereInput
+    data: XOR<ProjectImageUpdateManyMutationInput, ProjectImageUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectImageScalarWhereInput = {
+    AND?: ProjectImageScalarWhereInput | ProjectImageScalarWhereInput[]
+    OR?: ProjectImageScalarWhereInput[]
+    NOT?: ProjectImageScalarWhereInput | ProjectImageScalarWhereInput[]
+    id?: IntFilter<"ProjectImage"> | number
+    projectId?: IntFilter<"ProjectImage"> | number
+    image?: StringFilter<"ProjectImage"> | string
+  }
+
+  export type ProjectVideoUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectVideoWhereUniqueInput
+    update: XOR<ProjectVideoUpdateWithoutProjectInput, ProjectVideoUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectVideoCreateWithoutProjectInput, ProjectVideoUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectVideoUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectVideoWhereUniqueInput
+    data: XOR<ProjectVideoUpdateWithoutProjectInput, ProjectVideoUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectVideoUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectVideoScalarWhereInput
+    data: XOR<ProjectVideoUpdateManyMutationInput, ProjectVideoUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectVideoScalarWhereInput = {
+    AND?: ProjectVideoScalarWhereInput | ProjectVideoScalarWhereInput[]
+    OR?: ProjectVideoScalarWhereInput[]
+    NOT?: ProjectVideoScalarWhereInput | ProjectVideoScalarWhereInput[]
+    id?: IntFilter<"ProjectVideo"> | number
+    projectId?: IntFilter<"ProjectVideo"> | number
+    video?: StringFilter<"ProjectVideo"> | string
+  }
+
+  export type ProjectCreateWithoutProjectImagesInput = {
+    title: string
+    subTitle?: string | null
+    image?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutProjectsInput
+    projectVideos?: ProjectVideoCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutProjectImagesInput = {
+    id?: number
+    title: string
+    subTitle?: string | null
+    image?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    categoryId: number
+    projectVideos?: ProjectVideoUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutProjectImagesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutProjectImagesInput, ProjectUncheckedCreateWithoutProjectImagesInput>
+  }
+
+  export type ProjectUpsertWithoutProjectImagesInput = {
+    update: XOR<ProjectUpdateWithoutProjectImagesInput, ProjectUncheckedUpdateWithoutProjectImagesInput>
+    create: XOR<ProjectCreateWithoutProjectImagesInput, ProjectUncheckedCreateWithoutProjectImagesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutProjectImagesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutProjectImagesInput, ProjectUncheckedUpdateWithoutProjectImagesInput>
+  }
+
+  export type ProjectUpdateWithoutProjectImagesInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutProjectsNestedInput
+    projectVideos?: ProjectVideoUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutProjectImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categoryId?: IntFieldUpdateOperationsInput | number
+    projectVideos?: ProjectVideoUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutProjectVideosInput = {
+    title: string
+    subTitle?: string | null
+    image?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutProjectsInput
+    projectImages?: ProjectImageCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutProjectVideosInput = {
+    id?: number
+    title: string
+    subTitle?: string | null
+    image?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    categoryId: number
+    projectImages?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutProjectVideosInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutProjectVideosInput, ProjectUncheckedCreateWithoutProjectVideosInput>
+  }
+
+  export type ProjectUpsertWithoutProjectVideosInput = {
+    update: XOR<ProjectUpdateWithoutProjectVideosInput, ProjectUncheckedUpdateWithoutProjectVideosInput>
+    create: XOR<ProjectCreateWithoutProjectVideosInput, ProjectUncheckedCreateWithoutProjectVideosInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutProjectVideosInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutProjectVideosInput, ProjectUncheckedUpdateWithoutProjectVideosInput>
+  }
+
+  export type ProjectUpdateWithoutProjectVideosInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutProjectsNestedInput
+    projectImages?: ProjectImageUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutProjectVideosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categoryId?: IntFieldUpdateOperationsInput | number
+    projectImages?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -11806,8 +14837,8 @@ export namespace Prisma {
   export type ProjectCreateManyCategoryInput = {
     id?: number
     title: string
+    subTitle?: string | null
     image?: string | null
-    video?: string | null
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11815,31 +14846,73 @@ export namespace Prisma {
 
   export type ProjectUpdateWithoutCategoryInput = {
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectImages?: ProjectImageUpdateManyWithoutProjectNestedInput
+    projectVideos?: ProjectVideoUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectImages?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    projectVideos?: ProjectVideoUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
+    subTitle?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    video?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectImageCreateManyProjectInput = {
+    id?: number
+    image: string
+  }
+
+  export type ProjectVideoCreateManyProjectInput = {
+    id?: number
+    video: string
+  }
+
+  export type ProjectImageUpdateWithoutProjectInput = {
+    image?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectImageUncheckedUpdateWithoutProjectInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectImageUncheckedUpdateManyWithoutProjectInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectVideoUpdateWithoutProjectInput = {
+    video?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectVideoUncheckedUpdateWithoutProjectInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProjectVideoUncheckedUpdateManyWithoutProjectInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
   }
 
 

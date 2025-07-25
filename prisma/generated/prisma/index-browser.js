@@ -188,12 +188,24 @@ exports.Prisma.CategoryScalarFieldEnum = {
 exports.Prisma.ProjectScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  subTitle: 'subTitle',
   image: 'image',
-  video: 'video',
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   categoryId: 'categoryId'
+};
+
+exports.Prisma.ProjectImageScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  image: 'image'
+};
+
+exports.Prisma.ProjectVideoScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  video: 'video'
 };
 
 exports.Prisma.SortOrder = {
@@ -223,7 +235,9 @@ exports.Prisma.ModelName = {
   Verification: 'Verification',
   Brand: 'Brand',
   Category: 'Category',
-  Project: 'Project'
+  Project: 'Project',
+  ProjectImage: 'ProjectImage',
+  ProjectVideo: 'ProjectVideo'
 };
 
 /**

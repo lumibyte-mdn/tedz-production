@@ -29,31 +29,65 @@ import {
   SelectValue,
 } from '../ui/select';
 import { getCategoryListApi } from '@/api/category';
+import { Separator } from '../ui/separator';
+import { Dropzone, DropzoneContent, DropzoneEmptyState } from '../ui/dropzone';
+import { IconX } from '@tabler/icons-react';
+
+const MAX_IMAGE_FILE_SIZE = 1 * 1024 * 1024; // 1MB
+const MAX_VIDEO_FILE_SIZE = 100 * 1024 * 1024; // 100MB
 
 const projectSchema = z.object({
   title: z
     .string()
     .min(1, 'Title is required')
     .max(100, 'Title must be less than 100 characters'),
-  image: z.instanceof(File).nullable().optional(),
-  video: z.instanceof(File).nullable().optional(),
-  description: z.string().min(1, 'Description is required'),
+  subTitle: z
+    .string()
+    .max(100, 'Subtitle must be less than 100 characters')
+    .optional(),
+  image: z
+    .instanceof(File)
+    .nullable()
+    .optional()
+    .refine((file) => !file || file.size <= MAX_IMAGE_FILE_SIZE, {
+      message: 'Image size must be less than 1MB',
+    }),
+  description: z
+    .string()
+    .max(500, 'Description must be less than 500 characters')
+    .optional(),
   categoryId: z.string().min(1, 'Category is required'),
+  galleryImages: z
+    .array(z.instanceof(File))
+    .optional()
+    .refine(
+      (files) => files?.every((file) => file.size <= MAX_IMAGE_FILE_SIZE),
+      {
+        message: 'Each real image must be less than 1MB',
+      }
+    ),
+  videoFiles: z
+    .array(z.instanceof(File))
+    .optional()
+    .refine(
+      (files) => files?.every((file) => file.size <= MAX_VIDEO_FILE_SIZE),
+      {
+        message: 'Each video image must be less than 100MB',
+      }
+    ),
 });
 
-type Props = {
-  closeModal?: () => void;
-};
-
-const CreateProjectForm = ({ closeModal }: Props) => {
+const CreateProjectForm = () => {
   const form = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
       title: '',
+      subTitle: '',
       image: null as File | null,
-      video: null as File | null,
       description: '',
       categoryId: '',
+      galleryImages: [] as File[],
+      videoFiles: [] as File[],
     },
   });
 
@@ -70,8 +104,7 @@ const CreateProjectForm = ({ closeModal }: Props) => {
     mutationFn: createProjectApi,
     onSuccess: () => {
       router.push('/admin/projects');
-      queryClient.invalidateQueries({ queryKey: ['projects'] });
-      closeModal?.();
+      queryClient.refetchQueries({ queryKey: ['projects'] });
       form.reset();
     },
     onError: (error) => {
@@ -102,31 +135,109 @@ const CreateProjectForm = ({ closeModal }: Props) => {
   };
 
   async function onSubmit(values: z.infer<typeof projectSchema>) {
-    const formData = new FormData();
-    formData.append('file', values.image as File);
+    const formDataImage = new FormData();
+    formDataImage.append('file', values.image as File);
 
     const uploadImage = await fetch('/api/upload', {
       method: 'POST',
-      body: formData,
+      body: formDataImage,
     });
 
-    const result = await uploadImage.json();
-    if (result.success) {
-      mutate({
-        title: values.title,
-        image: result.name,
-        description: values.description,
-        video: null,
-        category: {
-          connect: {
-            id: parseInt(values.categoryId),
-          },
-        },
-      });
-    } else {
-      alert('Upload failed');
+    const resultImage = await uploadImage.json();
+
+    const formDataGallery = new FormData();
+    values.galleryImages?.forEach((file) => {
+      formDataGallery.append('files', file);
+    });
+
+    const uploadGallery = await fetch('/api/upload', {
+      method: 'POST',
+      body: formDataGallery,
+    });
+
+    const resultGallery = await uploadGallery.json();
+
+    const formDataVideo = new FormData();
+    values.videoFiles?.forEach((file) => {
+      formDataVideo.append('files', file);
+    });
+
+    const uploadVideo = await fetch('/api/upload', {
+      method: 'POST',
+      body: formDataVideo,
+    });
+
+    const resultVideo = await uploadVideo.json();
+
+    if (!resultImage.success) {
+      alert('Upload failed for image');
+      return;
     }
+
+    if (!resultGallery.success) {
+      alert('Upload failed for gallery images');
+      return;
+    }
+
+    if (!resultVideo.success) {
+      alert('Upload failed for video images');
+      return;
+    }
+
+    mutate({
+      title: values.title,
+      subTitle: values.subTitle,
+      image: resultImage.files[0],
+      description: values.description,
+      category: {
+        connect: {
+          id: parseInt(values.categoryId),
+        },
+      },
+      galleryImages: resultGallery.files,
+      videoFiles: resultVideo.files,
+    });
   }
+
+  const [galleryImages, setGalleryImages] = useState<File[] | undefined>();
+  const handleDropImages = (files: File[]) => {
+    setGalleryImages(files);
+    form.setValue('galleryImages', files);
+  };
+
+  const handleRemoveImage = (index: number) => {
+    const updatedImages = [...(galleryImages || [])];
+    updatedImages.splice(index, 1);
+    setGalleryImages(updatedImages);
+    form.setValue('galleryImages', updatedImages);
+  };
+
+  const previewGalleryImages =
+    galleryImages?.map((file) => ({
+      name: file.name,
+      size: file.size,
+      type: file.type,
+    })) || [];
+
+  const [videoFiles, setVideoFiles] = useState<File[] | undefined>();
+  const handleDropVideos = (files: File[]) => {
+    setVideoFiles(files);
+    form.setValue('videoFiles', files);
+  };
+
+  const handleRemoveVideo = (index: number) => {
+    const updatedVideos = [...(videoFiles || [])];
+    updatedVideos.splice(index, 1);
+    setVideoFiles(updatedVideos);
+    form.setValue('videoFiles', updatedVideos);
+  };
+
+  const previewVideoFiles =
+    videoFiles?.map((file) => ({
+      name: file.name,
+      size: file.size,
+      type: file.type,
+    })) || [];
 
   return (
     <Form {...form}>
@@ -139,6 +250,19 @@ const CreateProjectForm = ({ closeModal }: Props) => {
               <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input placeholder='Enter project name' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='subTitle'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Subtitle</FormLabel>
+              <FormControl>
+                <Input placeholder='Enter project subtitle' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -217,6 +341,116 @@ const CreateProjectForm = ({ closeModal }: Props) => {
             </FormItem>
           )}
         />
+
+        <Separator className='my-6' />
+
+        <h4 className='font-semibold'>
+          Gallery Images{' '}
+          {previewGalleryImages.length > 0 &&
+            `(${previewGalleryImages.length})`}
+        </h4>
+
+        <div className='flex flex-col space-y-2'>
+          <Dropzone
+            accept={{ 'image/*': [] }}
+            maxFiles={10}
+            maxSize={1024 * 1024 * 10}
+            minSize={1024}
+            onDrop={handleDropImages}
+            onError={console.error}
+            src={galleryImages}
+          >
+            <DropzoneEmptyState />
+            <DropzoneContent />
+          </Dropzone>
+        </div>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+          {previewGalleryImages.map((file, index) => (
+            <div
+              key={index}
+              className='flex items-center justify-between space-x-2 p-2 border rounded'
+            >
+              <div className='flex items-center space-x-2'>
+                <Image
+                  src={URL.createObjectURL(galleryImages![index])}
+                  alt={file.name}
+                  width={50}
+                  height={50}
+                  className='object-cover rounded'
+                />
+                <div>
+                  <p className='text-xs font-medium line-clamp-2'>
+                    {file.name}
+                  </p>
+                  <p className='text-xs text-muted-foreground'>
+                    {Math.round(file.size / 1024)} KB
+                  </p>
+                </div>
+              </div>
+              <Button
+                type='button'
+                variant='secondary'
+                className='bg-red-100 text-red-500 hover:bg-red-200 hover:text-red-600'
+                size={'icon'}
+                onClick={() => handleRemoveImage(index)}
+              >
+                <IconX size={16} />
+              </Button>
+            </div>
+          ))}
+        </div>
+
+        <Separator className='my-6' />
+
+        <h4 className='font-semibold'>
+          Video Files
+          {previewVideoFiles.length > 0 && `(${previewVideoFiles.length})`}
+        </h4>
+
+        <div className='flex flex-col space-y-2'>
+          <Dropzone
+            accept={{ 'video/*': [] }}
+            maxFiles={5}
+            maxSize={1024 * 1024 * 100}
+            minSize={1024}
+            onDrop={handleDropVideos}
+            onError={console.error}
+            src={videoFiles}
+          >
+            <DropzoneEmptyState />
+            <DropzoneContent />
+          </Dropzone>
+        </div>
+
+        <Separator className='my-6' />
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+          {previewVideoFiles.map((file, index) => (
+            <div
+              key={index}
+              className='flex items-center justify-between space-x-2 p-2 border rounded'
+            >
+              <div className='flex items-start text-left flex-col'>
+                <p className='text-xs font-medium truncate max-w-[200px]'>
+                  {file.name}
+                </p>
+                <p className='text-xs text-muted-foreground'>
+                  {Math.round(file.size / (1024 * 1024))} MB
+                </p>
+              </div>
+              <Button
+                type='button'
+                variant='secondary'
+                className='bg-red-100 text-red-500 hover:bg-red-200 hover:text-red-600'
+                size={'icon'}
+                onClick={() => handleRemoveVideo(index)}
+              >
+                <IconX size={16} />
+              </Button>
+            </div>
+          ))}
+        </div>
 
         <Button type='submit' className='mt-2' loading={isPending}>
           Save
