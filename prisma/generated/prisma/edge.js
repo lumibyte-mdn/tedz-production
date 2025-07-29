@@ -222,7 +222,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Projects\\Tedz Production\\tedz-production\\prisma\\generated\\prisma",
+      "value": "/Users/mac/Documents/Lumibyte/tedz-production/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -231,12 +231,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Projects\\Tedz Production\\tedz-production\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/mac/Documents/Lumibyte/tedz-production/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

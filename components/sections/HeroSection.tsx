@@ -1,3 +1,4 @@
+import { Link } from 'lucide-react';
 import BrandListTape from '../BrandListTape';
 
 const HeroSection = () => {
@@ -28,9 +29,11 @@ const HeroSection = () => {
               brand, baik lokal maupun internasional, dan telah membuktikan
               kualitas layanan yang kami berikan.
             </p>
-            <button className='bg-secondary hover:bg-secondary-hover py-2 px-6 text-secondary-foreground rounded-md font-semibold  cursor-pointer mt-8'>
-              Chat Tedz Sekarang
-            </button>
+            <a href="https://api.whatsapp.com/send?phone=6285117305638">
+              <button className='bg-secondary hover:bg-secondary-hover py-2 px-6 text-secondary-foreground rounded-md font-semibold  cursor-pointer mt-8'>
+                Chat Tedz Sekarang
+              </button>
+            </a>
           </div>
         </div>
       </div>
