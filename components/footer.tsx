@@ -1,53 +1,66 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from 'next/image';
+import Link from 'next/link';
 
-import tedz from "@/public/tedz.svg"
+import tedz from '@/public/tedz.svg';
+import GetInTouchForm from './forms/GetInTouchForm';
+import Container from './wrappers/Container';
+import AppLogo from './AppLogo';
+
+const navList = [
+  {
+    title: 'COMPANY',
+    links: [
+      { label: 'Home', href: '/' },
+      { label: 'Tedz Project', href: '/about' },
+      { label: 'Instagram', href: '/projects' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'SERVICES',
+    links: [
+      { label: 'Videography', href: '/terms' },
+      { label: 'Photography', href: '/privacy' },
+      { label: 'Social Media', href: '/cookies' },
+      { label: 'Tiktok Live', href: '/contact' },
+    ],
+  },
+];
 
 export default function Footer() {
-    return (
-        <footer className="text-white bg-[#141B22]">
-            <div className="flex justify-around max-w-7xl mx-auto py-32">
-                {/* Left */}
-                <div className="w-[40%]">
-                    <Image src={tedz} alt="icon" className="w-44"/>
-                    <div className="my-4 text-sm">
-                        <p>Jl. Komp. Multatuli Indah Blk. F No.8</p>
-                        <p>Sumatera Utara 20212 - Indonesia</p>
-                    </div>
-                </div>
+  return (
+    <footer className='text-white bg-soft-dark'>
+      <Container className='grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto lg:py-32 px-4 py-14 md:px-8 lg:px-16 xl:px-20 !my-0'>
+        {/* Left */}
+        <div>
+          <AppLogo className='max-w-[150px]' />
+          <div className='my-6'>
+            <p className='text-sm'>
+              Jl. Komp. Multatuli Indah Blk. F No.8 <br />
+              Sumatera Utara 20212 - Indonesia
+            </p>
+          </div>
+        </div>
 
-                {/* Right */}
-                <div className="flex justify-between w-[60%]">
-                    <div>
-                        <h4 className="font-semibold">COMPANY</h4>
-
-                        <ul className="text-gray-500">
-                            <li className="my-3"><Link href="">Home</Link></li>
-                            <li className="my-3"><Link href="">Tedz Project</Link></li>
-                            <li className="my-3"><Link href="">Instagram</Link></li>
-                            <li className="my-3"><Link href="">Contact</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-semibold">SOCIAL MEDIA</h4>
-
-                        <ul className="text-gray-500">
-                            <li className="my-3"><Link href="">Instagram</Link></li>
-                            <li className="my-3"><Link href="">Tiktok</Link></li>
-                            <li className="my-3"><Link href="">WhatsApp</Link></li>
-                            <li className="my-3"><Link href="">Email</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-semibold">GET IN TOUCH</h4>
-
-                        <input type="text" className="bg-[#C2C3C526] py-2 px-3 my-3" placeholder="Enter your email" />
-                        <button className="bg-[#FFD300] px-6 py-2 text-black">BRIEF</button>
-                    </div>
-                </div>
+        {/* Middle */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+          {navList.map((section) => (
+            <div key={section.title}>
+              <h4 className='font-semibold'>{section.title}</h4>
+              <ul className='text-sm text-gray-300'>
+                {section.links.map((link) => (
+                  <li className='my-3' key={link.label}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-        </footer>
-    )
+          ))}
+        </div>
+
+        {/* Right */}
+        <GetInTouchForm />
+      </Container>
+    </footer>
+  );
 }
