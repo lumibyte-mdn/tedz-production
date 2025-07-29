@@ -53,10 +53,12 @@ export async function updateCategoryApi({
   }
 }
 
-export async function deleteCategoryApi(id: number): Promise<Category> {
+export async function deleteCategoryApi(
+  id: number | string
+): Promise<Category> {
   try {
     const category = await db.category.delete({
-      where: { id },
+      where: { id: parseInt(id as string) },
     });
 
     return category;

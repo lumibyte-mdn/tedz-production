@@ -69,10 +69,10 @@ export async function updateBrandApi({
   }
 }
 
-export async function deleteBrandApi(id: number): Promise<Brand> {
+export async function deleteBrandApi(id: number | string): Promise<Brand> {
   try {
     const existingBrand = await db.brand.findUnique({
-      where: { id },
+      where: { id: parseInt(id as string) },
     });
 
     if (!existingBrand) {
@@ -88,7 +88,7 @@ export async function deleteBrandApi(id: number): Promise<Brand> {
     }
 
     const brand = await db.brand.delete({
-      where: { id },
+      where: { id: parseInt(id as string) },
     });
 
     return brand;
