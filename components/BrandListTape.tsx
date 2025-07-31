@@ -1,15 +1,8 @@
-'use client';
-
 import { getBrandListApi } from '@/api/brands';
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { Brand } from '@/prisma/generated/prisma';
 
-const BrandListTape = () => {
-  const { data: brands } = useQuery<Brand[]>({
-    queryKey: ['brands'],
-    queryFn: () => getBrandListApi(),
-  });
+const BrandListTape = async () => {
+  const brands = await getBrandListApi();
 
   if (!brands) {
     return null;
