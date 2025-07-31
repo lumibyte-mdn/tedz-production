@@ -15,13 +15,26 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useMutation } from '@tanstack/react-query';
-import { loginApi } from '@/api/auth';
 import { useRouter } from 'next/navigation';
 
 const loginSchema = z.object({
   email: z.email().max(100),
   password: z.string().min(6).max(100),
 });
+
+async function postLoginApi(email: string, password: string) {
+  const response = await fetch('/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!response.ok) {
+    throw new Error('Login failed');
+  }
+  return response.json();
+}
 
 const LoginForm = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -35,7 +48,8 @@ const LoginForm = () => {
   const router = useRouter();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: loginApi,
+    mutationFn: (postData: z.infer<typeof loginSchema>) =>
+      postLoginApi(postData.email, postData.password),
     onSuccess: (user) => {
       console.log('🚀 ~ LoginForm ~ user:', user);
       router.push('/admin');
@@ -43,7 +57,7 @@ const LoginForm = () => {
     onError: (error) => {
       console.error('Login failed:', error);
       form.setError('email', {
-        message: error instanceof Error ? error.message : 'Login failed',
+        message: 'Email or password is incorrect',
       });
     },
   });

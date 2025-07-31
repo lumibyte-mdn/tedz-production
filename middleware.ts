@@ -9,7 +9,7 @@ const protectedRoutes = [
   '/admin/category',
   '/admin/users',
 ];
-const publicRoutes = ['/admin/login'];
+const publicRoutes = ['/admin/login', '/api/login'];
 
 async function middleware(req: NextRequest) {
   const { nextUrl } = req;
