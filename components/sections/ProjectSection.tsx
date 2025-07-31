@@ -11,10 +11,10 @@ import { Project } from '@/prisma/generated/prisma';
 const ProjectSection = () => {
   const { data: projects } = useQuery<Project[]>({
     queryKey: ['projects'],
-    queryFn: () => getProjectListApi(),
+    queryFn: async () => await getProjectListApi(),
   });
 
-  if (!projects) {
+  if (!projects || projects.length === 0) {
     return null;
   }
 

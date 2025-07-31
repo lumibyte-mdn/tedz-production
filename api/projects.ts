@@ -303,3 +303,38 @@ export async function getProjectDetailApi(id: number | string): Promise<
     throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
 }
+
+export async function getLatestProjectsApi(): Promise<Project[]> {
+  try {
+    const projects = await db.project.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 3,
+      include: {
+        category: true,
+        projectImages: {
+          select: {
+            image: true,
+          },
+        },
+        projectVideos: {
+          select: {
+            video: true,
+          },
+        },
+      },
+    });
+
+    projects.forEach((item) => {
+      if (item.image) {
+        item.image = env.NEXT_PUBLIC_CDN_URL + item.image;
+      }
+    });
+
+    return projects;
+  } catch (error) {
+    console.error('Failed to fetch latest projects:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
+}
