@@ -14,24 +14,23 @@ const protectedRoutes = [
 const publicRoutes = ['/admin/login', '/api/login'];
 
 async function middleware(req: NextRequest) {
-  const { nextUrl } = req;
   const sessionCookie = getSessionCookie(req);
-  const isLoggedIn = sessionCookie !== null;
 
-  if (nextUrl.pathname.includes('/admin')) {
-    const isProtectedRoute = protectedRoutes.some((prefix) =>
-      nextUrl.pathname.startsWith(prefix)
-    );
+  const pathname = req.nextUrl.pathname;
 
-    if (!isLoggedIn && isProtectedRoute) {
-      const absoluteURL = new URL('/admin/login', nextUrl.origin);
-      return NextResponse.redirect(absoluteURL.toString());
+  if (!!sessionCookie && publicRoutes.includes(pathname)) {
+    const redirectTo = req.nextUrl.clone();
+    redirectTo.pathname = '/admin/dashboard';
+    return NextResponse.redirect(redirectTo);
+  }
+
+  if (!sessionCookie && !publicRoutes.includes(pathname)) {
+    const loginUrl = req.nextUrl.clone();
+    loginUrl.pathname = '/admin/login';
+    if (pathname !== '/admin/login' && pathname !== '/') {
+      loginUrl.searchParams.set('from', pathname);
     }
-
-    if (isLoggedIn && publicRoutes.includes(nextUrl.pathname)) {
-      const absoluteURL = new URL('/admin/dashboard', nextUrl.origin);
-      return NextResponse.redirect(absoluteURL.toString());
-    }
+    return NextResponse.redirect(loginUrl);
   }
 
   return NextResponse.next();
