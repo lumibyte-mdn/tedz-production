@@ -1,11 +1,18 @@
-import { getProjectListApi } from '@/api/projects';
+'use client';
+
 import Link from 'next/link';
-import { FreeMode, Pagination } from 'swiper/modules';
+import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProjectPotraitCard from '../projects/cards/ProjectPotraitCard';
+import { getProjectListApi } from '@/api/projects';
+import { useQuery } from '@tanstack/react-query';
+import { Project } from '@/prisma/generated/prisma';
 
-const ProjectSection = async () => {
-  const projects = await getProjectListApi();
+const ProjectSection = () => {
+  const { data: projects } = useQuery<Project[]>({
+    queryKey: ['projects'],
+    queryFn: () => getProjectListApi(),
+  });
 
   if (!projects) {
     return null;
