@@ -3,9 +3,10 @@
 import { getBrandListApi } from '@/api/brands';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { Brand } from '@/prisma/generated/prisma';
 
 const BrandListTape = () => {
-  const { data: brands } = useQuery({
+  const { data: brands } = useQuery<Brand[]>({
     queryKey: ['brands'],
     queryFn: getBrandListApi,
     staleTime: 1000 * 60 * 60 * 2, // 2 hours
