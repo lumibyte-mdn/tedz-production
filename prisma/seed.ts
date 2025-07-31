@@ -9,7 +9,7 @@ async function main() {
 
   // Seed your database here
   await categorySeed(db);
-  await brandSeed(db);
+  // await brandSeed(db);
 
   console.info('🌱 Database seeding complete');
 }
