@@ -222,7 +222,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/mac/Documents/Lumibyte/tedz-production/prisma/generated/prisma",
+      "value": "/Users/juanantoniov/Developer/Projects/Tedz Production/tedz-production/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -236,7 +236,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/mac/Documents/Lumibyte/tedz-production/prisma/schema.prisma",
+    "sourceFilePath": "/Users/juanantoniov/Developer/Projects/Tedz Production/tedz-production/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -250,6 +250,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
