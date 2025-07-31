@@ -37,3 +37,11 @@ export interface TService {
   slug: string;
   image: string;
 }
+
+export interface TBrand {
+  id: number;
+  name: string;
+  logo: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
