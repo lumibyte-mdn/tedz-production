@@ -47,7 +47,7 @@ export async function getProjectListApi({
       },
     });
 
-    projects.forEach((item) => {
+    projects.forEach((item: any) => {
       if (item.image) {
         item.image = env.NEXT_PUBLIC_CDN_URL + item.image;
       }
@@ -200,7 +200,7 @@ export async function deleteProjectApi(id: number | string): Promise<Project> {
 
     // Delete associated images
     if (project.projectImages.length > 0) {
-      const imagePaths = project.projectImages.map((image) => image.image);
+      const imagePaths = project.projectImages.map((image: any) => image.image);
 
       for (const imagePath of imagePaths) {
         try {
