@@ -8,7 +8,20 @@ import { Brand } from '@/prisma/generated/prisma';
 const BrandListTape = () => {
   const { data: brands } = useQuery<Brand[]>({
     queryKey: ['brands'],
-    queryFn: () => getBrandListApi(),
+    queryFn: async () => {
+      const response = await fetch('/api/brands', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch brands');
+      }
+
+      return response.json();
+    },
   });
 
   if (!brands) {

@@ -11,7 +11,20 @@ import { Project } from '@/prisma/generated/prisma';
 const ProjectSection = () => {
   const { data: projects } = useQuery<Project[]>({
     queryKey: ['projects'],
-    queryFn: async () => await getProjectListApi(),
+    queryFn: async () => {
+      const response = await fetch('/api/projects', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch projects');
+      }
+
+      return response.json();
+    },
   });
 
   if (!projects || projects.length === 0) {

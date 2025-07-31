@@ -1,16 +1,25 @@
 'use client';
 
-import Image from 'next/image';
-import AllBrandImage from '@/public/images/brands.png';
-import PizzaImage from '@/public/images/pizza.png';
-import { useQuery } from '@tanstack/react-query';
-import { getLatestProjectsApi } from '@/api/projects';
 import { cn } from '@/lib/utils';
+import AllBrandImage from '@/public/images/brands.png';
+import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 
 const ShowcaseSection = () => {
   const { data: latest } = useQuery({
     queryKey: ['latest'],
-    queryFn: async () => await getLatestProjectsApi(),
+    queryFn: async () => {
+      const response = await fetch('/api/projects/latest', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch latest projects');
+      }
+      return response.json();
+    },
   });
 
   if (!latest || latest.length === 0) {
