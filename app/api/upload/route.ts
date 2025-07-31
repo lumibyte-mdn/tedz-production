@@ -19,7 +19,7 @@ export const POST = async (req: NextRequest) => {
     fs.mkdirSync(UPLOAD_DIR);
   }
 
-  const uploadedFiles = [];
+  const uploadedFiles: string[] = [];
 
   for (const file of files) {
     if (file instanceof Blob) {
