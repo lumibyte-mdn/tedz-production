@@ -51,8 +51,8 @@ const LoginForm = () => {
     mutationFn: (postData: z.infer<typeof loginSchema>) =>
       postLoginApi(postData.email, postData.password),
     onSuccess: (user) => {
-      console.log('🚀 ~ LoginForm ~ user:', user);
-      router.push('/admin');
+      // console.log('🚀 ~ LoginForm ~ user:', user);
+      router.push('/admin/dashboard');
     },
     onError: (error) => {
       console.error('Login failed:', error);
