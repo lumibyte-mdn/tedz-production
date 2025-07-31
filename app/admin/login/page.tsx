@@ -9,6 +9,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
+export const dynamic = 'force-dynamic';
+
 const LoginPage = async () => {
   const isAdminExists = await checkAdminAccountApi();
 
