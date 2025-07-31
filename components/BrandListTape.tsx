@@ -8,8 +8,7 @@ import { Brand } from '@/prisma/generated/prisma';
 const BrandListTape = () => {
   const { data: brands } = useQuery<Brand[]>({
     queryKey: ['brands'],
-    queryFn: getBrandListApi,
-    staleTime: 1000 * 60 * 60 * 2, // 2 hours
+    queryFn: () => getBrandListApi(),
   });
 
   if (!brands) {
