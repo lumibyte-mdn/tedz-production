@@ -13,7 +13,7 @@ export async function getBrandListApi(): Promise<Brand[]> {
       },
     });
 
-    brands.forEach((item) => {
+    brands.forEach((item: any) => {
       if (item.logo) {
         item.logo = env.NEXT_PUBLIC_CDN_URL + item.logo;
       }
