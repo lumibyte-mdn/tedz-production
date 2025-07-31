@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { betterFetch } from '@better-fetch/fetch';
 import { Session } from 'better-auth';
+import { getSessionCookie } from 'better-auth/cookies';
 
 const protectedRoutes = [
   '/admin/dashboard',
@@ -8,25 +9,16 @@ const protectedRoutes = [
   '/admin/brands',
   '/admin/category',
   '/admin/users',
+  '/admin',
 ];
 const publicRoutes = ['/admin/login', '/api/login'];
 
 async function middleware(req: NextRequest) {
   const { nextUrl } = req;
+  const sessionCookie = getSessionCookie(req);
+  const isLoggedIn = sessionCookie !== null;
 
   if (nextUrl.pathname.includes('/admin')) {
-    const { data: session } = await betterFetch<Session>(
-      '/api/auth/get-session',
-      {
-        baseURL: nextUrl.origin,
-        headers: {
-          cookie: req.headers.get('cookie') || '',
-        },
-      }
-    );
-
-    const isLoggedIn = !!session;
-
     const isProtectedRoute = protectedRoutes.some((prefix) =>
       nextUrl.pathname.startsWith(prefix)
     );
