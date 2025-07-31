@@ -1,27 +1,14 @@
 'use client';
 
-import { getBrandListApi } from '@/api/brands';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { Brand } from '@/prisma/generated/prisma';
+import { getBrandListApi } from '@/api/brands';
 
 const BrandListTape = () => {
   const { data: brands } = useQuery<Brand[]>({
     queryKey: ['brands'],
-    queryFn: async () => {
-      const response = await fetch('/api/brands', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch brands');
-      }
-
-      return response.json();
-    },
+    queryFn: async () => await getBrandListApi(),
   });
 
   if (!brands) {
