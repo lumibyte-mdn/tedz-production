@@ -1,7 +1,7 @@
 'use server';
 
 import db from '@/lib/db';
-import { User, Prisma } from '@/prisma/generated/prisma';
+import { User } from '@/prisma/generated/prisma';
 import { headers } from 'next/headers';
 import auth from '@/lib/auth';
 import { UserWithRole } from 'better-auth/plugins';
