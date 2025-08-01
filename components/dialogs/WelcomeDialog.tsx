@@ -8,40 +8,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AppLogo from '../AppLogo';
 import { Button } from '../ui/button';
 
 const WelcomeDialog = () => {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const isFirstVisit = localStorage.getItem('isFirstVisit') !== 'false';
-    if (isFirstVisit) {
-      setOpen(true);
-      localStorage.setItem('isFirstVisit', 'false');
-    }
-  }, []);
+  const renderRef = useRef(0);
 
   useEffect(() => {
-    const clearLocalStorageAfter24Hours = () => {
-      const timestamp = localStorage.getItem('visitTimestamp');
-      if (timestamp) {
-        const elapsedTime = Date.now() - parseInt(timestamp, 10);
-        const hour = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-        if (elapsedTime > hour) {
-          localStorage.removeItem('isFirstVisit');
-          localStorage.removeItem('visitTimestamp');
-        }
-      }
+    if (renderRef.current > 0) return;
+    setOpen(true);
+    renderRef.current += 1;
+
+    return () => {
+      setOpen(false);
     };
-
-    const timestamp = localStorage.getItem('visitTimestamp');
-    if (!timestamp) {
-      localStorage.setItem('visitTimestamp', Date.now().toString());
-    }
-
-    clearLocalStorageAfter24Hours();
   }, []);
 
   function handleWhatsAppChat() {
