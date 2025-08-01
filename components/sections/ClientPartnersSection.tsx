@@ -37,12 +37,14 @@ const ClientPartnersSection = () => {
 
           {/* Right */}
           <div className='flex flex-col justify-center items-center text-accent leading-none'>
-            <h1 className='text-center font-oswald text-[150px] font-black tracking-tight'>
-              100+
-            </h1>
-            <p className='font-oswald text-5xl font-black mt-2 text-center'>
-              CLIENTS
-            </p>
+            <div className="text-left">
+              <h1 className='font-oswald text-[240px] font-black tracking-tight'>
+                100+
+              </h1>
+              <p className='font-oswald text-3xl font-black mt-2'>
+                Clients Local & International
+              </p>
+            </div>
           </div>
         </div>
       </div>

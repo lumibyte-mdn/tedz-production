@@ -48,12 +48,14 @@ export default function Navigation() {
               ))}
             </div>
             <div className='hidden md:flex justify-end items-center'>
-              <button
-                className='bg-secondary hover:bg-secondary-hover text-secondary-foreground py-2 px-4 rounded-md font-semibold text-sm cursor-pointer'
-                onClick={handleWhatsAppChat}
-              >
-                Chat WhatsApp
-              </button>
+              <a href="https://api.whatsapp.com/send?phone=6285117305638">
+                <button
+                  className='bg-secondary hover:bg-secondary-hover text-secondary-foreground py-2 px-4 rounded-md font-semibold text-sm cursor-pointer'
+                  onClick={handleWhatsAppChat}
+                >
+                  Chat WhatsApp
+                </button>
+              </a>
             </div>
 
             <div className='md:hidden flex items-center'>

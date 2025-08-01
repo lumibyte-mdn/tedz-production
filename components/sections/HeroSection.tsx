@@ -25,9 +25,7 @@ const HeroSection = () => {
               YOUR DIGITAL BESTIE
             </h1>
             <p className='text-white w-2/3 lg:w-1/2 mt-8'>
-              Tedz menjadi mitra terpercaya dalam solusi digital. Berbagai
-              brand, baik lokal maupun internasional, dan telah membuktikan
-              kualitas layanan yang kami berikan.
+             Tedz Production helps brands craft out-of-the-box content with a skilled team to captivate audiences, boost engagement, and grow brand visibility because we know the formula.
             </p>
             <a href="https://api.whatsapp.com/send?phone=6285117305638">
               <button className='bg-secondary hover:bg-secondary-hover py-2 px-6 text-secondary-foreground rounded-md font-semibold  cursor-pointer mt-8'>

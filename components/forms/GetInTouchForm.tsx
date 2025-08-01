@@ -1,36 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
 
 const GetInTouchForm = () => {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // You can add your form submission logic here (e.g., API call)
-    setSubmitted(true);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className='space-y-3'>
-      <h4>GET IN TOUCH</h4>
-      <input
-        type='email'
-        className='bg-[#C2C3C526] py-2 px-3 w-full'
-        placeholder='Enter your email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <button
-        type='submit'
-        className='bg-accent px-6 py-2 text-black w-full md:w-auto hover:bg-accent-hover transition-colors duration-300 cursor-pointer'
-        disabled={submitted}
-      >
-        {submitted ? 'SUBMITTED' : 'BRIEF'}
-      </button>
-    </form>
+    <>
+      <div>
+        <h4>GET IN TOUCH</h4>
+        <Link
+          href={"https://api.whatsapp.com/send?phone=6285117305638"}
+          className='text-2xl font-bold'>+62 851-1730-5638</Link>
+        <a href="https://api.whatsapp.com/send?phone=6285117305638">
+          <button
+            className='bg-secondary px-6 py-2 text-white rounded-md font-semibold w-full md:w-auto hover:bg-accent-hover transition-colors duration-300 cursor-pointer mt-4'
+          >
+            Chat WhatsApp
+          </button>
+        </a>
+      </div>
+    </>
   );
 };
 
