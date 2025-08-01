@@ -1,4 +1,3 @@
-import { Link } from 'lucide-react';
 import BrandListTape from '../BrandListTape';
 
 const HeroSection = () => {
@@ -14,9 +13,7 @@ const HeroSection = () => {
         <source src='/video/tedz.mp4' type='video/mp4' />
         Your browser does not support the video tag.
       </video>
-
       <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/90 to-transparent z-0' />
-
       {/* Konten di atas video */}
       <div className='mx-auto max-w-7xl relativem z-10 h-full px-6 lg:px-8'>
         <div className='relative z-10 h-full flex  top-0 bottom-0 left-0 right-0 items-center justify-start'>
@@ -29,7 +26,7 @@ const HeroSection = () => {
               brand, baik lokal maupun internasional, dan telah membuktikan
               kualitas layanan yang kami berikan.
             </p>
-            <a href="https://api.whatsapp.com/send?phone=6285117305638">
+            <a href='https://api.whatsapp.com/send?phone=6285117305638'>
               <button className='bg-secondary hover:bg-secondary-hover py-2 px-6 text-secondary-foreground rounded-md font-semibold  cursor-pointer mt-8'>
                 Chat Tedz Sekarang
               </button>
@@ -37,7 +34,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
       {/* Brand */}
       <BrandListTape />
     </section>

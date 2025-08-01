@@ -88,21 +88,6 @@
   }
 }
 
-@layer utilities {
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-scroll {
-    animation: scroll 16s linear infinite;
-  }
-}
-
 /* Global CSS atau Tailwind config */
 .swiper-pagination-bullet {
   background-color: #d1d5db !important; /* warna bullet default (abu-abu) */
