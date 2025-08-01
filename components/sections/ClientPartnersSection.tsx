@@ -37,8 +37,8 @@ const ClientPartnersSection = () => {
 
           {/* Right */}
           <div className='flex flex-col justify-center items-center text-accent leading-none'>
-            <div className="text-left">
-              <h1 className='font-oswald text-[240px] font-black tracking-tight'>
+            <div className='text-center lg:text-left'>
+              <h1 className='font-oswald text-[120px] lg:text-[240px] font-black tracking-tight'>
                 100+
               </h1>
               <p className='font-oswald text-3xl font-black mt-2'>

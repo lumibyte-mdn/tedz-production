@@ -3,13 +3,13 @@ import AboutImage from '@/public/images/about.png';
 
 const AboutSection = () => {
   return (
-    <section className='grid md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-16 '>
+    <section className='grid grid-cols-1 md:grid-cols-2 gap-0 sm:gap-8 items-center max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-16'>
       {/* Left */}
       <div>
         <div className='text-accent mb-16'>
           <h3 className='text-2xl leading-relaxed'>
             WE ARE <br />
-            <span className='text-5xl font-black uppercase'>
+            <span className='text-4xl lg:text-5xl font-black uppercase'>
               Tedz <br /> production
             </span>
           </h3>
@@ -36,16 +36,16 @@ const AboutSection = () => {
         </div>
       </div>
 
-      <div className='flex items-center justify-end'>
-        <Image
-          src={AboutImage}
-          alt='About Image'
-          width={450}
-          height={600}
-          priority
-          quality={100}
-          className='h-[600px] w-[450px]'
-        />
+      <div className='flex items-center justify-center lg:justify-end mt-8 md:mt-0'>
+        <div className='w-[450px] h-[600px] relative overflow-hidden rounded-lg shadow-lg'>
+          <Image
+            src={AboutImage}
+            alt='About Image'
+            objectFit='contain'
+            fill
+            priority
+          />
+        </div>
       </div>
     </section>
   );
