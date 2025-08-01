@@ -22,9 +22,11 @@ const navigation = [
 
 export default function Navigation() {
   function handleWhatsAppChat() {
-    const phoneNumber = '628123456789'; // Replace with your WhatsApp number
-    const message = encodeURIComponent('Hello, I would like to chat!');
-    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    const phoneNumber = '6285117305638'; // Replace with your WhatsApp number
+    const message = encodeURIComponent(
+      'Hallo, Saya ingin bertanya tentang layanan Anda.'
+    ); // Default message
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
     window.open(url, '_blank');
   }
 
@@ -48,14 +50,12 @@ export default function Navigation() {
               ))}
             </div>
             <div className='hidden md:flex justify-end items-center'>
-              <a href="https://api.whatsapp.com/send?phone=6285117305638">
-                <button
-                  className='bg-secondary hover:bg-secondary-hover text-secondary-foreground py-2 px-4 rounded-md font-semibold text-sm cursor-pointer'
-                  onClick={handleWhatsAppChat}
-                >
-                  Chat WhatsApp
-                </button>
-              </a>
+              <button
+                className='bg-secondary hover:bg-secondary-hover text-secondary-foreground py-2 px-4 rounded-md font-semibold text-sm cursor-pointer'
+                onClick={handleWhatsAppChat}
+              >
+                Chat WhatsApp
+              </button>
             </div>
 
             <div className='md:hidden flex items-center'>

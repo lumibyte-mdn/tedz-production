@@ -7,9 +7,9 @@ import EmbededMapSection from '@/components/sections/EmbededMapSection';
 const ContactPage = () => {
   return (
     <>
-      <PageTitle title='Contact' wrapperClassName='mt-20' />
+      <PageTitle title='Contact' wrapperClassName='mt-16' />
       <Container>
-        <ContactSection />
+        {/* <ContactSection /> */}
         <SocialMediaSection />
         <EmbededMapSection />
       </Container>

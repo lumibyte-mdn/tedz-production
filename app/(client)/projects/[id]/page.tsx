@@ -101,7 +101,7 @@ const ProjectDetailPage = async ({
           </div>
         </section>
 
-        <ContactSection />
+        {/* <ContactSection /> */}
       </main>
     </>
   );

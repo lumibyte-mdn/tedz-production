@@ -1,22 +1,23 @@
+import WhatsappButton from '@/components/buttons/WhatsappButton';
+import WelcomeDialog from '@/components/dialogs/WelcomeDialog';
+import AboutSection from '@/components/sections/AboutSection';
+import ClientPartnersSection from '@/components/sections/ClientPartnersSection';
 import HeroSection from '@/components/sections/HeroSection';
 import ProjectSection from '@/components/sections/ProjectSection';
-import ClientPartnersSection from '@/components/sections/ClientPartnersSection';
 import ServiceSection from '@/components/sections/ServiceSection';
 import ShowcaseSection from '@/components/sections/ShowcaseSection';
-import AboutSection from '@/components/sections/AboutSection';
-import ContactSection from '@/components/sections/ContactSection';
-import WhatsappButton from '@/components/buttons/WhatsappButton';
 
 export default function Home() {
   return (
     <>
+      <WelcomeDialog />
       <HeroSection />
       <ProjectSection />
       <ClientPartnersSection />
       <ServiceSection />
       <ShowcaseSection />
       <AboutSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
       <WhatsappButton
         phoneNumber='6285117305638'
         accountName={'Tedz Productions'}
