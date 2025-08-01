@@ -18,19 +18,21 @@ async function middleware(req: NextRequest) {
 
   const pathname = req.nextUrl.pathname;
 
-  if (!!sessionCookie && publicRoutes.includes(pathname)) {
-    const redirectTo = req.nextUrl.clone();
-    redirectTo.pathname = '/admin/dashboard';
-    return NextResponse.redirect(redirectTo);
-  }
-
-  if (!sessionCookie && !publicRoutes.includes(pathname)) {
-    const loginUrl = req.nextUrl.clone();
-    loginUrl.pathname = '/admin/login';
-    if (pathname !== '/admin/login' && pathname !== '/') {
-      loginUrl.searchParams.set('from', pathname);
+  if (pathname.startsWith('/admin')) {
+    if (!!sessionCookie && publicRoutes.includes(pathname)) {
+      const redirectTo = req.nextUrl.clone();
+      redirectTo.pathname = '/admin/dashboard';
+      return NextResponse.redirect(redirectTo);
     }
-    return NextResponse.redirect(loginUrl);
+
+    if (!sessionCookie && !publicRoutes.includes(pathname)) {
+      const loginUrl = req.nextUrl.clone();
+      loginUrl.pathname = '/admin/login';
+      if (pathname !== '/admin/login' && pathname !== '/') {
+        loginUrl.searchParams.set('from', pathname);
+      }
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   return NextResponse.next();
