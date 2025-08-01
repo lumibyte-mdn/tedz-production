@@ -15,8 +15,14 @@ import { IconMenuDeep } from '@tabler/icons-react';
 
 const navigation = [
   { name: 'HOME', href: '/' },
-  { name: 'TEDZ PROJECT', href: '/projects' },
-  { name: 'INSTAGRAM', href: '#' },
+  {
+    name: 'TEDZ PROJECT',
+    href: 'https://api.whatsapp.com/send?phone=6285117305638',
+  },
+  {
+    name: 'INSTAGRAM',
+    href: 'https://www.instagram.com/tedz.production?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+  },
   { name: 'CONTACT', href: '/contact' },
 ];
 

@@ -12,17 +12,32 @@ const navList = [
     links: [
       { label: 'Home', href: '/' },
       { label: 'Tedz Project', href: '/about' },
-      { label: 'Instagram', href: '/projects' },
+      {
+        label: 'Instagram',
+        href: 'https://www.instagram.com/tedz.production?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+      },
       { label: 'Contact', href: '/contact' },
     ],
   },
   {
     title: 'SERVICES',
     links: [
-      { label: 'Videography', href: '/terms' },
-      { label: 'Photography', href: '/privacy' },
-      { label: 'Social Media', href: '/cookies' },
-      { label: 'Tiktok Live', href: '/contact' },
+      {
+        label: 'Videography',
+        href: 'https://api.whatsapp.com/send?phone=6285117305638',
+      },
+      {
+        label: 'Photography',
+        href: 'https://api.whatsapp.com/send?phone=6285117305638',
+      },
+      {
+        label: 'Social Media',
+        href: 'https://www.instagram.com/tedz.production?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+      },
+      {
+        label: 'Tiktok Live',
+        href: 'https://www.tiktok.com/@tedz.production?is_from_webapp=1&sender_device=pc',
+      },
     ],
   },
 ];
