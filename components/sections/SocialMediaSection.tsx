@@ -1,25 +1,25 @@
 import {
-  IconBrandFacebook,
   IconBrandInstagram,
-  IconBrandTwitter,
+  IconBrandTiktok,
+  IconBrandWhatsapp,
 } from '@tabler/icons-react';
 import Section from './Section';
 
 const mockSocialMediaLinks = [
   {
+    platform: 'Tiktok',
+    url: 'https://www.tiktok.com/@tedz.production?is_from_webapp=1&sender_device=pc',
+    icon: <IconBrandTiktok size={24} className='text-white' />,
+  },
+  {
     platform: 'Instagram',
-    url: 'https://instagram.com/yourprofile',
+    url: 'https://www.instagram.com/tedz.production?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     icon: <IconBrandInstagram size={24} className='text-white' />,
   },
   {
-    platform: 'Facebook',
-    url: 'https://facebook.com/yourprofile',
-    icon: <IconBrandFacebook size={24} className='text-white' />,
-  },
-  {
-    platform: 'Twitter',
-    url: 'https://twitter.com/yourprofile',
-    icon: <IconBrandTwitter size={24} className='text-white' />,
+    platform: 'Whatsapp',
+    url: 'https://api.whatsapp.com/send?phone=6285117305638',
+    icon: <IconBrandWhatsapp size={24} className='text-white' />,
   },
 ];
 
