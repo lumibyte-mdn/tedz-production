@@ -17,7 +17,7 @@ const navigation = [
   { name: 'HOME', href: '/' },
   {
     name: 'TEDZ PROJECT',
-    href: 'https://api.whatsapp.com/send?phone=6285117305638',
+    href: '/projects',
   },
   {
     name: 'INSTAGRAM',

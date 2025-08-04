@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { IconBrandWhatsapp } from '@tabler/icons-react';
 import { useEffect, useRef, useState } from 'react';
 import AppLogo from '../AppLogo';
 import { Button } from '../ui/button';
@@ -46,18 +47,28 @@ const WelcomeDialog = () => {
             Welcome to Tedz Production
           </DialogTitle>
           <DialogDescription className='mt-2 text-sm text-gray-600 text-center'>
-            We are excited to have you here! Explore our services and feel free
-            to reach out to us for any inquiries.
+            Mau liat-liat dulu atau langsung ngobrol aja nih?
           </DialogDescription>
         </DialogHeader>
-        <div className='mt-4 flex justify-center'>
+        <div className='mt-4 flex justify-center gap-4'>
+          <a href='https://api.whatsapp.com/send?phone=6285117305638'>
+            <Button
+              size={'lg'}
+              variant={'outline'}
+              className='hover:bg-secondary/10 hover:text-secondary text-secondary rounded-md font-semibold text-sm cursor-pointer'
+              onClick={() => setOpen(false)}
+            >
+              Scroll aja dulu
+            </Button>
+          </a>
           <a href='https://api.whatsapp.com/send?phone=6285117305638'>
             <Button
               size={'lg'}
               className='bg-secondary hover:bg-secondary-hover text-secondary-foreground rounded-md font-semibold text-sm cursor-pointer'
               onClick={handleWhatsAppChat}
             >
-              Chat WhatsApp
+              <IconBrandWhatsapp />
+              Langsung Chat
             </Button>
           </a>
         </div>
