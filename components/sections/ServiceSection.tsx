@@ -36,7 +36,7 @@ const ServiceSection = () => {
         {services.map((service) => (
           <Link
             key={service.slug}
-            href={`/services/${service.slug}`}
+            href={`/projects`}
             className='relative overflow-hidden group'
           >
             <div className="bg-[url('/images/services.png')] bg-cover w-full h-[400px] rounded-sm">
