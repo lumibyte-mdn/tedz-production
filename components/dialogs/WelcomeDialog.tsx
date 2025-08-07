@@ -51,16 +51,14 @@ const WelcomeDialog = () => {
           </DialogDescription>
         </DialogHeader>
         <div className='mt-4 flex justify-center gap-4'>
-          <a href='https://api.whatsapp.com/send?phone=6285117305638'>
-            <Button
-              size={'lg'}
-              variant={'outline'}
-              className='hover:bg-secondary/10 hover:text-secondary text-secondary rounded-md font-semibold text-sm cursor-pointer'
-              onClick={() => setOpen(false)}
-            >
-              Scroll aja dulu
-            </Button>
-          </a>
+          <Button
+            size={'lg'}
+            variant={'outline'}
+            className='hover:bg-secondary/10 hover:text-secondary text-secondary rounded-md font-semibold text-sm cursor-pointer'
+            onClick={() => setOpen(false)}
+          >
+            Scroll aja dulu
+          </Button>
           <a href='https://api.whatsapp.com/send?phone=6285117305638'>
             <Button
               size={'lg'}
