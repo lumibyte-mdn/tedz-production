@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 const env = createEnv({
   server: {
-    DATABASE_URL: z.string(),
+    PRISMA_DATABASE_URL: z.string(),
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
       .default('development'),
@@ -16,7 +16,7 @@ const env = createEnv({
     NEXT_PUBLIC_CDN_URL: z.string(),
   },
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
+    PRISMA_DATABASE_URL: process.env.PRISMA_DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,

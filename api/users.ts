@@ -137,3 +137,80 @@ export async function deleteUserApi(id: number | string): Promise<User> {
     throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
 }
+
+type IUpdateProfile = {
+  name: string;
+  email: string;
+};
+
+export async function updateProfileApi(data: IUpdateProfile) {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    const user = session?.user || null;
+
+    if (!user || !user.id) {
+      throw new Error('Unauthorized access');
+    }
+
+    let email = data.email;
+    if (email && email !== user.email) {
+      const existingUser = await db.user.findUnique({
+        where: { email },
+      });
+      if (existingUser) {
+        throw new Error('Email already in use');
+      }
+    } else {
+      email = user.email; // Keep current email if not provided or same as current
+    }
+
+    const updatedUser = await db.user.update({
+      where: { id: user.id },
+      data: {
+        name: data.name,
+        email: email,
+      },
+    });
+
+    return updatedUser;
+  } catch (error) {
+    console.error('Failed to update profile:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
+}
+
+type IChangePassword = {
+  newPassword: string;
+  confirmPassword: string;
+};
+
+export async function changePasswordApi(data: IChangePassword) {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    const user = session?.user || null;
+
+    if (!user || !user.id) {
+      throw new Error('Unauthorized access');
+    }
+
+    if (data.newPassword !== data.confirmPassword) {
+      throw new Error('Passwords do not match');
+    }
+
+    const ctx = await auth.$context;
+    const passwordHash = await ctx.password.hash(data.newPassword);
+
+    await ctx.internalAdapter.updatePassword(user.id, passwordHash);
+
+    return { message: 'Password updated successfully' };
+  } catch (error) {
+    console.error('Failed to reset password:', error);
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
+  }
+}

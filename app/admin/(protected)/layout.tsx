@@ -2,6 +2,7 @@ import SiteHeader from '@/components/headers/SiteHeader';
 import { AppSidebar } from '@/components/sidebars/AppSidebar';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { PropsWithChildren } from 'react';
+import { Toaster } from 'sonner';
 
 const ProtectedLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -16,6 +17,7 @@ const ProtectedLayout = ({ children }: PropsWithChildren) => {
       <AppSidebar variant='inset' />
       <SidebarInset>
         <SiteHeader />
+        <Toaster />
         <div className='flex flex-1 flex-col bg-gray-50'>
           <div className='@container/main flex flex-1 flex-col gap-2 p-6'>
             {children}

@@ -161,3 +161,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+@utility section {
+  @apply bg-white p-4 rounded-lg shadow-md border border-border;
+}
