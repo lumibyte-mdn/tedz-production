@@ -1,6 +1,10 @@
 'use client';
 
-import { IconDotsVertical, IconLogout } from '@tabler/icons-react';
+import {
+  IconDotsVertical,
+  IconLogout,
+  IconSettings,
+} from '@tabler/icons-react';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
@@ -21,6 +25,8 @@ import { User } from 'better-auth';
 import { logoutApi } from '@/api/auth';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Link from 'next/link';
+import { toast } from 'sonner';
 
 export function NavUser({ user }: { user: User | null }) {
   const { isMobile } = useSidebar();
@@ -32,14 +38,15 @@ export function NavUser({ user }: { user: User | null }) {
   const { mutate: logout, isPending: isLoggingOut } = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {
+      toast.success('Logged out successfully');
       queryClient.clear();
       queryClient.removeQueries({ queryKey: ['user'] });
       console.log('User logged out successfully');
       router.push('/admin/login');
     },
     onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Logout failed');
       console.error('Logout failed:', error);
-      alert(error instanceof Error ? error.message : 'Logout failed');
     },
   });
 
@@ -92,6 +99,15 @@ export function NavUser({ user }: { user: User | null }) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem className='cursor-pointer hover:!bg-secondary/10 hover:!text-secondary group'>
+              <Link
+                href='/admin/settings'
+                className='flex items-center gap-2 w-full'
+              >
+                <IconSettings className='group-hover:!text-secondary' />
+                Settings
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem
               className='cursor-pointer hover:!bg-secondary/10 hover:!text-secondary group'
               onClick={() => logout()}
