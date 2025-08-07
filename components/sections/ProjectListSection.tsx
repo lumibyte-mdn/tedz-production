@@ -83,7 +83,7 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
           </header>
         )}
 
-        {selectedLayout === CategoryLayout.CARD && (
+        {selectedCategory && selectedLayout === CategoryLayout.CARD && (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-14'>
             {isProjectsLoading ? (
               <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
@@ -101,7 +101,7 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
           </div>
         )}
 
-        {selectedLayout === CategoryLayout.PORTRAIT && (
+        {selectedCategory && selectedLayout === CategoryLayout.PORTRAIT && (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-14'>
             {isProjectsLoading ? (
               <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
@@ -120,7 +120,7 @@ const ProjectListSection = ({ withCategoryTab }: Props) => {
         )}
       </Container>
 
-      {selectedLayout === CategoryLayout.GRID && (
+      {selectedCategory && selectedLayout === CategoryLayout.GRID && (
         <div className='grid grid-cols-1 md:grid-cols-2'>
           {isProjectsLoading ? (
             <div className='text-white text-lg md:text-2xl font-bold text-center min-h-56 col-span-full'>
