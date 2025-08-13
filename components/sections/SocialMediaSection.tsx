@@ -27,7 +27,7 @@ const SocialMediaSection = () => {
   return (
     <Section>
       <h2 className='text-2xl font-bold mb-6'>Follow Us</h2>
-      <div className='flex space-x-4'>
+      <div className='flex space-x-4 flex-col gap-4 md:flex-row md:items-center'>
         {mockSocialMediaLinks.map((link) => (
           <a key={link.platform} href={link.url} className='flex items-center'>
             {link.icon}
