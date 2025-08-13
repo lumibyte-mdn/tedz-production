@@ -13,6 +13,7 @@ import {
 import { Button } from './ui/button';
 import { IconMenuDeep } from '@tabler/icons-react';
 import { WHATSAPP_PHONE_NUMBER } from '@/constant';
+import { useState } from 'react';
 
 const navigation = [
   { name: 'HOME', href: '/' },
@@ -35,6 +36,8 @@ export default function Navigation() {
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE_NUMBER}&text=${message}`;
     window.open(url, '_blank');
   }
+
+  const [mobileSidebarOpened, setMobileSidebarOpened] = useState(false);
 
   return (
     <>
@@ -65,7 +68,10 @@ export default function Navigation() {
             </div>
 
             <div className='md:hidden flex items-center'>
-              <Sheet>
+              <Sheet
+                open={mobileSidebarOpened}
+                onOpenChange={setMobileSidebarOpened}
+              >
                 <SheetTrigger asChild>
                   <Button size='icon' variant={'secondary'}>
                     <IconMenuDeep className='size-6' />
@@ -83,6 +89,7 @@ export default function Navigation() {
                       <Link
                         href={item.href}
                         key={item.name}
+                        onClick={() => setMobileSidebarOpened(false)}
                         className='block text-sm py-2 px-8 hover:text-secondary text-white font-semibold'
                       >
                         {item.name}
