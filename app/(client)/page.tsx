@@ -6,6 +6,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import ProjectSection from '@/components/sections/ProjectSection';
 import ServiceSection from '@/components/sections/ServiceSection';
 import ShowcaseSection from '@/components/sections/ShowcaseSection';
+import { WHATSAPP_PHONE_NUMBER } from '@/constant';
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
       <AboutSection />
       {/* <ContactSection /> */}
       <WhatsappButton
-        phoneNumber='6285117305638'
+        phoneNumber={WHATSAPP_PHONE_NUMBER}
         accountName={'Tedz Productions'}
         avatar='/images/avatar.jpg'
         allowEsc

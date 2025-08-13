@@ -22,3 +22,5 @@ export const BRANDS = [
     logo: padellogo,
   },
 ];
+
+export const WHATSAPP_PHONE_NUMBER = '6285117305638';
