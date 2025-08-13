@@ -12,6 +12,8 @@ import { IconBrandWhatsapp } from '@tabler/icons-react';
 import { useEffect, useRef, useState } from 'react';
 import AppLogo from '../AppLogo';
 import { Button } from '../ui/button';
+import Link from 'next/link';
+import { WHATSAPP_PHONE_NUMBER } from '@/constant';
 
 const WelcomeDialog = () => {
   const [open, setOpen] = useState(false);
@@ -29,11 +31,10 @@ const WelcomeDialog = () => {
   }, []);
 
   function handleWhatsAppChat() {
-    const phoneNumber = '6285117305638'; // Replace with your WhatsApp number
     const message = encodeURIComponent(
       'Hallo, Saya ingin bertanya tentang layanan Anda.'
     ); // Default message
-    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE_NUMBER}&text=${message}`;
     window.open(url, '_blank');
   }
 
@@ -50,7 +51,7 @@ const WelcomeDialog = () => {
             Mau liat-liat dulu atau langsung ngobrol aja nih?
           </DialogDescription>
         </DialogHeader>
-        <div className='mt-4 flex justify-center gap-4'>
+        <div className='mt-4 flex justify-center gap-4 flex-col sm:flex-row'>
           <Button
             size={'lg'}
             variant={'outline'}
@@ -59,16 +60,20 @@ const WelcomeDialog = () => {
           >
             Scroll aja dulu
           </Button>
-          <a href='https://api.whatsapp.com/send?phone=6285117305638'>
-            <Button
-              size={'lg'}
-              className='bg-secondary hover:bg-secondary-hover text-secondary-foreground rounded-md font-semibold text-sm cursor-pointer'
-              onClick={handleWhatsAppChat}
+          <Button
+            size={'lg'}
+            className='bg-secondary hover:bg-secondary-hover text-secondary-foreground rounded-md font-semibold text-sm cursor-pointer'
+            asChild
+            onClick={handleWhatsAppChat}
+          >
+            <Link
+              href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE_NUMBER}`}
+              className='flex items-center gap-2'
             >
               <IconBrandWhatsapp />
               Langsung Chat
-            </Button>
-          </a>
+            </Link>
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

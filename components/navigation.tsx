@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from './ui/button';
 import { IconMenuDeep } from '@tabler/icons-react';
+import { WHATSAPP_PHONE_NUMBER } from '@/constant';
 
 const navigation = [
   { name: 'HOME', href: '/' },
@@ -28,11 +29,10 @@ const navigation = [
 
 export default function Navigation() {
   function handleWhatsAppChat() {
-    const phoneNumber = '6285117305638'; // Replace with your WhatsApp number
     const message = encodeURIComponent(
       'Hallo, Saya ingin bertanya tentang layanan Anda.'
     ); // Default message
-    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE_NUMBER}&text=${message}`;
     window.open(url, '_blank');
   }
 
