@@ -8,27 +8,40 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { WHATSAPP_PHONE_NUMBER } from '@/constant';
 import { IconBrandWhatsapp } from '@tabler/icons-react';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import AppLogo from '../AppLogo';
 import { Button } from '../ui/button';
-import Link from 'next/link';
-import { WHATSAPP_PHONE_NUMBER } from '@/constant';
 
 const WelcomeDialog = () => {
   const [open, setOpen] = useState(false);
 
-  const renderRef = useRef(0);
-
   useEffect(() => {
-    if (renderRef.current > 0) return;
-    setOpen(true);
-    renderRef.current += 1;
+    // Remove session on refresh
+    window.addEventListener('beforeunload', () => {
+      sessionStorage.removeItem('welcome_dialog_showed');
+    });
+
+    const hasShown = sessionStorage.getItem('welcome_dialog_showed');
+    if (!hasShown) {
+      setOpen(true);
+    }
 
     return () => {
-      setOpen(false);
+      window.removeEventListener('beforeunload', () => {
+        sessionStorage.removeItem('welcome_dialog_showed');
+      });
     };
   }, []);
+
+  const onClose = (value: boolean) => {
+    setOpen(value);
+    if (!value) {
+      sessionStorage.setItem('welcome_dialog_showed', 'true');
+    }
+  };
 
   function handleWhatsAppChat() {
     const message = encodeURIComponent(
@@ -39,7 +52,7 @@ const WelcomeDialog = () => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={onClose}>
       <DialogTrigger>Open</DialogTrigger>
       <DialogContent>
         <DialogHeader className='flex flex-col items-center text-center'>
